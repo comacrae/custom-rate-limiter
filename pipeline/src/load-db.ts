@@ -105,7 +105,19 @@ for (const batch of chunks([...probeRows.values()])) {
 }
 console.log(`Loaded ${probeRows.size} site probes`);
 
-const sites = await readJsonl<SiteMenus>(process.env.MENUS_FILE ?? 'menus.jsonl');
+// HTML and PDF menus for the same site are replaced together
+const bySite = new Map<string, SiteMenus>();
+for (const file of [
+  process.env.MENUS_FILE ?? 'menus.jsonl',
+  process.env.PDF_MENUS_FILE ?? 'pdf-menus.jsonl',
+]) {
+  for (const site of await readJsonl<SiteMenus>(file)) {
+    const existing = bySite.get(site.siteHost);
+    if (existing) existing.pages.push(...site.pages);
+    else bySite.set(site.siteHost, { ...site, pages: [...site.pages] });
+  }
+}
+const sites = [...bySite.values()];
 let menuCount = 0;
 let itemCount = 0;
 for (const site of sites) {

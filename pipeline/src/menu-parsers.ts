@@ -28,7 +28,7 @@ export function parsePrice(text: string): { price: number | null; priceText: str
 }
 
 // Rejects buttons, legal copy, and other non-dish text that sits next to prices
-function isPlausibleName(name: string) {
+export function isPlausibleName(name: string) {
   return (
     name.length >= 2 &&
     name.length <= 90 &&
@@ -257,8 +257,35 @@ function toMenuItem(
   };
 }
 
+export const GENERIC_LABEL = /^(our |view |see |full |the )?menus?$/i;
+
+// "dinner-menu" → "Dinner Menu"; used when a page or PDF doesn't name its menu. Drops dates
+// and ID-like tokens such as Wix file hashes.
+export function labelFromUrl(url: URL) {
+  let slug = url.pathname.split('/').filter(Boolean).pop() ?? '';
+  try {
+    slug = decodeURIComponent(slug);
+  } catch {
+    // Keep the raw slug
+  }
+  const words = slug
+    .replace(/\.\w+$/, '')
+    .split(/[-_\s]+/)
+    .filter((w) => w && !/\d/.test(w) && w.toLowerCase() !== 'pdf')
+    .join(' ');
+  return words && !GENERIC_LABEL.test(words) ? words.replace(/\b\w/g, (c) => c.toUpperCase()) : '';
+}
+
+// Same menu shown on two pages (e.g. homepage and /menu) should only be stored once
+export function menuSignature(menu: MenuDraft) {
+  return menu.items
+    .slice(0, 8)
+    .map((i) => `${i.name.toLowerCase()}|${i.price}`)
+    .join(';');
+}
+
 // Most specific parser first; a page needs at least this many items to count as a menu
-const MIN_ITEMS = 5;
+export const MIN_ITEMS = 5;
 
 export function parseMenuPage($: CheerioAPI): ParseResult | null {
   for (const [parser, parse] of [

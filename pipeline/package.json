@@ -9,13 +9,16 @@
     "parse-url": "node src/parse-url.ts",
     "test": "node --test src/*.test.ts",
     "extract-menus": "node src/extract-menus.ts",
-    "load-db": "node src/load-db.ts"
+    "load-db": "node src/load-db.ts",
+    "parse-pdf": "node src/parse-pdf.ts",
+    "extract-pdfs": "node src/extract-pdfs.ts"
   },
   "dependencies": {
     "@duckdb/node-api": "1.5.6-r.1",
     "cheerio": "1.2.0",
     "postgres": "3.4.9",
-    "robots-parser": "3.0.1"
+    "robots-parser": "3.0.1",
+    "unpdf": "1.8.1"
   },
   "devDependencies": {
     "@types/node": "22.20.5",

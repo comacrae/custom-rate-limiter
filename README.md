@@ -88,9 +88,11 @@ cd pipeline
 npm run fetch-restaurants    # open Chicagoland restaurants from Overture Maps → out/restaurants.json
 npm run probe-menus          # classify how each site publishes its menu → out/probe.jsonl (~1 hr)
 npm run extract-menus        # parse menus from reachable sites → out/menus.jsonl
+npm run extract-pdfs         # parse text-based menu PDFs found by extract-menus → out/pdf-menus.jsonl
 npm run load-db              # upsert everything into the local Supabase database
 npm test                     # parser unit tests
 npm run parse-url -- <url>   # see what the parsers get from one page
+npm run parse-pdf -- <url>   # same for one menu PDF
 ```
 
 `LIMIT=40` runs the probe or extractor on the first 40 sites. `load-db` writes to local Supabase unless `DATABASE_URL` is set.

@@ -7,7 +7,13 @@ import * as cheerio from 'cheerio';
 
 import { OUT_DIR } from './config.ts';
 import { blockVendor, getHtml, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
-import { parseMenuPage, type MenuDraft } from './menu-parsers.ts';
+import {
+  GENERIC_LABEL,
+  labelFromUrl,
+  menuSignature,
+  parseMenuPage,
+  type MenuDraft,
+} from './menu-parsers.ts';
 import type { Probe } from './probe-menus.ts';
 import { siteHost, siteUrl } from './sites.ts';
 
@@ -15,7 +21,6 @@ const CONCURRENCY = 16;
 const MAX_PAGES_PER_SITE = 8;
 const MENU_LINK =
   /menu|food|drink|brunch|lunch|dinner|breakfast|dessert|wine|cocktail|happy.?hour/i;
-const GENERIC_LABEL = /^(our |view |see |full |the )?menus?$/i;
 
 // "VIEW CATERING MENU" → "CATERING MENU"
 const tidyLabel = (label: string) => label.replace(/^(view|see|our|click for|download)\s+/i, '');
@@ -30,24 +35,6 @@ export type SiteMenus = {
   pdfs: string[];
   blocked?: string;
 };
-
-// "dinner-menu" → "Dinner Menu"; used when a page doesn't name its menu
-function labelFromUrl(url: URL) {
-  const slug = url.pathname.split('/').filter(Boolean).pop() ?? '';
-  const words = slug
-    .replace(/\.\w+$/, '')
-    .replace(/[-_]+/g, ' ')
-    .trim();
-  return words && !GENERIC_LABEL.test(words) ? words.replace(/\b\w/g, (c) => c.toUpperCase()) : '';
-}
-
-// Same menu shown on two pages (e.g. homepage and /menu) should only be stored once
-function menuSignature(menu: MenuDraft) {
-  return menu.items
-    .slice(0, 8)
-    .map((i) => `${i.name.toLowerCase()}|${i.price}`)
-    .join(';');
-}
 
 async function extractSite(probe: Probe): Promise<SiteMenus> {
   const home = siteUrl(probe.website);
