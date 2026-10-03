@@ -2,13 +2,12 @@
 // Polite by design: honors robots.txt, identifies itself, one request per site at a time,
 // and records bot challenges instead of trying to get past them.
 import { readFile } from 'node:fs/promises';
-import { setTimeout as sleep } from 'node:timers/promises';
 
 import * as cheerio from 'cheerio';
 
 import { OUT_DIR } from './config.ts';
 import type { Restaurant } from './fetch-restaurants.ts';
-import { blockVendor, getHtml, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
+import { blockVendor, getHtml, robotsAllows, runPool, pauseFor } from './http.ts';
 import { jsonlWriter } from './jsonl.ts';
 import { siteHost, siteUrl } from './sites.ts';
 
@@ -185,7 +184,7 @@ async function probe(r: Site): Promise<Probe> {
       result.detail = cause ?? (err as Error).name;
       if (cause === 'ENOTFOUND') break;
     }
-    await sleep(SAME_SITE_DELAY_MS);
+    await pauseFor(candidate);
   }
   if (!home) return result;
   result.outcome = 'ok';
@@ -203,7 +202,7 @@ async function probe(r: Site): Promise<Probe> {
     for (const link of homeInfo.menuLinks.slice(0, MAX_MENU_PAGES)) {
       const pageUrl = new URL(link);
       if (!(await robotsAllows(pageUrl))) continue;
-      await sleep(SAME_SITE_DELAY_MS);
+      await pauseFor(pageUrl);
       try {
         const page = await getHtml(pageUrl);
         if (!page.res.ok || !page.html) continue;

@@ -1,14 +1,13 @@
 // Finds menus published as images on sites whose menu pages had no text menu, and records the
 // image URLs so the app can link to them. OCR was tested and was too noisy to store as items.
 import { readFile } from 'node:fs/promises';
-import { setTimeout as sleep } from 'node:timers/promises';
 
 import * as cheerio from 'cheerio';
 import type { Element } from 'domhandler';
 
 import { OUT_DIR } from './config.ts';
 import type { SiteMenus } from './extract-menus.ts';
-import { blockVendor, getHtml, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
+import { blockVendor, getHtml, robotsAllows, runPool, pauseFor } from './http.ts';
 import { jsonlWriter } from './jsonl.ts';
 import type { Probe } from './probe-menus.ts';
 import { siteHost } from './sites.ts';
@@ -45,7 +44,7 @@ async function findImages(probe: Probe): Promise<SiteImages> {
   for (const [index, pageHref] of probe.menuPages.slice(0, MAX_MENU_PAGES).entries()) {
     const pageUrl = new URL(pageHref);
     if (!(await robotsAllows(pageUrl))) continue;
-    if (index > 0) await sleep(SAME_SITE_DELAY_MS);
+    if (index > 0) await pauseFor(pageUrl);
     try {
       const page = await getHtml(pageUrl);
       if (blockVendor(page.res, page.html)) break;
