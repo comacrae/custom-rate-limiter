@@ -26,9 +26,10 @@ const clean = (text: string | undefined | null) =>
 
 export function parsePrice(text: string): { price: number | null; priceText: string | null } {
   const priceText = clean(text) || null;
-  const match = priceText?.match(/\d{1,4}(?:\.\d{1,2})?/);
+  // A comma before exactly two digits is a decimal point ("3,75"); "1,200" is not
+  const match = priceText?.match(/\d{1,4}(?:\.\d{1,2}|,\d{2}(?!\d))?/);
   // "$0" is nearly always a split fragment ("14," + "00") or a placeholder, not a real price
-  const price = match ? Number(match[0]) : null;
+  const price = match ? Number(match[0].replace(',', '.')) : null;
   return { price: price ? price : null, priceText };
 }
 
@@ -98,9 +99,19 @@ export function isPlausibleName(name: string) {
     // Online store labels on cafés' and wine shops' product grids
     !/^((regular|sale|special|unit|original) price|sold out|quick (view|shop)|in stock)\b/i.test(
       name,
-    )
+    ) &&
+    // Calorie labels ("cal 400-") and size headers ("personal big family") aren't dishes
+    !/^(cal|calories)\b/i.test(name) &&
+    !/^((personal|small|medium|large|big|family|regular|half|full|single|double|sm|md|lg|xl)\s*){2,}$/i.test(
+      name,
+    ) &&
+    !PAGE_BOILERPLATE.test(name)
   );
 }
+
+// Footer, banner, and contact text that ends up next to menus
+const PAGE_BOILERPLATE =
+  /@|https?:|www\.|cookie (policy|settings|preferences)|accept (all )?cookies|copyright|©|all rights reserved|powered by|privacy policy|post views|our location|follow us|sign up|newsletter|subscribe|website uses/i;
 
 function countItems(menus: MenuDraft[]) {
   return menus.reduce((n, m) => n + m.items.length, 0);
@@ -440,6 +451,135 @@ export function menuSignature(menu: MenuDraft) {
     .join(';');
 }
 
+// A run of text on one line; x is its horizontal position (0 for HTML text)
+export type Segment = { x: number; text: string };
+
+// The name must end in a non-digit so "est. 1955" isn't read as "est. 1" at $955
+const LINE_PRICE_AT_END = /^(.*?\D)[\s.·…_–-]*\$?\s?(\d{1,3}(?:[.,]\d{2})?)\+?$/;
+const LINE_PRICE_ONLY = /^\$?\s?\d{1,3}(?:[.,]\d{2})?\+?$/;
+
+// Two-letter "headings" are usually OCR or PDF fragments ("AD" from "SALAD")
+const isHeading = (text: string) =>
+  text.length >= 3 &&
+  text.length <= 40 &&
+  /[A-Z]/.test(text) &&
+  text === text.toUpperCase() &&
+  !/\d/.test(text);
+
+// Reads "name … price" lines with descriptions on the lines below. Shared by PDF menus and
+// HTML text menus whose prices have no "$" or sit in the same text as the name.
+export function parseSegmentLines(lines: Segment[][]): MenuItemDraft[] {
+  const items: (MenuItemDraft & { x: number })[] = [];
+  let section: string | null = null;
+  let pendingName: Segment | null = null;
+
+  for (const [lineIndex, line] of lines.entries()) {
+    for (let i = 0; i < line.length; i++) {
+      const seg = line[i];
+      const next = line[i + 1];
+      const nextLineStart = i === line.length - 1 ? lines[lineIndex + 1]?.[0] : undefined;
+      // "Name" segment followed by a separate price segment on the same line
+      if (next && LINE_PRICE_ONLY.test(next.text) && isPlausibleName(seg.text)) {
+        items.push({
+          x: seg.x,
+          section,
+          name: seg.text,
+          description: null,
+          ...parsePrice(next.text),
+          dietary: [],
+        });
+        i++;
+        pendingName = null;
+        continue;
+      }
+      // A price on its own line closes a name from the line above
+      if (LINE_PRICE_ONLY.test(seg.text)) {
+        if (pendingName) {
+          items.push({
+            x: pendingName.x,
+            section,
+            name: pendingName.text,
+            description: null,
+            ...parsePrice(seg.text),
+            dietary: [],
+          });
+          pendingName = null;
+        }
+        continue;
+      }
+      const match = seg.text.match(LINE_PRICE_AT_END);
+      if (match && isPlausibleName(match[1])) {
+        items.push({
+          x: seg.x,
+          section,
+          name: match[1].trim(),
+          description: null,
+          ...parsePrice(match[2]),
+          dietary: [],
+        });
+        pendingName = null;
+        continue;
+      }
+      if (isHeading(seg.text) && isPlausibleName(seg.text)) {
+        section = seg.text;
+        pendingName = seg;
+        continue;
+      }
+      // A name whose price is alone on the next line starts a new item, not a description
+      if (
+        nextLineStart &&
+        LINE_PRICE_ONLY.test(nextLineStart.text) &&
+        Math.abs(nextLineStart.x - seg.x) <= 400 &&
+        isPlausibleName(seg.text)
+      ) {
+        pendingName = seg;
+        continue;
+      }
+      // Unpriced text describes the latest item in the same column
+      const owner = items.findLast((item) => Math.abs(item.x - seg.x) <= 15);
+      if (owner)
+        owner.description = owner.description ? `${owner.description} ${seg.text}` : seg.text;
+      pendingName = isPlausibleName(seg.text) ? seg : null;
+    }
+  }
+  return mergeSizeVariants(
+    items.map(({ x: _x, ...item }) => ({
+      ...item,
+      description: item.description && item.description.length <= 600 ? item.description : null,
+    })),
+  );
+}
+
+const BLOCK = 'p, div, li, tr, h1, h2, h3, h4, h5, h6, section, article, dt, dd';
+
+// Text menus whose prices have no "$" ("French Fries 4.50") or share the name's text
+// ("Tony Soprano $15"): split the page into lines at block elements and <br>, then read
+// them like a PDF. Only safe on pages already known to be menus.
+export function parseTextLines($: CheerioAPI): MenuDraft[] {
+  $('script, style, noscript, svg, nav, header, footer, form, aside, select, button').remove();
+  const root = $('main').first().length ? $('main').first() : $('body');
+  root.find('br').replaceWith('\n');
+  root.find(BLOCK).each((_, el) => {
+    $(el).prepend('\n').append('\n');
+  });
+  const lines = root
+    .text()
+    .split('\n')
+    .map((line) => clean(line))
+    .filter(Boolean)
+    .map((text) => [{ x: 0, text }]);
+  const items = parseSegmentLines(lines);
+  const share = (test: (i: MenuItemDraft) => boolean) =>
+    items.filter(test).length / Math.max(items.length, 1);
+  // Misread pages produce lowercase fragments ("from") and ingredient lists as names
+  const looksLikeMenu =
+    items.length >= MIN_ITEMS &&
+    share((i) => i.price !== null) >= 0.6 &&
+    share((i) => /^[A-Z0-9*"'(]/.test(i.name)) >= 0.7 &&
+    share((i) => i.name.includes(',')) <= 0.2;
+  return looksLikeMenu ? [{ name: '', items }] : [];
+}
+
 // Most specific parser first; a page needs at least this many items to count as a menu
 export const MIN_ITEMS = 5;
 
@@ -454,6 +594,9 @@ export function parseMenuPage($: CheerioAPI, { knownMenuPage = false } = {}): Pa
     if (countItems(menus) >= MIN_ITEMS) return { parser, menus };
   }
   if (knownMenuPage) {
+    // Priced text lines first; unpriced heading lists are the last resort
+    const fromText = dropDuplicateItems(parseTextLines($));
+    if (fromText.length) return { parser: 'text', menus: fromText };
     const menus = dropDuplicateItems(parseHeadingMenu($));
     if (menus.length) return { parser: 'headings', menus };
   }

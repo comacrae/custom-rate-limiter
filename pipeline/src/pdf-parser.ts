@@ -2,21 +2,14 @@
 import { getDocumentProxy } from 'unpdf';
 
 import {
-  isPlausibleName,
-  mergeSizeVariants,
   MIN_ITEMS,
-  parsePrice,
+  parseSegmentLines,
   stripNul,
   type MenuItemDraft,
+  type Segment,
 } from './menu-parsers.ts';
 
 export type TextPiece = { x: number; y: number; width: number; height: number; text: string };
-
-type Segment = { x: number; text: string };
-
-// The name must end in a non-digit so "est. 1955" isn't read as "est. 1" at $955
-const PRICE_AT_END = /^(.*?\D)[\s.·…_–-]*\$?\s?(\d{1,3}(?:\.\d{2})?)\+?$/;
-const PRICE_ONLY = /^\$?\s?\d{1,3}(?:\.\d{2})?\+?$/;
 
 // Groups pieces into lines, then splits each line into segments at large horizontal gaps
 export function toSegmentLines(pieces: TextPiece[]): Segment[][] {
@@ -59,85 +52,6 @@ export function toSegmentLines(pieces: TextPiece[]): Segment[][] {
     }
     return segments.map((s) => ({ x: s.x, text: stripNul(s.text).replace(/\s+/g, ' ').trim() }));
   });
-}
-
-// Two-letter "headings" are usually OCR fragments ("AD" from "SALAD")
-const isHeading = (text: string) =>
-  text.length >= 3 &&
-  text.length <= 40 &&
-  /[A-Z]/.test(text) &&
-  text === text.toUpperCase() &&
-  !/\d/.test(text);
-
-export function parseSegmentLines(lines: Segment[][]): MenuItemDraft[] {
-  const items: (MenuItemDraft & { x: number })[] = [];
-  let section: string | null = null;
-  let pendingName: Segment | null = null;
-
-  for (const line of lines) {
-    for (let i = 0; i < line.length; i++) {
-      const seg = line[i];
-      const next = line[i + 1];
-      // "Name" segment followed by a separate price segment on the same line
-      if (next && PRICE_ONLY.test(next.text) && isPlausibleName(seg.text)) {
-        items.push({
-          x: seg.x,
-          section,
-          name: seg.text,
-          description: null,
-          ...parsePrice(next.text),
-          dietary: [],
-        });
-        i++;
-        pendingName = null;
-        continue;
-      }
-      // A price on its own line closes a name from the line above
-      if (PRICE_ONLY.test(seg.text)) {
-        if (pendingName) {
-          items.push({
-            x: pendingName.x,
-            section,
-            name: pendingName.text,
-            description: null,
-            ...parsePrice(seg.text),
-            dietary: [],
-          });
-          pendingName = null;
-        }
-        continue;
-      }
-      const match = seg.text.match(PRICE_AT_END);
-      if (match && isPlausibleName(match[1])) {
-        items.push({
-          x: seg.x,
-          section,
-          name: match[1].trim(),
-          description: null,
-          ...parsePrice(match[2]),
-          dietary: [],
-        });
-        pendingName = null;
-        continue;
-      }
-      if (isHeading(seg.text) && isPlausibleName(seg.text)) {
-        section = seg.text;
-        pendingName = seg;
-        continue;
-      }
-      // Unpriced text describes the latest item in the same column
-      const owner = items.findLast((item) => Math.abs(item.x - seg.x) <= 15);
-      if (owner)
-        owner.description = owner.description ? `${owner.description} ${seg.text}` : seg.text;
-      pendingName = isPlausibleName(seg.text) ? seg : null;
-    }
-  }
-  return mergeSizeVariants(
-    items.map(({ x: _x, ...item }) => ({
-      ...item,
-      description: item.description && item.description.length <= 600 ? item.description : null,
-    })),
-  );
 }
 
 export async function parsePdfMenu(bytes: Uint8Array): Promise<MenuItemDraft[]> {
