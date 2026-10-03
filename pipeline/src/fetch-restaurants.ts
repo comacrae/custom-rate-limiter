@@ -1,4 +1,4 @@
-// Pulls open Chicagoland restaurants that list their own website from Overture Maps places
+// Pulls open Chicagoland restaurants from Overture Maps places
 // (https://docs.overturemaps.org/attribution/ — mostly CDLA-Permissive-2.0).
 import { mkdir, writeFile } from 'node:fs/promises';
 
@@ -9,9 +9,15 @@ import { OUT_DIR } from './config.ts';
 export type Restaurant = {
   overtureId: string;
   name: string;
-  website: string;
   category: string;
+  // The restaurant's own site; null when it has none or only lists social/delivery pages
+  website: string | null;
+  phone: string | null;
+  address: string | null;
   locality: string | null;
+  postcode: string | null;
+  latitude: number;
+  longitude: number;
 };
 
 const RELEASE = '2026-09-23.1';
@@ -58,8 +64,12 @@ const db = await DuckDBInstance.create();
 const conn = await db.connect();
 await conn.run("INSTALL httpfs; LOAD httpfs; SET s3_region = 'us-west-2';");
 const reader = await conn.runAndReadAll(`
-  SELECT id, names.primary AS name, websites, basic_category AS category,
-         addresses[1].locality AS locality
+  SELECT id, names.primary AS name, coalesce(websites, []) AS websites,
+         basic_category AS category, phones[1] AS phone,
+         addresses[1].freeform AS address, addresses[1].locality AS locality,
+         addresses[1].postcode AS postcode,
+         -- Places are points, so the bbox corner is the location
+         bbox.ymin AS latitude, bbox.xmin AS longitude
   FROM read_parquet(
     's3://overturemaps-us-west-2/release/${RELEASE}/theme=places/type=place/*',
     hive_partitioning = 1
@@ -69,24 +79,21 @@ const reader = await conn.runAndReadAll(`
     AND addresses[1].region = 'IL'
     AND operating_status = 'open'
     AND basic_category IN (${CATEGORIES.map((c) => `'${c}'`).join(', ')})
-    AND len(websites) > 0
     AND names.primary IS NOT NULL
 `);
 
-type Row = { id: string; name: string; websites: string[]; category: string; locality: string };
-const restaurants: Restaurant[] = [];
-for (const row of reader.getRowObjectsJson() as unknown as Row[]) {
-  const website = row.websites.find(isOwnSite);
-  if (!website) continue;
-  restaurants.push({
-    overtureId: row.id,
-    name: row.name,
-    website,
-    category: row.category,
-    locality: row.locality,
-  });
-}
+type Row = Omit<Restaurant, 'overtureId' | 'website'> & { id: string; websites: string[] };
+const restaurants: Restaurant[] = (reader.getRowObjectsJson() as unknown as Row[]).map(
+  ({ id, websites, ...row }) => ({
+    overtureId: id,
+    ...row,
+    website: websites.find(isOwnSite) ?? null,
+    latitude: Number(row.latitude),
+    longitude: Number(row.longitude),
+  }),
+);
 
 await mkdir(OUT_DIR, { recursive: true });
 await writeFile(new URL('restaurants.json', OUT_DIR), JSON.stringify(restaurants, null, 2));
-console.log(`Saved ${restaurants.length} restaurants with their own website`);
+const withSite = restaurants.filter((r) => r.website).length;
+console.log(`Saved ${restaurants.length} restaurants, ${withSite} with their own website`);

@@ -85,10 +85,15 @@ PRs that touch `supabase/` run the same checks in GitHub Actions.
 
 ```bash
 cd pipeline
-npm run fetch-restaurants    # open Chicagoland restaurants with their own website, from Overture Maps → out/restaurants.json
-npm run probe-menus          # classify how each site publishes its menu → out/probe.jsonl (~30 min)
-LIMIT=40 npm run probe-menus # quick trial on the first 40 sites
+npm run fetch-restaurants    # open Chicagoland restaurants from Overture Maps → out/restaurants.json
+npm run probe-menus          # classify how each site publishes its menu → out/probe.jsonl (~1 hr)
+npm run extract-menus        # parse menus from reachable sites → out/menus.jsonl
+npm run load-db              # upsert everything into the local Supabase database
+npm test                     # parser unit tests
+npm run parse-url -- <url>   # see what the parsers get from one page
 ```
+
+`LIMIT=40` runs the probe or extractor on the first 40 sites. `load-db` writes to local Supabase unless `DATABASE_URL` is set.
 
 The crawler identifies itself as `MenuBuffBot`, honors robots.txt, and never tries to get past bot challenges (it records them as `blocked`). It skips delivery apps, Yelp, social profiles, and ordering platforms like Toast and Square: their terms forbid crawling, and delivery prices are marked up.
 

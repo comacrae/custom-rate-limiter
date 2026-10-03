@@ -1,0 +1,273 @@
+// Turns a menu page into structured menus. Each parser returns [] when it doesn't apply.
+import type { CheerioAPI } from 'cheerio';
+import type { AnyNode, Element } from 'domhandler';
+
+export type MenuItemDraft = {
+  section: string | null;
+  name: string;
+  description: string | null;
+  price: number | null;
+  priceText: string | null;
+  dietary: string[];
+};
+
+export type MenuDraft = { name: string; items: MenuItemDraft[] };
+
+export type ParseResult = { parser: string; menus: MenuDraft[] };
+
+const clean = (text: string | undefined | null) =>
+  (text ?? '')
+    .replace(/[​-‍﻿]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+export function parsePrice(text: string): { price: number | null; priceText: string | null } {
+  const priceText = clean(text) || null;
+  const match = priceText?.match(/\d{1,4}(?:\.\d{1,2})?/);
+  return { price: match ? Number(match[0]) : null, priceText };
+}
+
+// Rejects buttons, legal copy, and other non-dish text that sits next to prices
+function isPlausibleName(name: string) {
+  return (
+    name.length >= 2 &&
+    name.length <= 90 &&
+    /[a-z]/i.test(name) &&
+    !/^(add|order|buy|view|select|choose|subtotal|total|tax|tip|delivery)\b/i.test(name)
+  );
+}
+
+function countItems(menus: MenuDraft[]) {
+  return menus.reduce((n, m) => n + m.items.length, 0);
+}
+
+// schema.org Menu / MenuSection / MenuItem in JSON-LD (BentoBox and others)
+export function parseJsonLd($: CheerioAPI): MenuDraft[] {
+  const menus = new Map<string, MenuItemDraft[]>();
+  const walk = (node: unknown, menu: string, section: string | null) => {
+    if (Array.isArray(node)) {
+      for (const child of node) walk(child, menu, section);
+      return;
+    }
+    if (!node || typeof node !== 'object') return;
+    const obj = node as Record<string, unknown>;
+    const types = [obj['@type']].flat();
+    if (types.includes('Menu')) menu = clean(String(obj.name ?? ''));
+    if (types.includes('MenuSection')) section = clean(String(obj.name ?? '')) || null;
+    if (types.includes('MenuItem')) {
+      const name = clean(String(obj.name ?? ''));
+      if (!isPlausibleName(name)) return;
+      const offer = [obj.offers].flat()[0] as Record<string, unknown> | undefined;
+      const rawPrice = offer?.price ?? offer?.lowPrice;
+      const diets = [obj.suitableForDiet].flat().filter((d): d is string => typeof d === 'string');
+      const items = menus.get(menu) ?? [];
+      items.push({
+        section,
+        name,
+        description: clean(String(obj.description ?? '')) || null,
+        ...(rawPrice == null ? { price: null, priceText: null } : parsePrice(String(rawPrice))),
+        dietary: diets.map((d) =>
+          d
+            .replace(/^https?:\/\/schema\.org\//, '')
+            .replace(/Diet$/, '')
+            .toLowerCase(),
+        ),
+      });
+      menus.set(menu, items);
+      return;
+    }
+    for (const value of Object.values(obj)) walk(value, menu, section);
+  };
+
+  $('script[type="application/ld+json"]').each((_, el) => {
+    try {
+      walk(JSON.parse($(el).text()), '', null);
+    } catch {
+      // Malformed JSON-LD is common; skip it
+    }
+  });
+  return [...menus].map(([name, items]) => ({ name, items }));
+}
+
+// Squarespace's built-in menu block; prices often have no "$"
+export function parseSquarespace($: CheerioAPI): MenuDraft[] {
+  const menus: MenuDraft[] = [];
+  $('.menu-block').each((_, block) => {
+    // Tab labels are listed in the same order as the menus they switch between
+    const labels = $(block)
+      .find('.menu-select-labels')
+      .map((_, el) => clean($(el).text()))
+      .get();
+    $(block)
+      .find('.menu')
+      .each((index, menuEl) => {
+        const items: MenuItemDraft[] = [];
+        $(menuEl)
+          .find('.menu-section')
+          .each((_, sectionEl) => {
+            const section = clean($(sectionEl).find('.menu-section-title').first().text()) || null;
+            $(sectionEl)
+              .find('.menu-item')
+              .each((_, itemEl) => {
+                const title = clean($(itemEl).find('.menu-item-title').first().text());
+                const priceEl = $(itemEl).find('.menu-item-price-top, .menu-item-price-bottom');
+                const price = parsePrice(priceEl.first().text());
+                const fromTitle = price.priceText ? null : splitTrailingPrice(title);
+                const name = fromTitle?.name ?? title;
+                if (!isPlausibleName(name)) return;
+                items.push({
+                  section,
+                  name,
+                  description: clean($(itemEl).find('.menu-item-description').text()) || null,
+                  price: fromTitle?.price ?? price.price,
+                  priceText: fromTitle?.priceText ?? price.priceText,
+                  dietary: [],
+                });
+              });
+          });
+        if (items.length) menus.push({ name: labels[index] ?? '', items });
+      });
+  });
+  return menus;
+}
+
+const PRICE_ONLY =
+  /^\$\s?\d{1,3}(?:[.,]\d{2})?(?:\s*(?:\/|\||-|–)\s*\$?\s?\d{1,3}(?:[.,]\d{2})?)*\+?$/;
+const HEADING = 'h1, h2, h3, h4, h5, h6';
+
+function ownText($: CheerioAPI, el: Element) {
+  return clean(
+    $(el)
+      .contents()
+      .filter((_, c) => c.type === 'text')
+      .text(),
+  );
+}
+
+// Fallback for any layout: anchor on elements whose own text is just a "$" price, then take
+// the largest ancestor that holds no other price as the menu item
+export function parseGeneric($: CheerioAPI): MenuDraft[] {
+  $('script, style, noscript, svg, nav, header, footer, form, select, button').remove();
+  const root = $('main').first().length ? $('main').first() : $('body');
+
+  const priceEls = root
+    .find('*')
+    .toArray()
+    .filter((el): el is Element => el.type === 'tag' && PRICE_ONLY.test(ownText($, el)));
+  // How many price elements each ancestor contains
+  const priceCount = new Map<AnyNode, number>();
+  for (const priceEl of priceEls) {
+    for (let node: AnyNode | null = priceEl; node; node = node.parent) {
+      priceCount.set(node, (priceCount.get(node) ?? 0) + 1);
+    }
+  }
+
+  const rootEl = root.get(0);
+  const itemOf = new Map<Element, Element>();
+  for (const priceEl of priceEls) {
+    let item: Element = priceEl;
+    for (let parent = priceEl.parent; parent && parent.type === 'tag'; parent = parent.parent) {
+      if ((priceCount.get(parent) ?? 0) > 1 || parent === rootEl) break;
+      item = parent;
+    }
+    itemOf.set(item, priceEl);
+  }
+
+  // Walk the page in order; headings outside any item mark the current section
+  const items: MenuItemDraft[] = [];
+  let section: string | null = null;
+  const visit = (node: AnyNode) => {
+    if (node.type !== 'tag') return;
+    const priceEl = itemOf.get(node);
+    if (priceEl) {
+      const item = toMenuItem($, node, ownText($, priceEl), section);
+      if (item) items.push(item);
+      return;
+    }
+    if (/^h[1-6]$/.test(node.name)) {
+      section = clean($(node).text()) || section;
+      return;
+    }
+    node.children.forEach(visit);
+  };
+  if (rootEl) visit(rootEl);
+  return items.length ? [{ name: '', items: mergeSizeVariants(items) }] : [];
+}
+
+const SIZE_LABEL =
+  /^(sm|small|md|med|medium|lg|large|xl|half|full|whole|regular|single|double|glass|bottle|carafe|pitcher|pint|cup|bowl|slice|pie|dozen|half dozen|tray|half tray|full tray|\d+(\.\d+)?\s?(oz|l|ml|in|"|pc|pcs|piece|pieces))$/i;
+
+// "Lg $47.95" listed under a dish is a price option of that dish, not a dish of its own
+export function mergeSizeVariants(items: MenuItemDraft[]): MenuItemDraft[] {
+  const merged: MenuItemDraft[] = [];
+  for (const item of items) {
+    const previous = merged.at(-1);
+    if (previous && SIZE_LABEL.test(item.name)) {
+      const option = `${item.name} ${item.priceText ?? ''}`.trim();
+      previous.priceText = previous.priceText ? `${previous.priceText} / ${option}` : option;
+      previous.price ??= item.price;
+    } else {
+      merged.push(item);
+    }
+  }
+  return merged;
+}
+
+// Squarespace titles like "Homemade Chips 6" carry the price when the price field is empty
+function splitTrailingPrice(title: string) {
+  const match = title.match(/^(.*\D)\s+\$?(\d{1,3}(?:\.\d{2})?)$/);
+  return match ? { name: match[1].trim(), ...parsePrice(match[2]) } : null;
+}
+
+// Short badges that sit beside dish names; kept as dietary tags instead of names
+const DIET_BADGE =
+  /^(v|vg|gf|df|vegan|vegetarian|gluten[- ]free|dairy[- ]free|spicy|halal|kosher|new|popular)$/i;
+
+function toMenuItem(
+  $: CheerioAPI,
+  item: Element,
+  priceText: string,
+  section: string | null,
+): MenuItemDraft | null {
+  const dietary: string[] = [];
+  const blocks: string[] = [];
+  const heading = clean($(item).find(HEADING).first().text());
+  for (const el of $(item).find('*').toArray()) {
+    if (el.type !== 'tag') continue;
+    const text = ownText($, el);
+    if (!text || text === priceText) continue;
+    if (DIET_BADGE.test(text)) dietary.push(text.toLowerCase());
+    else blocks.push(text);
+  }
+  // Without a heading, the name is the first text block that isn't the price or a badge
+  const name = heading && !DIET_BADGE.test(heading) ? heading : (blocks[0] ?? '');
+  if (!isPlausibleName(name)) return null;
+  const description = clean(
+    blocks
+      .filter((t) => t !== name)
+      .join(' ')
+      .replace(priceText, ''),
+  );
+  return {
+    section,
+    name,
+    description: description && description.length <= 600 ? description : null,
+    ...parsePrice(priceText),
+    dietary,
+  };
+}
+
+// Most specific parser first; a page needs at least this many items to count as a menu
+const MIN_ITEMS = 5;
+
+export function parseMenuPage($: CheerioAPI): ParseResult | null {
+  for (const [parser, parse] of [
+    ['jsonld', parseJsonLd],
+    ['squarespace', parseSquarespace],
+    ['generic', parseGeneric],
+  ] as const) {
+    const menus = parse($);
+    if (countItems(menus) >= MIN_ITEMS) return { parser, menus };
+  }
+  return null;
+}
