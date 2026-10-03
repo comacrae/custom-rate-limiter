@@ -5,15 +5,21 @@
   "scripts": {
     "fetch-restaurants": "node src/fetch-restaurants.ts",
     "probe-menus": "node src/probe-menus.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "parse-url": "node src/parse-url.ts",
+    "test": "node --test src/*.test.ts",
+    "extract-menus": "node src/extract-menus.ts",
+    "load-db": "node src/load-db.ts"
   },
   "dependencies": {
     "@duckdb/node-api": "1.5.6-r.1",
     "cheerio": "1.2.0",
+    "postgres": "3.4.9",
     "robots-parser": "3.0.1"
   },
   "devDependencies": {
     "@types/node": "22.20.5",
+    "domhandler": "6.0.1",
     "typescript": "7.0.2"
   }
 }

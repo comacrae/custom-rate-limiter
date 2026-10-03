@@ -5,16 +5,13 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 import * as cheerio from 'cheerio';
-import robotsParserModule from 'robots-parser';
 
-import { OUT_DIR, USER_AGENT } from './config.ts';
+import { OUT_DIR } from './config.ts';
 import type { Restaurant } from './fetch-restaurants.ts';
-
-// robots-parser is CommonJS (module.exports = fn) but its types declare an ES default export
-const robotsParser = robotsParserModule as unknown as typeof robotsParserModule.default;
+import { blockVendor, getHtml, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
+import { siteHost, siteUrl } from './sites.ts';
 
 const CONCURRENCY = 16;
-const SAME_SITE_DELAY_MS = 1000;
 const MAX_MENU_PAGES = 2;
 // A few $ amounts on a homepage are usually specials; a real menu has many
 const MIN_MENU_PRICES = 10;
@@ -25,7 +22,7 @@ type Outcome = 'ok' | 'blocked' | 'robots_disallowed' | 'unreachable';
 // an image menu, a JavaScript-rendered menu, or a hub linking to sub-menus
 type Format = 'jsonld' | 'html' | 'pdf' | 'menu_page_no_prices' | 'ordering_link' | 'none';
 
-type Probe = {
+export type Probe = {
   name: string;
   website: string;
   outcome: Outcome;
@@ -69,54 +66,6 @@ const ORDERING_HOSTS = [
 
 const PRICE = /\$\s?\d{1,3}(?:\.\d{2})?\b/g;
 const PDF_MENU_HINT = /menu|dinner|lunch|brunch|breakfast|food|drink|wine|cocktail/i;
-
-const robotsCache = new Map<string, Promise<ReturnType<typeof robotsParser> | null>>();
-
-async function loadRobots(origin: string) {
-  const robotsUrl = `${origin}/robots.txt`;
-  try {
-    const res = await fetch(robotsUrl, {
-      headers: { 'User-Agent': USER_AGENT },
-      signal: AbortSignal.timeout(15_000),
-    });
-    // Convention: 4xx means no rules; 5xx means stay away
-    if (res.status >= 500) return null;
-    return robotsParser(robotsUrl, res.ok ? await res.text() : '');
-  } catch {
-    // Unreachable host: let the page fetch report it
-    return robotsParser(robotsUrl, '');
-  }
-}
-
-async function robotsAllows(url: URL) {
-  let robots = robotsCache.get(url.origin);
-  if (!robots) {
-    robots = loadRobots(url.origin);
-    robotsCache.set(url.origin, robots);
-  }
-  const parsed = await robots;
-  return parsed !== null && parsed.isAllowed(url.href, USER_AGENT) !== false;
-}
-
-function blockVendor(res: Response, html: string) {
-  if (res.headers.get('cf-mitigated')) return 'cloudflare';
-  if (![401, 403, 429, 503].includes(res.status)) return null;
-  if (/cloudflare/i.test(res.headers.get('server') ?? '')) return 'cloudflare';
-  if (/datadome/i.test(html)) return 'datadome';
-  if (/perimeterx|px-captcha/i.test(html)) return 'perimeterx';
-  return `http_${res.status}`;
-}
-
-async function getHtml(url: URL) {
-  const res = await fetch(url, {
-    headers: { 'User-Agent': USER_AGENT, Accept: 'text/html,application/xhtml+xml' },
-    signal: AbortSignal.timeout(20_000),
-  });
-  const isHtml = /html/i.test(res.headers.get('content-type') ?? '');
-  const html = isHtml ? await res.text() : '';
-  if (!isHtml) await res.body?.cancel();
-  return { res, html, finalUrl: new URL(res.url) };
-}
 
 function countMenuJsonLd(node: unknown, found: { items: number; menuUrls: string[] }) {
   if (Array.isArray(node)) {
@@ -187,7 +136,9 @@ function analyze(html: string, pageUrl: URL) {
   };
 }
 
-async function probe(r: Restaurant): Promise<Probe> {
+type Site = { name: string; website: string };
+
+async function probe(r: Site): Promise<Probe> {
   const result: Probe = {
     name: r.name,
     website: r.website,
@@ -203,7 +154,7 @@ async function probe(r: Restaurant): Promise<Probe> {
 
   let url: URL;
   try {
-    url = new URL(/^https?:\/\//i.test(r.website) ? r.website : `https://${r.website}`);
+    url = siteUrl(r.website);
   } catch {
     return { ...result, outcome: 'unreachable', detail: 'invalid url' };
   }
@@ -280,28 +231,21 @@ const restaurants: Restaurant[] = JSON.parse(
 );
 
 // Chains share one host across locations; probe each host once so no site gets parallel requests
-const bySite = new Map<string, Restaurant>();
-for (const r of restaurants) {
-  const key = r.website
-    .toLowerCase()
-    .replace(/^https?:\/\/(www\.)?/, '')
-    .split(/[/?#]/)[0];
-  if (!bySite.has(key)) bySite.set(key, r);
+const bySite = new Map<string, Site>();
+for (const { name, website } of restaurants) {
+  if (!website) continue;
+  let host;
+  try {
+    host = siteHost(website);
+  } catch {
+    continue;
+  }
+  if (!bySite.has(host)) bySite.set(host, { name, website });
 }
 const queue = [...bySite.values()].slice(0, Number(process.env.LIMIT) || undefined);
 console.log(`${restaurants.length} restaurants, probing ${queue.length} unique sites`);
 
-const results: Probe[] = [];
-let next = 0;
-await Promise.all(
-  Array.from({ length: CONCURRENCY }, async () => {
-    while (next < queue.length) {
-      const r = queue[next++];
-      results.push(await probe(r));
-      if (results.length % 100 === 0) console.log(`  ${results.length}/${queue.length}`);
-    }
-  }),
-);
+const results = await runPool(queue, CONCURRENCY, probe);
 
 await writeFile(new URL('probe.jsonl', OUT_DIR), results.map((r) => JSON.stringify(r)).join('\n'));
 
