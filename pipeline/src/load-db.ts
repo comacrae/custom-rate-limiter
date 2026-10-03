@@ -51,6 +51,8 @@ function chunks<T>(rows: T[], size = BATCH) {
 const restaurants: Restaurant[] = JSON.parse(
   await readFile(new URL('restaurants.json', OUT_DIR), 'utf8'),
 );
+// Crawl output for hosts no longer on the list (e.g. directories later excluded) is skipped
+const knownHosts = new Set(restaurants.map((r) => hostOrNull(r.website)).filter(Boolean));
 for (const batch of chunks(restaurants)) {
   const rows = batch.map((r) => ({
     overture_id: r.overtureId,
@@ -85,7 +87,7 @@ const probedAt = new Date();
 const probeRows = new Map<string, Record<string, unknown>>();
 for (const p of probes) {
   const host = hostOrNull(p.website);
-  if (!host) continue;
+  if (!host || !knownHosts.has(host)) continue;
   probeRows.set(host, {
     site_host: host,
     url: p.website,
@@ -128,7 +130,7 @@ const sites = [...bySite.values()];
 let menuCount = 0;
 let itemCount = 0;
 for (const site of sites) {
-  if (!site.pages.length) continue;
+  if (!site.pages.length || !knownHosts.has(site.siteHost)) continue;
   await sql.begin(async (tx) => {
     await tx`delete from public.menus where site_host = ${site.siteHost}`;
     for (const page of site.pages) {
@@ -182,10 +184,11 @@ const images = new Map<string, SiteImages>();
 for (const file of (process.env.IMAGES_FILES ?? 'menu-images.jsonl').split(',')) {
   for (const site of await readJsonl<SiteImages>(file)) images.set(site.siteHost, site);
 }
-const fileHosts = new Set([
-  ...sites.filter((s) => s.pdfs.length).map((s) => s.siteHost),
-  ...images.keys(),
-]);
+const fileHosts = new Set(
+  [...sites.filter((s) => s.pdfs.length).map((s) => s.siteHost), ...images.keys()].filter((h) =>
+    knownHosts.has(h),
+  ),
+);
 let fileCount = 0;
 for (const host of fileHosts) {
   const site = bySite.get(host);
@@ -202,5 +205,16 @@ for (const host of fileHosts) {
   fileCount += rows.length;
 }
 console.log(`Loaded ${fileCount} menu files from ${fileHosts.size} sites`);
+
+// Drop crawl data for hosts no restaurant uses any more (e.g. directories now excluded)
+const orphaned = `site_host not in (select site_host from public.restaurants where site_host is not null)`;
+const [menus, files, probesRemoved] = await sql.begin(async (tx) => [
+  await tx.unsafe(`delete from public.menus where ${orphaned}`),
+  await tx.unsafe(`delete from public.menu_files where ${orphaned}`),
+  await tx.unsafe(`delete from pipeline.site_probes where ${orphaned}`),
+]);
+console.log(
+  `Removed orphaned ${menus.count} menus, ${files.count} menu files, ${probesRemoved.count} probes`,
+);
 
 await sql.end();
