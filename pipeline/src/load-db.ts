@@ -10,7 +10,7 @@ import type { SiteMenus } from './extract-menus.ts';
 import type { Restaurant } from './fetch-restaurants.ts';
 import type { SiteImages } from './find-menu-images.ts';
 import type { Probe } from './probe-menus.ts';
-import { menuSignature, stripNul, type MenuDraft } from './menu-parsers.ts';
+import { menuSignature, stripNul, tidyMenu, type MenuDraft } from './menu-parsers.ts';
 import { siteHost } from './sites.ts';
 
 const BATCH = 1000;
@@ -147,7 +147,9 @@ for (const site of sites) {
       { url: string; parser: string; menu: MenuDraft; seen: Set<string> }
     >();
     for (const page of site.pages) {
-      for (const menu of page.menus) {
+      for (const raw of page.menus) {
+        const menu = tidyMenu(raw);
+        if (!menu) continue;
         const key = `${page.url}\n${stripNul(menu.name)}`;
         const existing = groups.get(key);
         if (!existing) {

@@ -27,7 +27,65 @@ const clean = (text: string | undefined | null) =>
 export function parsePrice(text: string): { price: number | null; priceText: string | null } {
   const priceText = clean(text) || null;
   const match = priceText?.match(/\d{1,4}(?:\.\d{1,2})?/);
-  return { price: match ? Number(match[0]) : null, priceText };
+  // "$0" is nearly always a split fragment ("14," + "00") or a placeholder, not a real price
+  const price = match ? Number(match[0]) : null;
+  return { price: price ? price : null, priceText };
+}
+
+// Dot leaders inside a name: "SCALLOPS TEMPURA......$25.90" or "Tofu........ Add"
+const DOT_LEADER = /\s*[.…·_]{3,}\s*/;
+
+// A price far above the rest of its menu is usually a lost decimal ("5⁵⁰" read as 550)
+const OUTLIER_FACTOR = 20;
+const OUTLIER_MIN_PRICE = 100;
+
+// Calorie and nutrition sheets list numbers that look like prices but run in the hundreds
+const MAX_PLAUSIBLE_MEDIAN_PRICE = 200;
+
+// Some PDFs store text with a space after every letter and no wider gap between words
+// ("K i d s B r e a k f a s t"), so the words can't be recovered
+const LETTER_SPACED = /^(?:\S ){4,}\S/;
+
+// Final tidy-up applied to every menu before it's stored, whichever parser produced it.
+// Returns null for menus that turn out not to be menus (e.g. calorie sheets).
+export function tidyMenu(menu: MenuDraft): MenuDraft | null {
+  const items = menu.items.flatMap((item) => {
+    let { name, price, priceText, description } = item;
+    const [before, ...rest] = name.split(DOT_LEADER);
+    if (rest.length) {
+      name = before;
+      const remainder = rest
+        .join(' ')
+        .replace(/^\$?\s*$/, '')
+        .trim();
+      if (remainder && price === null && /\d/.test(remainder)) {
+        ({ price, priceText } = parsePrice(remainder));
+      } else if (remainder) {
+        description = [remainder, description].filter(Boolean).join(' ');
+      }
+    }
+    if (price === 0) price = null;
+    return isPlausibleName(name) && !LETTER_SPACED.test(name)
+      ? [{ ...item, name, price, priceText, description }]
+      : [];
+  });
+  const prices = items
+    .map((i) => i.price)
+    .filter((p): p is number => p !== null)
+    .sort((a, b) => a - b);
+  const median = prices[Math.floor(prices.length / 2)];
+  if (median > MAX_PLAUSIBLE_MEDIAN_PRICE) return null;
+  for (const item of items) {
+    // Keep the printed price text; only the numeric price is unreliable
+    if (
+      item.price !== null &&
+      item.price >= OUTLIER_MIN_PRICE &&
+      item.price > median * OUTLIER_FACTOR
+    ) {
+      item.price = null;
+    }
+  }
+  return items.length ? { ...menu, items } : null;
 }
 
 // Rejects buttons, legal copy, and other non-dish text that sits next to prices
