@@ -10,6 +10,7 @@ import type { SiteMenus } from './extract-menus.ts';
 import type { Restaurant } from './fetch-restaurants.ts';
 import type { SiteImages } from './find-menu-images.ts';
 import type { Probe } from './probe-menus.ts';
+import { stripNul } from './menu-parsers.ts';
 import { siteHost } from './sites.ts';
 
 const BATCH = 1000;
@@ -145,7 +146,7 @@ for (const site of sites) {
         const [{ id }] = await tx`
           insert into public.menus ${tx({
             site_host: site.siteHost,
-            name: menu.name,
+            name: stripNul(menu.name),
             source_url: page.url,
             source_format:
               page.parser === 'pdf' ? 'pdf' : page.parser === 'jsonld' ? 'jsonld' : 'html',
@@ -155,15 +156,17 @@ for (const site of sites) {
           on conflict (site_host, source_url, name) do update set fetched_at = excluded.fetched_at
           returning id
         `;
+        // Output from before NUL stripping can still contain them
+        const text = (s: string | null) => (s === null ? null : stripNul(s));
         const items = menu.items.map((item, position) => ({
           menu_id: id,
           position,
-          section: item.section,
-          name: item.name,
-          description: item.description,
+          section: text(item.section),
+          name: stripNul(item.name),
+          description: text(item.description),
           price: item.price,
-          price_text: item.priceText,
-          dietary: item.dietary,
+          price_text: text(item.priceText),
+          dietary: item.dietary.map(stripNul),
         }));
         for (const batch of chunks(items)) {
           await tx`
