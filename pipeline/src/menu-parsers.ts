@@ -33,7 +33,11 @@ export function isPlausibleName(name: string) {
     name.length >= 2 &&
     name.length <= 90 &&
     /[a-z]/i.test(name) &&
-    !/^(add|order|buy|view|select|choose|subtotal|total|tax|tip|delivery)\b/i.test(name)
+    !/^(add|order|buy|view|select|choose|subtotal|total|tax|tip|delivery)\b/i.test(name) &&
+    // Online store labels on cafés' and wine shops' product grids
+    !/^((regular|sale|special|unit|original) price|sold out|quick (view|shop)|in stock)\b/i.test(
+      name,
+    )
   );
 }
 
@@ -111,14 +115,20 @@ export function parseSquarespace($: CheerioAPI): MenuDraft[] {
               .each((_, itemEl) => {
                 const title = clean($(itemEl).find('.menu-item-title').first().text());
                 const priceEl = $(itemEl).find('.menu-item-price-top, .menu-item-price-bottom');
-                const price = parsePrice(priceEl.first().text());
+                let price = parsePrice(priceEl.first().text());
+                let description = clean($(itemEl).find('.menu-item-description').text()) || null;
+                // Some sites put tasting notes in the price field; keep "MP"-style short labels
+                if (price.priceText && !/\d/.test(price.priceText) && price.priceText.length > 12) {
+                  description ??= price.priceText;
+                  price = { price: null, priceText: null };
+                }
                 const fromTitle = price.priceText ? null : splitTrailingPrice(title);
                 const name = fromTitle?.name ?? title;
                 if (!isPlausibleName(name)) return;
                 items.push({
                   section,
                   name,
-                  description: clean($(itemEl).find('.menu-item-description').text()) || null,
+                  description,
                   price: fromTitle?.price ?? price.price,
                   priceText: fromTitle?.priceText ?? price.priceText,
                   dietary: [],

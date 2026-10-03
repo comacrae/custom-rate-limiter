@@ -164,6 +164,20 @@ test('items repeated by responsive layouts are kept once', () => {
   assert.equal(parsed.length, 5);
 });
 
+test('online store labels are not dish names', () => {
+  const html = `<main>${repeat(5, (i) => `<div><span>Regular price</span><span>$2${i}.00</span></div>`)}</main>`;
+  assert.equal(parseMenuPage(cheerio.load(html)), null);
+});
+
+test('Squarespace price fields holding text become descriptions', () => {
+  const html = `<div class="menu-block"><div class="menu"><div class="menu-section">
+    ${repeat(5, (i) => `<div class="menu-item"><div class="menu-item-title">Cava ${'ABCDE'[i]}</div><span class="menu-item-price-top">white pears, green apple</span></div>`)}
+  </div></div></div>`;
+  const item = parseMenuPage(cheerio.load(html))?.menus[0].items[0];
+  assert.equal(item?.description, 'white pears, green apple');
+  assert.equal(item?.priceText, null);
+});
+
 test('pages with only a few prices are not menus', () => {
   assert.equal(
     parseMenuPage(cheerio.load('<p>Gift cards</p><span>$25</span><span>$50</span>')),
