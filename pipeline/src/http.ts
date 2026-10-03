@@ -58,6 +58,24 @@ export async function getHtml(url: URL) {
   return { res, html, finalUrl: new URL(res.url) };
 }
 
+const MAX_PDF_BYTES = 25_000_000;
+
+// Returns the PDF's bytes, or null for non-PDF responses, errors, and oversized files
+export async function getPdf(url: URL) {
+  const res = await fetch(url, {
+    headers: { 'User-Agent': USER_AGENT, Accept: 'application/pdf' },
+    signal: AbortSignal.timeout(60_000),
+  });
+  const type = res.headers.get('content-type') ?? '';
+  const size = Number(res.headers.get('content-length') ?? 0);
+  if (!res.ok || !/pdf|octet-stream/i.test(type) || size > MAX_PDF_BYTES) {
+    await res.body?.cancel();
+    return { res, bytes: null };
+  }
+  const bytes = new Uint8Array(await res.arrayBuffer());
+  return { res, bytes: bytes.length <= MAX_PDF_BYTES ? bytes : null };
+}
+
 // Runs fn over items with a fixed number of workers, logging progress every 100 items
 export async function runPool<T, R>(items: T[], concurrency: number, fn: (item: T) => Promise<R>) {
   const results: R[] = [];
