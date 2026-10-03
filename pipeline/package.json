@@ -12,7 +12,8 @@
     "load-db": "node src/load-db.ts",
     "parse-pdf": "node src/parse-pdf.ts",
     "extract-pdfs": "node src/extract-pdfs.ts",
-    "find-menu-images": "node src/find-menu-images.ts"
+    "find-menu-images": "node src/find-menu-images.ts",
+    "stats": "node src/stats.ts"
   },
   "dependencies": {
     "@duckdb/node-api": "1.5.6-r.1",

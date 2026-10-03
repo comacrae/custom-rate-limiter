@@ -1,12 +1,11 @@
 // Extracts structured menus from the sites the probe could reach. Same politeness rules as the
 // probe: robots.txt, identified user agent, one request per site at a time, no challenge bypass.
 import { readFile } from 'node:fs/promises';
-import { setTimeout as sleep } from 'node:timers/promises';
 
 import * as cheerio from 'cheerio';
 
 import { OUT_DIR } from './config.ts';
-import { blockVendor, getHtml, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
+import { blockVendor, getHtml, robotsAllows, runPool, pauseFor, sitemapPages } from './http.ts';
 import { jsonlWriter } from './jsonl.ts';
 import {
   GENERIC_LABEL,
@@ -20,11 +19,12 @@ import { siteHost, siteUrl } from './sites.ts';
 
 const CONCURRENCY = 16;
 const MAX_PAGES_PER_SITE = 8;
+const MAX_SITEMAP_PAGES = 4;
 const MENU_LINK =
   /menu|food|drink|brunch|lunch|dinner|breakfast|dessert|wine|cocktail|happy.?hour/i;
 // Pages that mention food without being menus, e.g. "food-and-beverage-careers"
 const NOT_MENU_LINK =
-  /career|job|employ|hiring|franchis|press|news|blog|gift|privacy|terms|accessib|allergen|nutrition|login|account|cart|checkout/i;
+  /career|job|employ|hiring|franchis|press|news|blog|recipe|gift|privacy|terms|accessib|allergen|nutrition|login|account|cart|checkout/i;
 
 // "VIEW CATERING MENU" → "CATERING MENU"
 const tidyLabel = (label: string) => label.replace(/^(view|see|our|click for|download)\s+/i, '');
@@ -61,61 +61,89 @@ async function extractSite(probe: Probe): Promise<SiteMenus> {
   const signatures = new Set<string>();
   const pdfs = new Set(probe.pdfs);
 
-  while (queue.length && visited.size < MAX_PAGES_PER_SITE) {
-    const { url, label, viaMenuLink } = queue.shift()!;
-    if (visited.has(url)) continue;
-    visited.add(url);
-    const pageUrl = new URL(url);
-    if (!(await robotsAllows(pageUrl))) continue;
-    if (visited.size > 1) await sleep(SAME_SITE_DELAY_MS);
-
-    let page;
-    try {
-      page = await getHtml(pageUrl);
-    } catch {
-      continue;
+  let pageLimit = MAX_PAGES_PER_SITE;
+  for (let pass = 0; pass < 2; pass++) {
+    // Second pass: when links led to no menu, look for menu pages in the site's sitemap
+    if (pass === 1) {
+      if (result.pages.length || result.blocked) break;
+      const fromSitemap = (await sitemapPages(home.origin))
+        .filter((href) => {
+          try {
+            const url = new URL(href);
+            return (
+              siteHost(href) === host &&
+              // Sitemaps list every page, so food words alone (recipes, blog posts) aren't enough
+              /menu/i.test(url.pathname) &&
+              !NOT_MENU_LINK.test(url.pathname) &&
+              !visited.has(url.href)
+            );
+          } catch {
+            return false;
+          }
+        })
+        .slice(0, MAX_SITEMAP_PAGES);
+      if (!fromSitemap.length) break;
+      queue.push(...fromSitemap.map((url) => ({ url, label: '', viaMenuLink: true })));
+      pageLimit = visited.size + MAX_SITEMAP_PAGES;
     }
-    const blocked = blockVendor(page.res, page.html);
-    if (blocked) {
-      result.blocked = blocked;
-      break;
-    }
-    if (!page.res.ok || !page.html) continue;
+    while (queue.length && visited.size < pageLimit) {
+      const { url, label, viaMenuLink } = queue.shift()!;
+      if (visited.has(url)) continue;
+      visited.add(url);
+      const pageUrl = new URL(url);
+      if (!(await robotsAllows(pageUrl))) continue;
+      if (visited.size > 1) await pauseFor(pageUrl);
 
-    const $ = cheerio.load(page.html);
-    // Collect more menu pages and PDFs before parsing, since the generic parser prunes the DOM
-    $('a[href]').each((_, a) => {
-      let link: URL;
+      let page;
       try {
-        link = new URL($(a).attr('href') ?? '', page.finalUrl);
+        page = await getHtml(pageUrl);
       } catch {
-        return;
+        continue;
       }
-      link.hash = '';
-      const text = $(a).text().replace(/\s+/g, ' ').trim();
-      if (!link.protocol.startsWith('http') || siteHost(link.href) !== host) return;
-      if (!MENU_LINK.test(`${link.pathname} ${text}`) || NOT_MENU_LINK.test(link.pathname)) return;
-      if (link.pathname.toLowerCase().endsWith('.pdf')) {
-        pdfs.add(link.href);
-      } else if (!visited.has(link.href)) {
-        const linkLabel = text.length <= 40 ? tidyLabel(text) : '';
-        queue.push({ url: link.href, label: linkLabel, viaMenuLink: true });
+      const blocked = blockVendor(page.res, page.html);
+      if (blocked) {
+        result.blocked = blocked;
+        break;
       }
-    });
+      if (!page.res.ok || !page.html) continue;
 
-    const parsed = parseMenuPage($, { knownMenuPage: viaMenuLink });
-    if (!parsed) continue;
-    const fallbackName =
-      (label && !GENERIC_LABEL.test(label) ? label : '') || labelFromUrl(page.finalUrl);
-    const menus = parsed.menus
-      .map((m) => ({ ...m, name: m.name || fallbackName }))
-      .filter((m) => {
-        const signature = menuSignature(m);
-        if (signatures.has(signature)) return false;
-        signatures.add(signature);
-        return true;
+      const $ = cheerio.load(page.html);
+      // Collect more menu pages and PDFs before parsing, since the generic parser prunes the DOM
+      $('a[href]').each((_, a) => {
+        let link: URL;
+        try {
+          link = new URL($(a).attr('href') ?? '', page.finalUrl);
+        } catch {
+          return;
+        }
+        link.hash = '';
+        const text = $(a).text().replace(/\s+/g, ' ').trim();
+        if (!link.protocol.startsWith('http') || siteHost(link.href) !== host) return;
+        if (!MENU_LINK.test(`${link.pathname} ${text}`) || NOT_MENU_LINK.test(link.pathname))
+          return;
+        if (link.pathname.toLowerCase().endsWith('.pdf')) {
+          pdfs.add(link.href);
+        } else if (!visited.has(link.href)) {
+          const linkLabel = text.length <= 40 ? tidyLabel(text) : '';
+          queue.push({ url: link.href, label: linkLabel, viaMenuLink: true });
+        }
       });
-    if (menus.length) result.pages.push({ url: page.finalUrl.href, parser: parsed.parser, menus });
+
+      const parsed = parseMenuPage($, { knownMenuPage: viaMenuLink });
+      if (!parsed) continue;
+      const fallbackName =
+        (label && !GENERIC_LABEL.test(label) ? label : '') || labelFromUrl(page.finalUrl);
+      const menus = parsed.menus
+        .map((m) => ({ ...m, name: m.name || fallbackName }))
+        .filter((m) => {
+          const signature = menuSignature(m);
+          if (signatures.has(signature)) return false;
+          signatures.add(signature);
+          return true;
+        });
+      if (menus.length)
+        result.pages.push({ url: page.finalUrl.href, parser: parsed.parser, menus });
+    }
   }
 
   result.pdfs = [...pdfs];

@@ -100,7 +100,7 @@ npm run parse-pdf -- <url>   # same for one menu PDF
 
 Partial re-runs: `RETRY_FROM=probe.jsonl PROBE_OUT=probe-retry.jsonl npm run probe-menus` retries sites that were unreachable for fixable reasons (stale links, broken HTTPS). `SKIP_DONE_FROM=menus.jsonl MENUS_FILE=menus-pass2.jsonl npm run extract-menus` re-extracts only sites that produced no menus. `SKIP_PROBED_FROM=probe.jsonl PROBE_OUT=probe-new.jsonl npm run probe-menus` probes only places added since that run. Pass every output to the loader as comma-separated lists in `PROBE_FILES`, `MENUS_FILES`, and `IMAGES_FILES` (later probe files win for the same site).
 
-The crawler identifies itself as `MenuBuffBot`, honors robots.txt, and never tries to get past bot challenges (it records them as `blocked`). It skips delivery apps, Yelp, social profiles, and ordering platforms like Toast and Square: their terms forbid crawling, and delivery prices are marked up.
+The crawler identifies itself as `MenuBuffBot`, honors robots.txt (including `Crawl-delay`, with at least 1s between requests to a site), and never tries to get past bot challenges or rate limits (it records them as `blocked`). When a site's links don't lead to a menu, it checks the site's sitemap for pages with "menu" in the path. It skips delivery apps, Yelp, social profiles, and ordering platforms like Toast and Square: their terms forbid crawling, and delivery prices are marked up.
 
 ## Builds
 

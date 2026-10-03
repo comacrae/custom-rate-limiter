@@ -1,10 +1,9 @@
 // Parses the menu PDFs found during extraction. Same politeness rules as the other crawlers.
 import { readFile } from 'node:fs/promises';
-import { setTimeout as sleep } from 'node:timers/promises';
 
 import { OUT_DIR } from './config.ts';
 import type { SiteMenus } from './extract-menus.ts';
-import { blockVendor, getPdf, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
+import { blockVendor, getPdf, robotsAllows, runPool, pauseFor } from './http.ts';
 import { jsonlWriter } from './jsonl.ts';
 import { labelFromUrl, menuSignature } from './menu-parsers.ts';
 import { parsePdfMenu } from './pdf-parser.ts';
@@ -20,7 +19,7 @@ async function extractPdfs(site: SiteMenus): Promise<SiteMenus> {
   for (const [index, href] of site.pdfs.slice(0, MAX_PDFS_PER_SITE).entries()) {
     const url = new URL(href);
     if (!(await robotsAllows(url))) continue;
-    if (index > 0) await sleep(SAME_SITE_DELAY_MS);
+    if (index > 0) await pauseFor(url);
     try {
       const { res, bytes } = await getPdf(url);
       const blocked = blockVendor(res, '');
