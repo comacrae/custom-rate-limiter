@@ -89,6 +89,7 @@ npm run fetch-restaurants    # open Chicagoland restaurants from Overture Maps �
 npm run probe-menus          # classify how each site publishes its menu → out/probe.jsonl (~1 hr)
 npm run extract-menus        # parse menus from reachable sites → out/menus.jsonl
 npm run extract-pdfs         # parse text-based menu PDFs found by extract-menus → out/pdf-menus.jsonl
+npm run find-menu-images     # find menu images on sites without a text menu → out/menu-images.jsonl
 npm run load-db              # upsert everything into the local Supabase database
 npm test                     # parser unit tests
 npm run parse-url -- <url>   # see what the parsers get from one page
