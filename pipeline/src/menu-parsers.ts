@@ -15,8 +15,11 @@ export type MenuDraft = { name: string; items: MenuItemDraft[] };
 
 export type ParseResult = { parser: string; menus: MenuDraft[] };
 
+// Postgres text can't hold NUL characters, which some PDFs contain
+export const stripNul = (text: string) => text.replace(/\x00/g, '');
+
 const clean = (text: string | undefined | null) =>
-  (text ?? '')
+  stripNul(text ?? '')
     .replace(/[​-‍﻿]/g, '')
     .replace(/\s+/g, ' ')
     .trim();

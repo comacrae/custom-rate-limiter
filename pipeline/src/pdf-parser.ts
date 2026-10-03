@@ -6,6 +6,7 @@ import {
   mergeSizeVariants,
   MIN_ITEMS,
   parsePrice,
+  stripNul,
   type MenuItemDraft,
 } from './menu-parsers.ts';
 
@@ -56,7 +57,7 @@ export function toSegmentLines(pieces: TextPiece[]): Segment[][] {
       }
       end = piece.x + piece.width;
     }
-    return segments.map((s) => ({ x: s.x, text: s.text.replace(/\s+/g, ' ').trim() }));
+    return segments.map((s) => ({ x: s.x, text: stripNul(s.text).replace(/\s+/g, ' ').trim() }));
   });
 }
 
