@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+
+# local env files
+.env
+.env*.local
+
+# Claude Code per-user settings
+.claude/settings.local.json
