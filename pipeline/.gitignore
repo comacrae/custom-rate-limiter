@@ -1,2 +1,3 @@
 node_modules/
-out/
+# No trailing slash, so a symlinked out (e.g. in a git worktree) is ignored too
+out
