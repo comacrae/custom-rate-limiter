@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "db:check": "supabase db reset && supabase db lint --local --level warning --fail-on warning && supabase db advisors --local --type all --level warn --fail-on warn && supabase test db --local"
   },
   "devDependencies": {
     "lefthook": "2.1.16",
