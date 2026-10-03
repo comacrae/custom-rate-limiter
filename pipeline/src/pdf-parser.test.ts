@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { parseSegmentLines, toSegmentLines, type TextPiece } from './pdf-parser.ts';
+import { parseSegmentLines } from './menu-parsers.ts';
+import { toSegmentLines, type TextPiece } from './pdf-parser.ts';
 
 const piece = (x: number, y: number, text: string, width = text.length * 5): TextPiece => ({
   x,

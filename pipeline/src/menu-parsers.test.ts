@@ -52,6 +52,23 @@ test('tidyMenu clears prices far above the rest of the menu', () => {
   assert.equal(menu?.items[4].priceText, '550');
 });
 
+test('tidyMenu drops page boilerplate that sits next to menus', () => {
+  const menu = tidyMenu({
+    name: '',
+    items: [
+      item('Rockefeller Oysters', 24),
+      item('Chocolate Chip Cookie', 4),
+      item('This website uses cookies', null),
+      item('Adam@southtownhotdogs.com', null),
+      item('Post Views: 18,', 350),
+    ],
+  });
+  assert.deepEqual(
+    menu?.items.map((i) => i.name),
+    ['Rockefeller Oysters', 'Chocolate Chip Cookie'],
+  );
+});
+
 test('tidyMenu drops calorie sheets', () => {
   const sheet = {
     name: '',
@@ -166,15 +183,15 @@ test('Squarespace titles with a trailing price are split', () => {
 
 test('unpriced heading menus parse only on known menu pages', () => {
   const html = `<main><h2>Appetizers</h2>
-    ${repeat(8, (i) => `<div class="box"><h3>Dish ${i}</h3><p>with sauce ${i}</p></div>`)}
+    ${repeat(8, (i) => `<div class="box"><h3>Dish ${'ABCDEFGH'[i]}</h3><p>with sauce ${'ABCDEFGH'[i]}</p></div>`)}
   </main>`;
   assert.equal(parseMenuPage(cheerio.load(html)), null);
   const result = parseMenuPage(cheerio.load(html), { knownMenuPage: true });
   assert.equal(result?.parser, 'headings');
   assert.deepEqual(result?.menus[0].items[2], {
     section: 'Appetizers',
-    name: 'Dish 2',
-    description: 'with sauce 2',
+    name: 'Dish C',
+    description: 'with sauce C',
     price: null,
     priceText: null,
     dietary: [],
@@ -194,6 +211,25 @@ test('menu index pages are not read as unpriced menus', () => {
   ];
   const html = `<main>${titles.map((t) => `<h3>${t}</h3>`).join('')}</main>`;
   assert.equal(parseMenuPage(cheerio.load(html), { knownMenuPage: true }), null);
+});
+
+test('text menus without "$" parse from lines on known menu pages', () => {
+  const html = `<main><h2>APPETIZERS</h2><p>French Fries 4.50<br>Onion Rings 9.00<br>
+    Cheese Sticks with marinara 11.00</p><p>Tony Soprano $15</p><p>Gabagool, provolone</p>
+    <p>Bruschetta18.00</p></main>`;
+  assert.equal(parseMenuPage(cheerio.load(html)), null);
+  const result = parseMenuPage(cheerio.load(html), { knownMenuPage: true });
+  assert.equal(result?.parser, 'text');
+  assert.deepEqual(
+    result?.menus[0].items.map((i) => [i.section, i.name, i.price, i.description]),
+    [
+      ['APPETIZERS', 'French Fries', 4.5, null],
+      ['APPETIZERS', 'Onion Rings', 9, null],
+      ['APPETIZERS', 'Cheese Sticks with marinara', 11, null],
+      ['APPETIZERS', 'Tony Soprano', 15, 'Gabagool, provolone'],
+      ['APPETIZERS', 'Bruschetta', 18, null],
+    ],
+  );
 });
 
 test('bare heading lists without descriptions are not menus', () => {
