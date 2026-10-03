@@ -1,0 +1,51 @@
+name: Checks
+
+# Same checks as the pre-commit hooks, so commits made with --no-verify are still caught
+on:
+  pull_request:
+  push:
+    branches: [develop, main]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx prettier --check .
+
+  app:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: menu-buff
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: menu-buff/package-lock.json
+      - run: npm ci
+      - run: npx eslint . --max-warnings=0
+      - run: npx tsc --noEmit
+
+  pipeline:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pipeline
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: pipeline/package-lock.json
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm test
