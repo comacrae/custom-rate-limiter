@@ -10,7 +10,7 @@ import type { SiteMenus } from './extract-menus.ts';
 import type { Restaurant } from './fetch-restaurants.ts';
 import type { SiteImages } from './find-menu-images.ts';
 import type { Probe } from './probe-menus.ts';
-import { stripNul } from './menu-parsers.ts';
+import { menuSignature, stripNul, type MenuDraft } from './menu-parsers.ts';
 import { siteHost } from './sites.ts';
 
 const BATCH = 1000;
@@ -131,52 +131,70 @@ const sites = [...bySite.values()];
 let menuCount = 0;
 let itemCount = 0;
 for (const site of sites) {
-  if (!site.pages.length || !knownHosts.has(site.siteHost)) continue;
+  // Every site in the files is replaced, so a site whose menu disappeared loses its old one
+  if (!knownHosts.has(site.siteHost)) continue;
+  if (!site.pages.length) {
+    await sql`delete from public.menus where site_host = ${site.siteHost}`;
+    continue;
+  }
   await sql.begin(async (tx) => {
     await tx`delete from public.menus where site_host = ${site.siteHost}`;
+    // One stored menu per (page URL, menu name). A page can list two menus under one name
+    // (often both unnamed), and the same URL can be reached twice; merge the former, skip
+    // exact repeats of the latter.
+    const groups = new Map<
+      string,
+      { url: string; parser: string; menu: MenuDraft; seen: Set<string> }
+    >();
     for (const page of site.pages) {
-      // A page can list two menus under the same name (often both unnamed); store them as one
-      const byName = new Map<string, SiteMenus['pages'][number]['menus'][number]>();
       for (const menu of page.menus) {
-        const existing = byName.get(menu.name);
-        if (existing) existing.items.push(...menu.items);
-        else byName.set(menu.name, { ...menu, items: [...menu.items] });
+        const key = `${page.url}\n${stripNul(menu.name)}`;
+        const existing = groups.get(key);
+        if (!existing) {
+          groups.set(key, {
+            url: page.url,
+            parser: page.parser,
+            menu: { ...menu, items: [...menu.items] },
+            seen: new Set([menuSignature(menu)]),
+          });
+        } else if (!existing.seen.has(menuSignature(menu))) {
+          existing.seen.add(menuSignature(menu));
+          existing.menu.items.push(...menu.items);
+        }
       }
-      for (const menu of byName.values()) {
-        const [{ id }] = await tx`
+    }
+    for (const { url, parser, menu } of groups.values()) {
+      const [{ id }] = await tx`
           insert into public.menus ${tx({
             site_host: site.siteHost,
             name: stripNul(menu.name),
-            source_url: page.url,
-            source_format:
-              page.parser === 'pdf' ? 'pdf' : page.parser === 'jsonld' ? 'jsonld' : 'html',
-            parser: page.parser,
+            source_url: url,
+            source_format: parser === 'pdf' ? 'pdf' : parser === 'jsonld' ? 'jsonld' : 'html',
+            parser,
             fetched_at: new Date(site.fetchedAt),
           })}
-          on conflict (site_host, source_url, name) do update set fetched_at = excluded.fetched_at
           returning id
         `;
-        // Output from before NUL stripping can still contain them
-        const text = (s: string | null) => (s === null ? null : stripNul(s));
-        const items = menu.items.map((item, position) => ({
-          menu_id: id,
-          position,
-          section: text(item.section),
-          name: stripNul(item.name),
-          description: text(item.description),
-          price: item.price,
-          price_text: text(item.priceText),
-          dietary: item.dietary.map(stripNul),
-        }));
-        for (const batch of chunks(items)) {
-          await tx`
+      // Output from before NUL stripping can still contain them
+      const text = (s: string | null) => (s === null ? null : stripNul(s));
+      const items = menu.items.map((item, position) => ({
+        menu_id: id,
+        position,
+        section: text(item.section),
+        name: stripNul(item.name),
+        description: text(item.description),
+        price: item.price,
+        price_text: text(item.priceText),
+        dietary: item.dietary.map(stripNul),
+      }));
+      for (const batch of chunks(items)) {
+        await tx`
             insert into public.menu_items ${tx(batch)}
             on conflict (menu_id, position) do nothing
           `;
-        }
-        menuCount++;
-        itemCount += items.length;
       }
+      menuCount++;
+      itemCount += items.length;
     }
   });
 }
@@ -209,12 +227,15 @@ for (const host of fileHosts) {
 }
 console.log(`Loaded ${fileCount} menu files from ${fileHosts.size} sites`);
 
-// Drop crawl data for hosts no restaurant uses any more (e.g. directories now excluded)
-const orphaned = `site_host not in (select site_host from public.restaurants where site_host is not null)`;
+// The files passed in are the whole truth: drop menus, files, and probes for any host they
+// don't cover, such as directories now excluded or leftovers from earlier test loads
+const loadedMenuHosts = sites.map((s) => s.siteHost).filter((h) => knownHosts.has(h));
+const loadedFileHosts = [...fileHosts];
+const loadedProbeHosts = [...probeRows.keys()];
 const [menus, files, probesRemoved] = await sql.begin(async (tx) => [
-  await tx.unsafe(`delete from public.menus where ${orphaned}`),
-  await tx.unsafe(`delete from public.menu_files where ${orphaned}`),
-  await tx.unsafe(`delete from pipeline.site_probes where ${orphaned}`),
+  await tx`delete from public.menus where site_host <> all(${loadedMenuHosts})`,
+  await tx`delete from public.menu_files where site_host <> all(${loadedFileHosts})`,
+  await tx`delete from pipeline.site_probes where site_host <> all(${loadedProbeHosts})`,
 ]);
 console.log(
   `Removed orphaned ${menus.count} menus, ${files.count} menu files, ${probesRemoved.count} probes`,
