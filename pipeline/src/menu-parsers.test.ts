@@ -69,6 +69,30 @@ test('tidyMenu drops page boilerplate that sits next to menus', () => {
   );
 });
 
+test('tidyMenu trims separators and drops contact and catering lines', () => {
+  const menu = tidyMenu({
+    name: '',
+    items: [
+      item('RIVERSIDE NACHOS |', 13),
+      item('Cheese only:', 14),
+      item('Call us: 630-466-4427', 1),
+      item('Serves 10-', 20),
+      item('Gift Cards are available', 50),
+    ],
+  });
+  assert.deepEqual(
+    menu?.items.map((i) => i.name),
+    ['RIVERSIDE NACHOS', 'Cheese only'],
+  );
+});
+
+test('tidyMenu drops menus of codes instead of dish names', () => {
+  const codes = ['CQ', 'SV', 'Live', 'LX', 'Q9'].map((n) => item(n, 9));
+  assert.equal(tidyMenu({ name: '', items: codes }), null);
+  const coffee = ['Tea', 'Chai', 'Latte', 'Mocha', 'Cortado'].map((n) => item(n, 5));
+  assert.equal(tidyMenu({ name: '', items: coffee })?.items.length, 5);
+});
+
 test('tidyMenu drops calorie sheets', () => {
   const sheet = {
     name: '',

@@ -47,6 +47,8 @@ const MAX_PLAUSIBLE_MEDIAN_PRICE = 200;
 // ("K i d s B r e a k f a s t"), so the words can't be recovered
 const LETTER_SPACED = /^(?:\S ){4,}\S/;
 
+const MIN_MEDIAN_NAME_LENGTH = 4;
+
 // Final tidy-up applied to every menu before it's stored, whichever parser produced it.
 // Returns null for menus that turn out not to be menus (e.g. calorie sheets).
 export function tidyMenu(menu: MenuDraft): MenuDraft | null {
@@ -66,6 +68,8 @@ export function tidyMenu(menu: MenuDraft): MenuDraft | null {
       }
     }
     if (price === 0) price = null;
+    // Separators left over from "RIVERSIDE NACHOS | 13" or "Cheese only: 14"
+    name = name.replace(/[\s|:–-]+$/, '');
     return isPlausibleName(name) && !LETTER_SPACED.test(name)
       ? [{ ...item, name, price, priceText, description }]
       : [];
@@ -76,6 +80,9 @@ export function tidyMenu(menu: MenuDraft): MenuDraft | null {
     .sort((a, b) => a - b);
   const median = prices[Math.floor(prices.length / 2)];
   if (median > MAX_PLAUSIBLE_MEDIAN_PRICE) return null;
+  // Codes and fragments ("CQ", "SV", "Live") instead of dish names mean a misread page
+  const nameLengths = items.map((i) => i.name.length).sort((a, b) => a - b);
+  if (nameLengths[Math.floor(nameLengths.length / 2)] < MIN_MEDIAN_NAME_LENGTH) return null;
   for (const item of items) {
     // Keep the printed price text; only the numeric price is unreliable
     if (
@@ -111,7 +118,7 @@ export function isPlausibleName(name: string) {
 
 // Footer, banner, and contact text that ends up next to menus
 const PAGE_BOILERPLATE =
-  /@|https?:|www\.|cookie (policy|settings|preferences)|accept (all )?cookies|copyright|©|all rights reserved|powered by|privacy policy|post views|our location|follow us|sign up|newsletter|subscribe|website uses/i;
+  /@|https?:|www\.|cookie (policy|settings|preferences)|accept (all )?cookies|copyright|©|all rights reserved|powered by|privacy policy|post views|our location|follow us|sign up|newsletter|subscribe|website uses|call us|gift card|^serves\b|\(?\d{3}\)?[-. ]\d{3}[-. ]\d{4}/i;
 
 function countItems(menus: MenuDraft[]) {
   return menus.reduce((n, m) => n + m.items.length, 0);
