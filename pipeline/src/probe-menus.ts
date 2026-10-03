@@ -270,6 +270,16 @@ if (process.env.RETRY_FROM) {
     .filter((p) => p.outcome === 'unreachable' && p.detail !== 'ENOTFOUND')
     .map(({ name, website }) => ({ name, website }));
 }
+// SKIP_PROBED_FROM=probe.jsonl probes only sites that file doesn't cover (new places)
+if (process.env.SKIP_PROBED_FROM) {
+  const probed = new Set(
+    (await readFile(new URL(process.env.SKIP_PROBED_FROM, OUT_DIR), 'utf8'))
+      .trim()
+      .split('\n')
+      .map((line) => siteHost((JSON.parse(line) as Probe).website)),
+  );
+  sites = sites.filter((s) => !probed.has(siteHost(s.website)));
+}
 const queue = sites.slice(0, Number(process.env.LIMIT) || undefined);
 console.log(`${restaurants.length} restaurants, probing ${queue.length} unique sites`);
 

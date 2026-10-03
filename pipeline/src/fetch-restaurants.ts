@@ -21,7 +21,20 @@ export type Restaurant = {
 };
 
 const RELEASE = '2026-09-23.1';
-const CATEGORIES = ['restaurant', 'casual_eatery', 'fast_food_restaurant'];
+// Anywhere with a food or drink menu worth browsing
+const CATEGORIES = [
+  'restaurant',
+  'casual_eatery',
+  'fast_food_restaurant',
+  'cafe',
+  'coffee_shop',
+  'bar',
+  'lounge',
+  'brewery',
+  'smoothie_juice_bar',
+  'food_truck_stand',
+  'food_court',
+];
 // Seven-county Chicago region (Cook, DuPage, Kane, Kendall, Lake, McHenry, Will), Illinois only
 const BBOX = { xmin: -88.8, xmax: -87.52, ymin: 41.2, ymax: 42.5 };
 
