@@ -85,12 +85,12 @@ PRs that touch `supabase/` run the same checks in GitHub Actions.
 
 ```bash
 cd pipeline
-npm run fetch-restaurants    # Chicago restaurants with websites from OpenStreetMap → out/
-npm run probe-menus          # classify how each site publishes its menu → out/chicago-probe.jsonl
+npm run fetch-restaurants    # open Chicagoland restaurants with their own website, from Overture Maps → out/restaurants.json
+npm run probe-menus          # classify how each site publishes its menu → out/probe.jsonl (~30 min)
 LIMIT=40 npm run probe-menus # quick trial on the first 40 sites
 ```
 
-The crawler identifies itself as `MenuBuffBot`, honors robots.txt, and never tries to get past bot challenges (it records them as `blocked`). Don't scrape delivery apps (DoorDash, Uber Eats, Grubhub) or Yelp: their terms forbid it and their prices are marked up.
+The crawler identifies itself as `MenuBuffBot`, honors robots.txt, and never tries to get past bot challenges (it records them as `blocked`). It skips delivery apps, Yelp, social profiles, and ordering platforms like Toast and Square: their terms forbid crawling, and delivery prices are marked up.
 
 ## Builds
 

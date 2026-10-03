@@ -1,4 +1,4 @@
-// Measures how Chicago restaurant websites publish their menus. Does not extract menus.
+// Measures how Chicagoland restaurant websites publish their menus. Does not extract menus.
 // Polite by design: honors robots.txt, identifies itself, one request per site at a time,
 // and records bot challenges instead of trying to get past them.
 import { readFile, writeFile } from 'node:fs/promises';
@@ -276,16 +276,16 @@ function tally(values: (string | null)[]) {
 }
 
 const restaurants: Restaurant[] = JSON.parse(
-  await readFile(new URL('chicago-restaurants.json', OUT_DIR), 'utf8'),
+  await readFile(new URL('restaurants.json', OUT_DIR), 'utf8'),
 );
 
-// Chains share one website across locations; probe each site once
+// Chains share one host across locations; probe each host once so no site gets parallel requests
 const bySite = new Map<string, Restaurant>();
 for (const r of restaurants) {
   const key = r.website
     .toLowerCase()
     .replace(/^https?:\/\/(www\.)?/, '')
-    .replace(/\/$/, '');
+    .split(/[/?#]/)[0];
   if (!bySite.has(key)) bySite.set(key, r);
 }
 const queue = [...bySite.values()].slice(0, Number(process.env.LIMIT) || undefined);
@@ -303,10 +303,7 @@ await Promise.all(
   }),
 );
 
-await writeFile(
-  new URL('chicago-probe.jsonl', OUT_DIR),
-  results.map((r) => JSON.stringify(r)).join('\n'),
-);
+await writeFile(new URL('probe.jsonl', OUT_DIR), results.map((r) => JSON.stringify(r)).join('\n'));
 
 const ok = results.filter((r) => r.outcome === 'ok');
 const blocked = results.filter((r) => r.outcome === 'blocked');
