@@ -1,6 +1,6 @@
 // Finds menus published as images on sites whose menu pages had no text menu, and records the
 // image URLs so the app can link to them. OCR was tested and was too noisy to store as items.
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 import * as cheerio from 'cheerio';
@@ -9,6 +9,7 @@ import type { Element } from 'domhandler';
 import { OUT_DIR } from './config.ts';
 import type { SiteMenus } from './extract-menus.ts';
 import { blockVendor, getHtml, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
+import { jsonlWriter } from './jsonl.ts';
 import type { Probe } from './probe-menus.ts';
 import { siteHost } from './sites.ts';
 
@@ -92,11 +93,10 @@ const targets = probes
   .slice(0, Number(process.env.LIMIT) || undefined);
 console.log(`Looking for menu images on ${targets.length} sites`);
 
-const results = (await runPool(targets, CONCURRENCY, findImages)).filter((r) => r.images.length);
-await writeFile(
-  new URL(process.env.IMAGES_FILE ?? 'menu-images.jsonl', OUT_DIR),
-  results.map((r) => JSON.stringify(r)).join('\n'),
-);
+const write = await jsonlWriter<SiteImages>(process.env.IMAGES_FILE ?? 'menu-images.jsonl');
+const results = (
+  await runPool(targets, CONCURRENCY, findImages, (r) => r.images.length && write(r))
+).filter((r) => r.images.length);
 console.log(
   `Sites with menu images: ${results.length}, images: ${results.reduce((n, r) => n + r.images.length, 0)}`,
 );

@@ -1,10 +1,11 @@
 // Parses the menu PDFs found during extraction. Same politeness rules as the other crawlers.
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 import { OUT_DIR } from './config.ts';
 import type { SiteMenus } from './extract-menus.ts';
 import { blockVendor, getPdf, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
+import { jsonlWriter } from './jsonl.ts';
 import { labelFromUrl, menuSignature } from './menu-parsers.ts';
 import { parsePdfMenu } from './pdf-parser.ts';
 
@@ -51,11 +52,10 @@ const targets = sites
   .slice(0, Number(process.env.LIMIT) || undefined);
 console.log(`Parsing PDFs from ${targets.length} sites`);
 
-const results = (await runPool(targets, CONCURRENCY, extractPdfs)).filter((r) => r.pages.length);
-await writeFile(
-  new URL(process.env.PDF_MENUS_FILE ?? 'pdf-menus.jsonl', OUT_DIR),
-  results.map((r) => JSON.stringify(r)).join('\n'),
-);
+const write = await jsonlWriter<SiteMenus>(process.env.PDF_MENUS_FILE ?? 'pdf-menus.jsonl');
+const results = (
+  await runPool(targets, CONCURRENCY, extractPdfs, (r) => r.pages.length && write(r))
+).filter((r) => r.pages.length);
 const items = results.reduce(
   (n, r) => n + r.pages.reduce((m, p) => m + p.menus[0].items.length, 0),
   0,

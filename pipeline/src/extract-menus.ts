@@ -1,12 +1,13 @@
 // Extracts structured menus from the sites the probe could reach. Same politeness rules as the
 // probe: robots.txt, identified user agent, one request per site at a time, no challenge bypass.
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 import * as cheerio from 'cheerio';
 
 import { OUT_DIR } from './config.ts';
 import { blockVendor, getHtml, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
+import { jsonlWriter } from './jsonl.ts';
 import {
   GENERIC_LABEL,
   labelFromUrl,
@@ -134,11 +135,8 @@ const targets = probes
   .slice(0, Number(process.env.LIMIT) || undefined);
 console.log(`Extracting menus from ${targets.length} reachable sites`);
 
-const results = await runPool(targets, CONCURRENCY, extractSite);
-await writeFile(
-  new URL(process.env.MENUS_FILE ?? 'menus.jsonl', OUT_DIR),
-  results.map((r) => JSON.stringify(r)).join('\n'),
-);
+const write = await jsonlWriter<SiteMenus>(process.env.MENUS_FILE ?? 'menus.jsonl');
+const results = await runPool(targets, CONCURRENCY, extractSite, write);
 
 const withMenus = results.filter((r) => r.pages.length);
 const items = withMenus.reduce(
