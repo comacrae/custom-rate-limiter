@@ -22,6 +22,9 @@ const CONCURRENCY = 16;
 const MAX_PAGES_PER_SITE = 8;
 const MENU_LINK =
   /menu|food|drink|brunch|lunch|dinner|breakfast|dessert|wine|cocktail|happy.?hour/i;
+// Pages that mention food without being menus, e.g. "food-and-beverage-careers"
+const NOT_MENU_LINK =
+  /career|job|employ|hiring|franchis|press|news|blog|gift|privacy|terms|accessib|allergen|nutrition|login|account|cart|checkout/i;
 
 // "VIEW CATERING MENU" → "CATERING MENU"
 const tidyLabel = (label: string) => label.replace(/^(view|see|our|click for|download)\s+/i, '');
@@ -48,15 +51,18 @@ async function extractSite(probe: Probe): Promise<SiteMenus> {
     pdfs: [...probe.pdfs],
   };
 
-  const queue: { url: string; label: string }[] = probe.menuPages.length
-    ? probe.menuPages.map((url) => ({ url, label: '' }))
-    : [{ url: home.href, label: '' }];
+  // viaMenuLink: reached through a link that looked like a menu, unlike the listed website,
+  // which is sometimes an article or directory page rather than the restaurant's homepage
+  const menuPages = probe.menuPages.filter((url) => !NOT_MENU_LINK.test(new URL(url).pathname));
+  const queue: { url: string; label: string; viaMenuLink: boolean }[] = menuPages.length
+    ? menuPages.map((url) => ({ url, label: '', viaMenuLink: true }))
+    : [{ url: home.href, label: '', viaMenuLink: false }];
   const visited = new Set<string>();
   const signatures = new Set<string>();
   const pdfs = new Set(probe.pdfs);
 
   while (queue.length && visited.size < MAX_PAGES_PER_SITE) {
-    const { url, label } = queue.shift()!;
+    const { url, label, viaMenuLink } = queue.shift()!;
     if (visited.has(url)) continue;
     visited.add(url);
     const pageUrl = new URL(url);
@@ -88,15 +94,16 @@ async function extractSite(probe: Probe): Promise<SiteMenus> {
       link.hash = '';
       const text = $(a).text().replace(/\s+/g, ' ').trim();
       if (!link.protocol.startsWith('http') || siteHost(link.href) !== host) return;
+      if (!MENU_LINK.test(`${link.pathname} ${text}`) || NOT_MENU_LINK.test(link.pathname)) return;
       if (link.pathname.toLowerCase().endsWith('.pdf')) {
-        if (MENU_LINK.test(`${link.pathname} ${text}`)) pdfs.add(link.href);
-      } else if (MENU_LINK.test(`${link.pathname} ${text}`) && !visited.has(link.href)) {
-        queue.push({ url: link.href, label: text.length <= 40 ? tidyLabel(text) : '' });
+        pdfs.add(link.href);
+      } else if (!visited.has(link.href)) {
+        const linkLabel = text.length <= 40 ? tidyLabel(text) : '';
+        queue.push({ url: link.href, label: linkLabel, viaMenuLink: true });
       }
     });
 
-    // Pages other than the homepage were reached through menu links
-    const parsed = parseMenuPage($, { knownMenuPage: page.finalUrl.pathname !== '/' });
+    const parsed = parseMenuPage($, { knownMenuPage: viaMenuLink });
     if (!parsed) continue;
     const fallbackName =
       (label && !GENERIC_LABEL.test(label) ? label : '') || labelFromUrl(page.finalUrl);

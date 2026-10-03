@@ -141,6 +141,29 @@ test('menu index pages are not read as unpriced menus', () => {
   assert.equal(parseMenuPage(cheerio.load(html), { knownMenuPage: true }), null);
 });
 
+test('bare heading lists without descriptions are not menus', () => {
+  const states = [
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Idaho',
+  ];
+  const html = `<main>${states.map((s) => `<h3>${s}</h3>`).join('')}</main>`;
+  assert.equal(parseMenuPage(cheerio.load(html), { knownMenuPage: true }), null);
+});
+
+test('items repeated by responsive layouts are kept once', () => {
+  const block = repeat(5, (i) => `<div><b>Dish ${i}</b><span>$1${i}</span></div>`);
+  const { items: parsed } = items(
+    `<main><section>${block}</section><section>${block}</section></main>`,
+  );
+  assert.equal(parsed.length, 5);
+});
+
 test('pages with only a few prices are not menus', () => {
   assert.equal(
     parseMenuPage(cheerio.load('<p>Gift cards</p><span>$25</span><span>$50</span>')),

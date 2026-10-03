@@ -317,7 +317,25 @@ export function parseHeadingMenu($: CheerioAPI): MenuDraft[] {
     });
   });
   const uniqueNames = new Set(items.map((i) => i.name.toLowerCase()));
-  return uniqueNames.size >= MIN_HEADING_ITEMS ? [{ name: '', items }] : [];
+  // Bare heading lists without descriptions are usually category indexes or state lists
+  const described = items.filter((i) => i.description).length;
+  return uniqueNames.size >= MIN_HEADING_ITEMS && described >= items.length * 0.4
+    ? [{ name: '', items }]
+    : [];
+}
+
+// Responsive layouts often render the same menu twice; drop exact repeats
+function dropDuplicateItems(menus: MenuDraft[]): MenuDraft[] {
+  return menus.map((menu) => {
+    const seen = new Set<string>();
+    const items = menu.items.filter((item) => {
+      const key = [item.section, item.name, item.description, item.priceText].join('|');
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+    return { ...menu, items };
+  });
 }
 
 // Headings that name a menu rather than a dish, as on menu index pages
@@ -361,11 +379,11 @@ export function parseMenuPage($: CheerioAPI, { knownMenuPage = false } = {}): Pa
     ['squarespace', parseSquarespace],
     ['generic', parseGeneric],
   ] as const) {
-    const menus = parse($);
+    const menus = dropDuplicateItems(parse($));
     if (countItems(menus) >= MIN_ITEMS) return { parser, menus };
   }
   if (knownMenuPage) {
-    const menus = parseHeadingMenu($);
+    const menus = dropDuplicateItems(parseHeadingMenu($));
     if (menus.length) return { parser: 'headings', menus };
   }
   return null;
