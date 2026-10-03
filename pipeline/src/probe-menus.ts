@@ -1,7 +1,7 @@
 // Measures how Chicagoland restaurant websites publish their menus. Does not extract menus.
 // Polite by design: honors robots.txt, identifies itself, one request per site at a time,
 // and records bot challenges instead of trying to get past them.
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { setTimeout as sleep } from 'node:timers/promises';
 
 import * as cheerio from 'cheerio';
@@ -9,6 +9,7 @@ import * as cheerio from 'cheerio';
 import { OUT_DIR } from './config.ts';
 import type { Restaurant } from './fetch-restaurants.ts';
 import { blockVendor, getHtml, robotsAllows, runPool, SAME_SITE_DELAY_MS } from './http.ts';
+import { jsonlWriter } from './jsonl.ts';
 import { siteHost, siteUrl } from './sites.ts';
 
 const CONCURRENCY = 16;
@@ -283,12 +284,8 @@ if (process.env.SKIP_PROBED_FROM) {
 const queue = sites.slice(0, Number(process.env.LIMIT) || undefined);
 console.log(`${restaurants.length} restaurants, probing ${queue.length} unique sites`);
 
-const results = await runPool(queue, CONCURRENCY, probe);
-
-await writeFile(
-  new URL(process.env.PROBE_OUT ?? 'probe.jsonl', OUT_DIR),
-  results.map((r) => JSON.stringify(r)).join('\n'),
-);
+const write = await jsonlWriter<Probe>(process.env.PROBE_OUT ?? 'probe.jsonl');
+const results = await runPool(queue, CONCURRENCY, probe, write);
 
 const ok = results.filter((r) => r.outcome === 'ok');
 const blocked = results.filter((r) => r.outcome === 'blocked');

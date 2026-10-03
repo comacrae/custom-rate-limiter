@@ -77,13 +77,21 @@ export async function getPdf(url: URL) {
 }
 
 // Runs fn over items with a fixed number of workers, logging progress every 100 items
-export async function runPool<T, R>(items: T[], concurrency: number, fn: (item: T) => Promise<R>) {
+// onResult runs as each item finishes, e.g. to append it to an output file
+export async function runPool<T, R>(
+  items: T[],
+  concurrency: number,
+  fn: (item: T) => Promise<R>,
+  onResult?: (result: R) => unknown,
+) {
   const results: R[] = [];
   let next = 0;
   await Promise.all(
     Array.from({ length: concurrency }, async () => {
       while (next < items.length) {
-        results.push(await fn(items[next++]));
+        const result = await fn(items[next++]);
+        results.push(result);
+        await onResult?.(result);
         if (results.length % 100 === 0) console.log(`  ${results.length}/${items.length}`);
       }
     }),
