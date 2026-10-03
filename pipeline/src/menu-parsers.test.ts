@@ -3,7 +3,62 @@ import { test } from 'node:test';
 
 import * as cheerio from 'cheerio';
 
-import { parseMenuPage, parsePrice } from './menu-parsers.ts';
+import { parseMenuPage, parsePrice, tidyMenu, type MenuItemDraft } from './menu-parsers.ts';
+
+const item = (name: string, price: number | null): MenuItemDraft => ({
+  section: null,
+  name,
+  description: null,
+  price,
+  priceText: price === null ? null : String(price),
+  dietary: [],
+});
+
+test('tidyMenu splits dot-leader prices out of names and drops $0', () => {
+  const menu = tidyMenu({
+    name: 'Dinner',
+    items: [item('SPICY SCALLOPS TEMPURA..........$25.90', null), item('Quail Egg', 0)],
+  });
+  assert.deepEqual(
+    menu?.items.map((i) => [i.name, i.price]),
+    [
+      ['SPICY SCALLOPS TEMPURA', 25.9],
+      ['Quail Egg', null],
+    ],
+  );
+});
+
+test('tidyMenu drops letter-spaced names it cannot read', () => {
+  const menu = tidyMenu({
+    name: '',
+    items: [item('K i d s B r e a k f a s t P l a t e', 10), item('Pancakes', 9), item('BLT', 11)],
+  });
+  assert.deepEqual(
+    menu?.items.map((i) => i.name),
+    ['Pancakes', 'BLT'],
+  );
+});
+
+test('tidyMenu moves text after dot leaders into the description', () => {
+  const menu = tidyMenu({ name: '', items: [item('Tofu.............. Add', 1.25)] });
+  assert.equal(menu?.items[0].name, 'Tofu');
+  assert.equal(menu?.items[0].description, 'Add');
+});
+
+test('tidyMenu clears prices far above the rest of the menu', () => {
+  const beers = ['Corona', 'Modelo', 'Stella', 'Goose IPA'].map((n) => item(n, 6));
+  const menu = tidyMenu({ name: '', items: [...beers, item('Miller Lite', 550)] });
+  assert.equal(menu?.items[4].price, null);
+  assert.equal(menu?.items[4].priceText, '550');
+});
+
+test('tidyMenu drops calorie sheets', () => {
+  const sheet = {
+    name: '',
+    items: [item('Harvest Salad', 519), item('Cobb Salad', 878), item('Soup', 240)],
+  };
+  assert.equal(tidyMenu(sheet), null);
+});
 
 const items = (html: string) => {
   const result = parseMenuPage(cheerio.load(html));

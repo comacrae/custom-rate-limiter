@@ -10,13 +10,16 @@ import { parsePdfMenu } from './pdf-parser.ts';
 
 const CONCURRENCY = 12;
 const MAX_PDFS_PER_SITE = 4;
+// Nutrition and allergen sheets list calories that read like prices
+const NOT_A_MENU_PDF = /nutrition|allergen|calorie/i;
 
 async function extractPdfs(site: SiteMenus): Promise<SiteMenus> {
   const result: SiteMenus = { ...site, fetchedAt: new Date().toISOString(), pages: [], pdfs: [] };
   // Skip PDFs that repeat a menu already found in HTML
   const signatures = new Set(site.pages.flatMap((p) => p.menus.map(menuSignature)));
+  const pdfs = site.pdfs.filter((href) => !NOT_A_MENU_PDF.test(href));
 
-  for (const [index, href] of site.pdfs.slice(0, MAX_PDFS_PER_SITE).entries()) {
+  for (const [index, href] of pdfs.slice(0, MAX_PDFS_PER_SITE).entries()) {
     const url = new URL(href);
     if (!(await robotsAllows(url))) continue;
     if (index > 0) await pauseFor(url);
