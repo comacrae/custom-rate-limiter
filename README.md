@@ -97,6 +97,8 @@ npm run parse-pdf -- <url>   # same for one menu PDF
 
 `LIMIT=40` runs the probe or extractor on the first 40 sites. `load-db` writes to local Supabase unless `DATABASE_URL` is set.
 
+Partial re-runs: `RETRY_FROM=probe.jsonl PROBE_OUT=probe-retry.jsonl npm run probe-menus` retries sites that were unreachable for fixable reasons (stale links, broken HTTPS). `SKIP_DONE_FROM=menus.jsonl MENUS_FILE=menus-pass2.jsonl npm run extract-menus` re-extracts only sites that produced no menus. Pass every output to the loader with `MENUS_FILES=menus.jsonl,pdf-menus.jsonl,menus-pass2.jsonl`.
+
 The crawler identifies itself as `MenuBuffBot`, honors robots.txt, and never tries to get past bot challenges (it records them as `blocked`). It skips delivery apps, Yelp, social profiles, and ordering platforms like Toast and Square: their terms forbid crawling, and delivery prices are marked up.
 
 ## Builds

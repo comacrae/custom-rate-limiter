@@ -8,7 +8,9 @@ const url = process.argv[2];
 if (!url) throw new Error('Usage: npm run parse-url -- <url>');
 
 const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } });
-const result = parseMenuPage(cheerio.load(await res.text()));
+const result = parseMenuPage(cheerio.load(await res.text()), {
+  knownMenuPage: new URL(res.url).pathname !== '/',
+});
 if (!result) {
   console.log('No menu found');
 } else {

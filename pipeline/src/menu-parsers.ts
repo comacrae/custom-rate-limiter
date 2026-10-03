@@ -257,6 +257,73 @@ function toMenuItem(
   };
 }
 
+const MIN_HEADING_ITEMS = 8;
+
+// Unpriced text menus: the most common heading level holds dish names, the paragraphs after
+// each one describe it, and higher-level headings are sections. Only safe on pages already
+// known to be menus, since any heading-heavy page would otherwise match.
+export function parseHeadingMenu($: CheerioAPI): MenuDraft[] {
+  $('script, style, noscript, svg, nav, header, footer, form, aside').remove();
+  const root = $('main').first().length ? $('main').first() : $('body');
+  const levels = ['h2', 'h3', 'h4', 'h5', 'h6'];
+  const counts = levels.map((level) => root.find(level).length);
+  const best = Math.max(...counts);
+  if (best < MIN_HEADING_ITEMS) return [];
+  // Deepest level wins ties: dish names sit below section headings
+  const itemLevel = levels[counts.lastIndexOf(best)];
+  const itemRank = Number(itemLevel[1]);
+
+  const items: MenuItemDraft[] = [];
+  let section: string | null = null;
+  root.find(HEADING).each((_, el) => {
+    const rank = Number(el.tagName[1]);
+    const text = clean($(el).text());
+    if (rank < itemRank) {
+      section = text || section;
+      return;
+    }
+    if (
+      rank !== itemRank ||
+      text.length > 70 ||
+      !isPlausibleName(text) ||
+      /:$/.test(text) ||
+      MENU_TITLE.test(text)
+    ) {
+      return;
+    }
+    // Page builders wrap each heading in its own box; widen to the largest ancestor that still
+    // holds only this dish, then the rest of its text is the description
+    let box: Element = el;
+    for (let parent = el.parent; parent?.type === 'tag'; parent = parent.parent) {
+      if ($(parent).find(itemLevel).length > 1 || parent === root.get(0)) break;
+      box = parent;
+    }
+    const description = clean(
+      box === el
+        ? $(el)
+            .nextUntil(HEADING)
+            .map((_, sib) => $(sib).text())
+            .get()
+            .join(' ')
+        : $(box).text().replace($(el).text(), ''),
+    );
+    items.push({
+      section,
+      name: text,
+      description: description && description.length <= 400 ? description : null,
+      price: null,
+      priceText: null,
+      dietary: [],
+    });
+  });
+  const uniqueNames = new Set(items.map((i) => i.name.toLowerCase()));
+  return uniqueNames.size >= MIN_HEADING_ITEMS ? [{ name: '', items }] : [];
+}
+
+// Headings that name a menu rather than a dish, as on menu index pages
+const MENU_TITLE =
+  /^(breakfast|brunch|lunch|dinner|dessert|desserts|drinks?|wine( list)?|wines|beer|cocktails|happy hour|catering|specials|kids|menu)( menu)?s?$/i;
+
 export const GENERIC_LABEL = /^(our |view |see |full |the )?menus?$/i;
 
 // "dinner-menu" → "Dinner Menu"; used when a page or PDF doesn't name its menu. Drops dates
@@ -287,7 +354,8 @@ export function menuSignature(menu: MenuDraft) {
 // Most specific parser first; a page needs at least this many items to count as a menu
 export const MIN_ITEMS = 5;
 
-export function parseMenuPage($: CheerioAPI): ParseResult | null {
+// knownMenuPage: the page was reached through a menu link, so unpriced heading lists count
+export function parseMenuPage($: CheerioAPI, { knownMenuPage = false } = {}): ParseResult | null {
   for (const [parser, parse] of [
     ['jsonld', parseJsonLd],
     ['squarespace', parseSquarespace],
@@ -295,6 +363,10 @@ export function parseMenuPage($: CheerioAPI): ParseResult | null {
   ] as const) {
     const menus = parse($);
     if (countItems(menus) >= MIN_ITEMS) return { parser, menus };
+  }
+  if (knownMenuPage) {
+    const menus = parseHeadingMenu($);
+    if (menus.length) return { parser: 'headings', menus };
   }
   return null;
 }

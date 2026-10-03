@@ -107,10 +107,8 @@ console.log(`Loaded ${probeRows.size} site probes`);
 
 // HTML and PDF menus for the same site are replaced together
 const bySite = new Map<string, SiteMenus>();
-for (const file of [
-  process.env.MENUS_FILE ?? 'menus.jsonl',
-  process.env.PDF_MENUS_FILE ?? 'pdf-menus.jsonl',
-]) {
+// MENUS_FILES lists every extraction output to merge, comma-separated
+for (const file of (process.env.MENUS_FILES ?? 'menus.jsonl,pdf-menus.jsonl').split(',')) {
   for (const site of await readJsonl<SiteMenus>(file)) {
     const existing = bySite.get(site.siteHost);
     if (existing) existing.pages.push(...site.pages);

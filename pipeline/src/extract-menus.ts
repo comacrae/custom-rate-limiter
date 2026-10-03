@@ -94,7 +94,8 @@ async function extractSite(probe: Probe): Promise<SiteMenus> {
       }
     });
 
-    const parsed = parseMenuPage($);
+    // Pages other than the homepage were reached through menu links
+    const parsed = parseMenuPage($, { knownMenuPage: page.finalUrl.pathname !== '/' });
     if (!parsed) continue;
     const fallbackName =
       (label && !GENERIC_LABEL.test(label) ? label : '') || labelFromUrl(page.finalUrl);
@@ -118,8 +119,18 @@ const probes: Probe[] = (await readFile(probeFile, 'utf8'))
   .trim()
   .split('\n')
   .map((line) => JSON.parse(line));
+// SKIP_DONE_FROM=menus.jsonl re-runs only sites that produced no menus in that earlier run
+const done = new Set<string>();
+if (process.env.SKIP_DONE_FROM) {
+  for (const line of (await readFile(new URL(process.env.SKIP_DONE_FROM, OUT_DIR), 'utf8'))
+    .trim()
+    .split('\n')) {
+    const site: SiteMenus = JSON.parse(line);
+    if (site.pages.length || site.blocked) done.add(site.siteHost);
+  }
+}
 const targets = probes
-  .filter((p) => p.outcome === 'ok')
+  .filter((p) => p.outcome === 'ok' && !done.has(siteHost(p.website)))
   .slice(0, Number(process.env.LIMIT) || undefined);
 console.log(`Extracting menus from ${targets.length} reachable sites`);
 
