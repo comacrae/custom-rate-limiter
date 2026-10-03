@@ -158,20 +158,37 @@ async function probe(r: Site): Promise<Probe> {
   } catch {
     return { ...result, outcome: 'unreachable', detail: 'invalid url' };
   }
-  if (!(await robotsAllows(url))) return { ...result, outcome: 'robots_disallowed' };
 
+  // Listed URLs are often stale deep links or sit behind broken HTTPS; fall back to the
+  // homepage, then to plain HTTP. Dead domains (DNS failures) aren't retried.
+  const candidates = [url, new URL('/', url), new URL(`http://${url.host}/`)].filter(
+    (c, i, all) => all.findIndex((o) => o.href === c.href) === i,
+  );
   let home;
-  try {
-    home = await getHtml(url);
-  } catch (err) {
-    const cause = (err as { cause?: { code?: string } }).cause?.code;
-    return { ...result, outcome: 'unreachable', detail: cause ?? (err as Error).name };
+  for (const candidate of candidates) {
+    if (!(await robotsAllows(candidate))) return { ...result, outcome: 'robots_disallowed' };
+    try {
+      const page = await getHtml(candidate);
+      const blocked = blockVendor(page.res, page.html);
+      if (blocked) return { ...result, outcome: 'blocked', detail: blocked };
+      if (page.res.ok) {
+        home = page;
+        result.website = candidate.href;
+        break;
+      }
+      result.outcome = 'unreachable';
+      result.detail = `http_${page.res.status}`;
+    } catch (err) {
+      const cause = (err as { cause?: { code?: string } }).cause?.code;
+      result.outcome = 'unreachable';
+      result.detail = cause ?? (err as Error).name;
+      if (cause === 'ENOTFOUND') break;
+    }
+    await sleep(SAME_SITE_DELAY_MS);
   }
-  const blocked = blockVendor(home.res, home.html);
-  if (blocked) return { ...result, outcome: 'blocked', detail: blocked };
-  if (!home.res.ok) {
-    return { ...result, outcome: 'unreachable', detail: `http_${home.res.status}` };
-  }
+  if (!home) return result;
+  result.outcome = 'ok';
+  delete result.detail;
 
   const homeInfo = analyze(home.html, home.finalUrl);
   const pdfs = new Set(homeInfo.pdfs);
@@ -242,12 +259,26 @@ for (const { name, website } of restaurants) {
   }
   if (!bySite.has(host)) bySite.set(host, { name, website });
 }
-const queue = [...bySite.values()].slice(0, Number(process.env.LIMIT) || undefined);
+// RETRY_FROM=probe.jsonl re-probes only the sites that were unreachable for a fixable reason
+let sites = [...bySite.values()];
+if (process.env.RETRY_FROM) {
+  const previous: Probe[] = (await readFile(new URL(process.env.RETRY_FROM, OUT_DIR), 'utf8'))
+    .trim()
+    .split('\n')
+    .map((line) => JSON.parse(line));
+  sites = previous
+    .filter((p) => p.outcome === 'unreachable' && p.detail !== 'ENOTFOUND')
+    .map(({ name, website }) => ({ name, website }));
+}
+const queue = sites.slice(0, Number(process.env.LIMIT) || undefined);
 console.log(`${restaurants.length} restaurants, probing ${queue.length} unique sites`);
 
 const results = await runPool(queue, CONCURRENCY, probe);
 
-await writeFile(new URL('probe.jsonl', OUT_DIR), results.map((r) => JSON.stringify(r)).join('\n'));
+await writeFile(
+  new URL(process.env.PROBE_OUT ?? 'probe.jsonl', OUT_DIR),
+  results.map((r) => JSON.stringify(r)).join('\n'),
+);
 
 const ok = results.filter((r) => r.outcome === 'ok');
 const blocked = results.filter((r) => r.outcome === 'blocked');
