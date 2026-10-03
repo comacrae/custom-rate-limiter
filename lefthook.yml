@@ -1,0 +1,28 @@
+# https://lefthook.dev
+pre-commit:
+  parallel: true
+  jobs:
+    - name: secrets
+      run: gitleaks git --staged --redact --no-banner
+
+    - name: app lint + format
+      root: menu-buff/
+      glob: '*.{js,jsx,ts,tsx}'
+      group:
+        piped: true
+        jobs:
+          - run: npx eslint --fix --max-warnings=0 --no-warn-ignored {staged_files}
+            stage_fixed: true
+          # Prettier is installed at the repo root, not in menu-buff/
+          - run: ../node_modules/.bin/prettier --write {staged_files}
+            stage_fixed: true
+
+    - name: format other files
+      glob: '*.{json,md,yml,yaml,css}'
+      run: npx prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true
+
+    - name: app typecheck
+      root: menu-buff/
+      glob: '*.{ts,tsx}'
+      run: npx tsc --noEmit
