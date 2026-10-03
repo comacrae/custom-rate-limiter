@@ -109,6 +109,38 @@ test('Squarespace titles with a trailing price are split', () => {
   assert.equal(result?.menus[0].items[0].price, 6);
 });
 
+test('unpriced heading menus parse only on known menu pages', () => {
+  const html = `<main><h2>Appetizers</h2>
+    ${repeat(8, (i) => `<div class="box"><h3>Dish ${i}</h3><p>with sauce ${i}</p></div>`)}
+  </main>`;
+  assert.equal(parseMenuPage(cheerio.load(html)), null);
+  const result = parseMenuPage(cheerio.load(html), { knownMenuPage: true });
+  assert.equal(result?.parser, 'headings');
+  assert.deepEqual(result?.menus[0].items[2], {
+    section: 'Appetizers',
+    name: 'Dish 2',
+    description: 'with sauce 2',
+    price: null,
+    priceText: null,
+    dietary: [],
+  });
+});
+
+test('menu index pages are not read as unpriced menus', () => {
+  const titles = [
+    'Breakfast',
+    'Lunch',
+    'Dinner',
+    'Wine List',
+    'Brunch',
+    'Desserts',
+    'Drinks',
+    'Happy Hour',
+  ];
+  const html = `<main>${titles.map((t) => `<h3>${t}</h3>`).join('')}</main>`;
+  assert.equal(parseMenuPage(cheerio.load(html), { knownMenuPage: true }), null);
+});
+
 test('pages with only a few prices are not menus', () => {
   assert.equal(
     parseMenuPage(cheerio.load('<p>Gift cards</p><span>$25</span><span>$50</span>')),
