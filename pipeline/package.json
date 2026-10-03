@@ -1,0 +1,18 @@
+{
+  "name": "menubuff-pipeline",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch-restaurants": "node src/fetch-restaurants.ts",
+    "probe-menus": "node src/probe-menus.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "cheerio": "1.2.0",
+    "robots-parser": "3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "7.0.2"
+  }
+}

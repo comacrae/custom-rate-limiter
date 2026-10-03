@@ -26,3 +26,13 @@ pre-commit:
       root: menu-buff/
       glob: '*.{ts,tsx}'
       run: npx tsc --noEmit
+
+    - name: pipeline format + typecheck
+      root: pipeline/
+      glob: '*.ts'
+      group:
+        piped: true
+        jobs:
+          - run: ../node_modules/.bin/prettier --write {staged_files}
+            stage_fixed: true
+          - run: npx tsc --noEmit

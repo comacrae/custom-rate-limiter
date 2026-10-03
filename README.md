@@ -6,6 +6,7 @@ A restaurant collection app for foodies + explorers
 
 - `menu-buff/` — Expo app (Expo Router, routes in `menu-buff/src/app/`)
 - `supabase/` — Supabase config, migrations, and database tests
+- `pipeline/` — menu data pipeline (Node scripts)
 
 ## Prerequisites
 
@@ -19,6 +20,7 @@ A restaurant collection app for foodies + explorers
 ```bash
 npm install                  # repo tooling; installs git hooks via lefthook
 cd menu-buff && npm install
+cd ../pipeline && npm install
 ```
 
 Create `menu-buff/.env.local` (gitignored) with values from the Supabase dashboard → Project Settings → API Keys:
@@ -78,6 +80,17 @@ supabase db push                # after the PR merges: apply migrations to the h
 `db:check` needs Docker running; start the local database with `supabase start` (full stack, with Studio at http://localhost:54323) or `supabase db start` (Postgres only). Enable RLS on every table in `public`; the advisors check fails without it. Put pgTAP tests in `supabase/tests/`.
 
 PRs that touch `supabase/` run the same checks in GitHub Actions.
+
+## Menu data pipeline
+
+```bash
+cd pipeline
+npm run fetch-restaurants    # Chicago restaurants with websites from OpenStreetMap → out/
+npm run probe-menus          # classify how each site publishes its menu → out/chicago-probe.jsonl
+LIMIT=40 npm run probe-menus # quick trial on the first 40 sites
+```
+
+The crawler identifies itself as `MenuBuffBot`, honors robots.txt, and never tries to get past bot challenges (it records them as `blocked`). Don't scrape delivery apps (DoorDash, Uber Eats, Grubhub) or Yelp: their terms forbid it and their prices are marked up.
 
 ## Builds
 
