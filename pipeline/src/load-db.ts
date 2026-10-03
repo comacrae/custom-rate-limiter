@@ -76,7 +76,11 @@ for (const batch of chunks(restaurants)) {
 }
 console.log(`Loaded ${restaurants.length} restaurants`);
 
-const probes = await readJsonl<Probe>(process.env.PROBE_FILE ?? 'probe.jsonl');
+// PROBE_FILES is comma-separated; a site in a later file (e.g. a retry) replaces earlier ones
+const probes: Probe[] = [];
+for (const file of (process.env.PROBE_FILES ?? 'probe.jsonl').split(',')) {
+  probes.push(...(await readJsonl<Probe>(file)));
+}
 const probedAt = new Date();
 const probeRows = new Map<string, Record<string, unknown>>();
 for (const p of probes) {
@@ -174,12 +178,10 @@ for (const site of sites) {
 console.log(`Loaded ${menuCount} menus with ${itemCount} items from ${sites.length} sites`);
 
 // Menu PDFs and images, so the app can link to menus that couldn't be parsed into items
-const images = new Map(
-  (await readJsonl<SiteImages>(process.env.IMAGES_FILE ?? 'menu-images.jsonl')).map((s) => [
-    s.siteHost,
-    s,
-  ]),
-);
+const images = new Map<string, SiteImages>();
+for (const file of (process.env.IMAGES_FILES ?? 'menu-images.jsonl').split(',')) {
+  for (const site of await readJsonl<SiteImages>(file)) images.set(site.siteHost, site);
+}
 const fileHosts = new Set([
   ...sites.filter((s) => s.pdfs.length).map((s) => s.siteHost),
   ...images.keys(),
