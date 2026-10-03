@@ -8,6 +8,7 @@ import postgres from 'postgres';
 import { OUT_DIR } from './config.ts';
 import type { SiteMenus } from './extract-menus.ts';
 import type { Restaurant } from './fetch-restaurants.ts';
+import type { SiteImages } from './find-menu-images.ts';
 import type { Probe } from './probe-menus.ts';
 import { siteHost } from './sites.ts';
 
@@ -111,8 +112,12 @@ const bySite = new Map<string, SiteMenus>();
 for (const file of (process.env.MENUS_FILES ?? 'menus.jsonl,pdf-menus.jsonl').split(',')) {
   for (const site of await readJsonl<SiteMenus>(file)) {
     const existing = bySite.get(site.siteHost);
-    if (existing) existing.pages.push(...site.pages);
-    else bySite.set(site.siteHost, { ...site, pages: [...site.pages] });
+    if (existing) {
+      existing.pages.push(...site.pages);
+      existing.pdfs = [...new Set([...existing.pdfs, ...site.pdfs])];
+    } else {
+      bySite.set(site.siteHost, { ...site, pages: [...site.pages] });
+    }
   }
 }
 const sites = [...bySite.values()];
@@ -167,5 +172,33 @@ for (const site of sites) {
   });
 }
 console.log(`Loaded ${menuCount} menus with ${itemCount} items from ${sites.length} sites`);
+
+// Menu PDFs and images, so the app can link to menus that couldn't be parsed into items
+const images = new Map(
+  (await readJsonl<SiteImages>(process.env.IMAGES_FILE ?? 'menu-images.jsonl')).map((s) => [
+    s.siteHost,
+    s,
+  ]),
+);
+const fileHosts = new Set([
+  ...sites.filter((s) => s.pdfs.length).map((s) => s.siteHost),
+  ...images.keys(),
+]);
+let fileCount = 0;
+for (const host of fileHosts) {
+  const site = bySite.get(host);
+  const parsedPdfs = new Set(site?.pages.filter((p) => p.parser === 'pdf').map((p) => p.url));
+  const foundAt = new Date(site?.fetchedAt ?? images.get(host)?.foundAt ?? Date.now());
+  const rows = [
+    ...(site?.pdfs ?? []).map((url) => ({ url, kind: 'pdf', parsed: parsedPdfs.has(url) })),
+    ...(images.get(host)?.images ?? []).map((url) => ({ url, kind: 'image', parsed: false })),
+  ].map((file) => ({ site_host: host, found_at: foundAt, ...file }));
+  await sql.begin(async (tx) => {
+    await tx`delete from public.menu_files where site_host = ${host}`;
+    await tx`insert into public.menu_files ${tx(rows)} on conflict (site_host, url) do nothing`;
+  });
+  fileCount += rows.length;
+}
+console.log(`Loaded ${fileCount} menu files from ${fileHosts.size} sites`);
 
 await sql.end();

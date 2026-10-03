@@ -60,8 +60,13 @@ export function toSegmentLines(pieces: TextPiece[]): Segment[][] {
   });
 }
 
+// Two-letter "headings" are usually OCR fragments ("AD" from "SALAD")
 const isHeading = (text: string) =>
-  text.length <= 40 && /[A-Z]/.test(text) && text === text.toUpperCase() && !/\d/.test(text);
+  text.length >= 3 &&
+  text.length <= 40 &&
+  /[A-Z]/.test(text) &&
+  text === text.toUpperCase() &&
+  !/\d/.test(text);
 
 export function parseSegmentLines(lines: Segment[][]): MenuItemDraft[] {
   const items: (MenuItemDraft & { x: number })[] = [];
