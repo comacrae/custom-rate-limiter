@@ -18,6 +18,10 @@ export type Restaurant = {
   postcode: string | null;
   latitude: number;
   longitude: number;
+  // Set for tasting-menu and omakase restaurants, from data/place-overrides.json
+  menuStyle?: 'tasting' | 'omakase' | 'tasting_and_a_la_carte';
+  tastingPrice?: string | null;
+  bookingUrl?: string | null;
 };
 
 const RELEASE = '2026-09-23.1';
@@ -117,6 +121,8 @@ export type PlaceOverrides = {
   places: Restaurant[];
   // "<list slug>|<listed name>" → overtureId, when name matching picks wrong or nothing
   matches: Record<string, string>;
+  // overtureId → tasting/omakase details for restaurants without an à la carte menu
+  tasting: Record<string, Pick<Restaurant, 'menuStyle' | 'tastingPrice' | 'bookingUrl'>>;
 };
 const overrides: PlaceOverrides = JSON.parse(
   await readFile(new URL('../data/place-overrides.json', import.meta.url), 'utf8'),
@@ -163,6 +169,7 @@ const restaurants: Restaurant[] = (reader.getRowObjectsJson() as unknown as Row[
 );
 // Places missing from Overture entirely, added by hand
 restaurants.push(...overrides.places);
+for (const r of restaurants) Object.assign(r, overrides.tasting[r.overtureId] ?? {});
 
 await mkdir(OUT_DIR, { recursive: true });
 await writeFile(new URL('restaurants.json', OUT_DIR), JSON.stringify(restaurants, null, 2));

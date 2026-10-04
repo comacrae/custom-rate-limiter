@@ -9,7 +9,14 @@ import postgres from 'postgres';
 
 import { OUT_DIR } from './config.ts';
 import type { PlaceOverrides, Restaurant } from './fetch-restaurants.ts';
-import { coreName, normalizeName, siteHost } from './sites.ts';
+import {
+  coreName,
+  metersBetween,
+  namesOverlap,
+  normalizeName,
+  PIN_RADIUS_M,
+  siteHost,
+} from './sites.ts';
 
 export type ListEntry = {
   name: string;
@@ -18,6 +25,9 @@ export type ListEntry = {
   address: string | null;
   website: string | null;
   notes: string | null;
+  // Map-based lists pin each entry, which beats name matching
+  latitude?: number;
+  longitude?: number;
 };
 
 export type CuratedList = {
@@ -29,6 +39,7 @@ export type CuratedList = {
 };
 
 const LISTS_DIR = new URL('../data/lists/', import.meta.url);
+
 const hostOf = (website: string | null) => {
   if (!website) return null;
   try {
@@ -76,6 +87,17 @@ function match(list: CuratedList, entry: ListEntry) {
     // A shared host (restaurant group) still needs the name to pick the right location
     const named = viaHost.filter((r) => coreName(r.name) === coreName(entry.name));
     return { restaurant: best(named.length ? named : viaHost), how: 'website' };
+  }
+  // Pinned entries only match a nearby place with an overlapping name
+  if (entry.latitude != null && entry.longitude != null) {
+    const near = restaurants
+      .map((r) => ({
+        r,
+        d: metersBetween(entry.latitude!, entry.longitude!, r.latitude, r.longitude),
+      }))
+      .filter(({ r, d }) => d <= PIN_RADIUS_M && namesOverlap(entry.name, r.name))
+      .sort((a, b) => a.d - b.d);
+    return { restaurant: near[0]?.r ?? null, how: near.length ? 'pin' : 'none' };
   }
   const viaName = best(byName.get(normalizeName(entry.name)));
   if (viaName) return { restaurant: viaName, how: 'name' };

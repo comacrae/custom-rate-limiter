@@ -2,7 +2,8 @@
   "include": [
     "4bb1176b-12f2-439a-8b31-86aed35003c7",
     "d0dcf296-cb29-4f3c-bf87-b4ac35760e07",
-    "9f29e38f-c384-4202-8444-71f10061c6ad"
+    "9f29e38f-c384-4202-8444-71f10061c6ad",
+    "6e4e8be3-0fa0-4037-9775-45e04b8d0738"
   ],
   "websites": {
     "ee4e3c56-f81a-4234-bc84-5925b91c8389": "https://www.alinearestaurant.com/",
@@ -14,7 +15,13 @@
     "c6f5dbf3-2ec1-4842-b964-abdd2266b971": "https://www.azulchi.com/",
     "f7c82dc0-268c-45c1-9e3d-9f4eba3cebe1": "https://www.perchchicago.com/",
     "dd0c1519-ddb6-4d2e-8475-fafc07fde198": "https://www.haisous.com/",
-    "8448dd65-1b33-48a8-92a5-4e4ea97ea601": "https://www.demerachicago.com/"
+    "8448dd65-1b33-48a8-92a5-4e4ea97ea601": "https://www.demerachicago.com/",
+    "703d64cc-1da5-48dc-a754-69742e40163b": "https://www.feldrestaurant.com/",
+    "9c2ef874-557d-4d30-8c4f-4f7b57868e8f": "https://www.atsumerurestaurant.com/",
+    "ad17944c-e381-4f84-9e69-49109b4d8ee6": "https://www.brindille-chicago.com/",
+    "feb13e46-c82d-4bdf-93d0-4c5346d5c92b": "https://www.indiennechicago.com/",
+    "ac42c2ac-c057-416d-b025-000a2ec2c69a": "https://www.provarerestaurants.com/about-chicago",
+    "9e7fb2c6-3ccf-44e1-b58a-0fb325f43b91": "https://www.rosemarychicago.com/"
   },
   "places": [
     {
@@ -149,6 +156,95 @@
     "michelin-chicago-2025|Warlord": "manual:warlord",
     "timeout-best|Muhājir": "manual:muhajir",
     "timeout-best|Shō Omakase": "manual:sho-omakase",
-    "timeout-best|YooYee": "manual:yooyee"
+    "timeout-best|YooYee": "manual:yooyee",
+    "short-list-chicago|Publican Quality Meats": "6e4e8be3-0fa0-4037-9775-45e04b8d0738",
+    "short-list-chicago|The Bar at Moody Tongue": "d36f4ca0-0644-4281-91fa-0935c2447b88"
+  },
+  "tasting": {
+    "ee4e3c56-f81a-4234-bc84-5925b91c8389": {
+      "menuStyle": "tasting",
+      "tastingPrice": null,
+      "bookingUrl": "https://www.exploretock.com/alinea/"
+    },
+    "53091fc2-70ac-4320-a5a0-61bdad9b097f": {
+      "menuStyle": "tasting",
+      "tastingPrice": "$420 per person (Smyth Menu); $550 Chef's Menu",
+      "bookingUrl": "https://www.exploretock.com/smyth/"
+    },
+    "c6dcf1e9-5488-4ffd-b387-bc14bb539f02": {
+      "menuStyle": "tasting",
+      "tastingPrice": "$325 per person",
+      "bookingUrl": "https://www.opentable.com/r/ever-chicago"
+    },
+    "7bb9ea50-9e22-472f-b19d-2b027ec0c770": {
+      "menuStyle": "tasting",
+      "tastingPrice": "from $270 per person (dining room); from $342 kitchen table",
+      "bookingUrl": "https://www.exploretock.com/next"
+    },
+    "ba6edf51-5303-44da-8d57-4f0ade3f69bc": {
+      "menuStyle": "tasting",
+      "tastingPrice": null,
+      "bookingUrl": "https://www.opentable.com/r/schwa-chicago"
+    },
+    "4d0f508b-e449-413b-bcbd-e107a0cbf510": {
+      "menuStyle": "tasting",
+      "tastingPrice": "$138 per person",
+      "bookingUrl": "https://www.opentable.com/north-pond"
+    },
+    "manual:kyoten": {
+      "menuStyle": "omakase",
+      "tastingPrice": "$440 per person (Sun-Thu); $490 Fri-Sat, service included",
+      "bookingUrl": "https://www.exploretock.com/kyoten-chicago/"
+    },
+    "manual:sho-omakase": {
+      "menuStyle": "omakase",
+      "tastingPrice": "$165 per person",
+      "bookingUrl": "https://www.opentable.com/r/sho-omakase-chicago"
+    },
+    "6b81feae-0b0e-42ef-94be-14e9de86d62a": {
+      "menuStyle": "omakase",
+      "tastingPrice": "$260 per person",
+      "bookingUrl": "https://www.opentable.com/r/the-omakase-room-at-sushi-san-chicago"
+    },
+    "485e804c-a934-4704-86b0-34d3e92e36bf": {
+      "menuStyle": "omakase",
+      "tastingPrice": null,
+      "bookingUrl": "https://www.bonyeonchicago.com/reservations"
+    },
+    "702527af-edb3-402c-85db-53b1f6b039fa": {
+      "menuStyle": "tasting",
+      "tastingPrice": "$155 per person",
+      "bookingUrl": "https://jeongchicago.com/tastingmenu"
+    },
+    "manual:astor-club-chef-s-table": {
+      "menuStyle": "tasting",
+      "tastingPrice": "$325 per person weekdays; $395 weekends",
+      "bookingUrl": "https://www.exploretock.com/astor-club/"
+    },
+    "manual:warlord": {
+      "menuStyle": "tasting_and_a_la_carte",
+      "tastingPrice": "$225 per person (Enemy tasting, pairings included)",
+      "bookingUrl": "https://www.exploretock.com/warlord"
+    },
+    "d038b442-a544-4c6b-9f57-82232a1bc4ec": {
+      "menuStyle": "tasting",
+      "tastingPrice": "$195 per person",
+      "bookingUrl": "https://www.opentable.com/r/el-ideas"
+    },
+    "5f8d8a1d-996c-4800-b006-4368f828bc4a": {
+      "menuStyle": "tasting",
+      "tastingPrice": "$390 per person (dining room); $450 kitchen table; winter 2026-27: $414 / $474",
+      "bookingUrl": "https://www.exploretock.com/oriolechicago/"
+    },
+    "d36f4ca0-0644-4281-91fa-0935c2447b88": {
+      "menuStyle": "tasting_and_a_la_carte",
+      "tastingPrice": "$175 per person (Dining Room tasting)",
+      "bookingUrl": "https://www.opentable.com/r/moody-tongue-brewing-company-chicago"
+    },
+    "dd0f2af8-f453-488b-9a1b-d71c8f155fd2": {
+      "menuStyle": "tasting_and_a_la_carte",
+      "tastingPrice": "$325 per person (dinner tasting)",
+      "bookingUrl": "https://www.opentable.com/r/kasama-chicago"
+    }
   }
 }

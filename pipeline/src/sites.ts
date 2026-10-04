@@ -31,6 +31,32 @@ const NAME_STOPWORDS = new Set([
   'lounge',
   'club',
   'company',
+  // Food words shared by unrelated places ("Joe Willies Seafood" vs "J & R Seafood")
+  'seafood',
+  'chicken',
+  'ribs',
+  'barbeque',
+  'barbecue',
+  'taqueria',
+  'tacos',
+  'pizzeria',
+  'deli',
+  'diner',
+  'sushi',
+  'thai',
+  'mexican',
+  'chinese',
+  'italian',
+  'express',
+  'food',
+  'foods',
+  'restaurante',
+  'burger',
+  'burgers',
+  'beef',
+  'coffee',
+  'bakery',
+  'shop',
 ]);
 // Domains that are never a restaurant's sister site
 const NOT_SISTER =
@@ -73,4 +99,29 @@ export function normalizeName(name: string) {
 // Looser key that also ignores generic words: "Gilt Bar" and "Gilt" both → "gilt"
 export function coreName(name: string) {
   return normalizeName(name).replace(GENERIC_WORDS, ' ').replace(/\s+/g, ' ').trim();
+}
+
+// Pins sit on the building, but Overture's point can be at the lot's edge
+export const PIN_RADIUS_M = 150;
+
+export function metersBetween(lat1: number, lng1: number, lat2: number, lng2: number) {
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLng = ((lng2 - lng1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLng / 2) ** 2;
+  return 6_371_000 * 2 * Math.asin(Math.sqrt(a));
+}
+
+// Names that share a distinctive word ("Khan Barbeque Restaurant" ~ "Khan BBQ")
+export function namesOverlap(a: string, b: string) {
+  const words = new Set(nameTokens(a));
+  const [x, y] = [normalizeName(a), normalizeName(b)];
+  return (
+    nameTokens(b).some((w) => words.has(w)) ||
+    coreName(a) === coreName(b) ||
+    // "Mr. Beef On Orleans" ~ "Mr. Beef", where every word is generic
+    x.startsWith(`${y} `) ||
+    y.startsWith(`${x} `)
+  );
 }

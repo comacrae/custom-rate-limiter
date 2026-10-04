@@ -1,0 +1,3418 @@
+{
+  "slug": "iconic-chicago-map",
+  "name": "The Iconic Chicago Restaurants Map (John Greenfield, Chicago Reader)",
+  "sourceUrl": "https://chicagoreader.com/food/the-iconic-chicago-restaurants-map/",
+  "edition": "2021-08",
+  "entries": [
+    {
+      "name": "Caribbean American Baking Co",
+      "tier": "Top pick",
+      "neighborhood": "Rogers Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 42.0192617,
+      "longitude": -87.6697197
+    },
+    {
+      "name": "Khan Barbeque Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "West Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.997522,
+      "longitude": -87.690192
+    },
+    {
+      "name": "Pho 777",
+      "tier": "Top pick",
+      "neighborhood": "Uptown",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9731221,
+      "longitude": -87.6574066
+    },
+    {
+      "name": "Aroy Thai",
+      "tier": "Top pick",
+      "neighborhood": "Lincoln Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9667121,
+      "longitude": -87.6793152
+    },
+    {
+      "name": "Laschet's Inn",
+      "tier": "Top pick",
+      "neighborhood": "North Center",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9539299,
+      "longitude": -87.6819951
+    },
+    {
+      "name": "Chicago Diner",
+      "tier": "Top pick",
+      "neighborhood": "Lake View",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9440181,
+      "longitude": -87.6492138
+    },
+    {
+      "name": "Billy Goat Tavern (The Original)",
+      "tier": "Top pick",
+      "neighborhood": "Near North Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.89037,
+      "longitude": -87.6244879
+    },
+    {
+      "name": "The Curragh Irish Pub",
+      "tier": "Top pick",
+      "neighborhood": "Edison Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 42.0030404,
+      "longitude": -87.8162708
+    },
+    {
+      "name": "Pequod's Pizza",
+      "tier": "Top pick",
+      "neighborhood": "Lincoln Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.921934,
+      "longitude": -87.6643512
+    },
+    {
+      "name": "Superdawg Drive-In",
+      "tier": "Top pick",
+      "neighborhood": "Norwood Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9967817,
+      "longitude": -87.7870347
+    },
+    {
+      "name": "SMAK-TAK! Polish Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Jefferson Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9898116,
+      "longitude": -87.7771208
+    },
+    {
+      "name": "Mother Cluckers Kitchen Chicago",
+      "tier": "Top pick",
+      "neighborhood": "Forest Glen",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9753987,
+      "longitude": -87.752287
+    },
+    {
+      "name": "Midori Japanese Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "North Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9831497,
+      "longitude": -87.7117397
+    },
+    {
+      "name": "Noon O Kabab",
+      "tier": "Top pick",
+      "neighborhood": "Albany Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9669816,
+      "longitude": -87.7081594
+    },
+    {
+      "name": "Hagen's Fish Market",
+      "tier": "Top pick",
+      "neighborhood": "Portage Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.96035,
+      "longitude": -87.7686694
+    },
+    {
+      "name": "D'Candela Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Irving Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9535813,
+      "longitude": -87.7147961
+    },
+    {
+      "name": "Forno Rosso Pizzeria Napoletana",
+      "tier": "Top pick",
+      "neighborhood": "Dunning",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.947658,
+      "longitude": -87.806747
+    },
+    {
+      "name": "Mr D's Shish-Kabobs",
+      "tier": "Top pick",
+      "neighborhood": "Montclare",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9310476,
+      "longitude": -87.7928612
+    },
+    {
+      "name": "Esquina Del Sabor Catracho",
+      "tier": "Top pick",
+      "neighborhood": "Belmont Cragin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9267201,
+      "longitude": -87.7560053
+    },
+    {
+      "name": "Rica Arepa",
+      "tier": "Top pick",
+      "neighborhood": "Hermosa",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.916975,
+      "longitude": -87.7336139
+    },
+    {
+      "name": "Joong Boo Market cafe",
+      "tier": "Top pick",
+      "neighborhood": "Avondale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9418907,
+      "longitude": -87.7122726
+    },
+    {
+      "name": "Lula Cafe",
+      "tier": "Top pick",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9276583,
+      "longitude": -87.7067917
+    },
+    {
+      "name": "Jimmy's Red Hots",
+      "tier": "Top pick",
+      "neighborhood": "Humboldt Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9064324,
+      "longitude": -87.7265519
+    },
+    {
+      "name": "El Secreto del Sabor",
+      "tier": "Top pick",
+      "neighborhood": "West Town",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9030002,
+      "longitude": -87.7055898
+    },
+    {
+      "name": "MacArthur's Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Austin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8805376,
+      "longitude": -87.7607474
+    },
+    {
+      "name": "Jerk Taco Man",
+      "tier": "Top pick",
+      "neighborhood": "West Garfield Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8767398,
+      "longitude": -87.7257848
+    },
+    {
+      "name": "Inspiration Kitchens",
+      "tier": "Top pick",
+      "neighborhood": "East Garfield Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8850222,
+      "longitude": -87.7140234
+    },
+    {
+      "name": "Greek Islands",
+      "tier": "Top pick",
+      "neighborhood": "Near West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8790488,
+      "longitude": -87.6476188
+    },
+    {
+      "name": "Dave's Red Hots",
+      "tier": "Top pick",
+      "neighborhood": "North Lawndale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.866553,
+      "longitude": -87.7116
+    },
+    {
+      "name": "Taqueria El Milagro",
+      "tier": "Top pick",
+      "neighborhood": "South Lawndale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8447129,
+      "longitude": -87.7022182
+    },
+    {
+      "name": "Carnitas Uruapan Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Lower West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8575813,
+      "longitude": -87.6696819
+    },
+    {
+      "name": "Oasis Cafe",
+      "tier": "Top pick",
+      "neighborhood": "Loop",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8826666,
+      "longitude": -87.625696
+    },
+    {
+      "name": "Chef Luciano Kitchen + Chicken",
+      "tier": "Top pick",
+      "neighborhood": "Near South Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8526673,
+      "longitude": -87.6253187
+    },
+    {
+      "name": "Phoenix Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Armour Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8536224,
+      "longitude": -87.6329575
+    },
+    {
+      "name": "Yassa African Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Douglas",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8307365,
+      "longitude": -87.6166964
+    },
+    {
+      "name": "Some Like It Black / Thee Beauty Bar",
+      "tier": "Top pick",
+      "neighborhood": "Oakland",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.816934,
+      "longitude": -87.606245
+    },
+    {
+      "name": "Petey's Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Fuller Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8093339,
+      "longitude": -87.6331356
+    },
+    {
+      "name": "Honey 1 BBQ",
+      "tier": "Top pick",
+      "neighborhood": "Grand Boulevard",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8169632,
+      "longitude": -87.6072735
+    },
+    {
+      "name": "The Original Pancake House",
+      "tier": "Top pick",
+      "neighborhood": "Kenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8098358,
+      "longitude": -87.5929296
+    },
+    {
+      "name": "Evelyn's Food Love",
+      "tier": "Top pick",
+      "neighborhood": "Washington Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.793545,
+      "longitude": -87.626008
+    },
+    {
+      "name": "Valois Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Hyde Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7996635,
+      "longitude": -87.5883097
+    },
+    {
+      "name": "Daley's Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Woodlawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7805738,
+      "longitude": -87.6056702
+    },
+    {
+      "name": "Majani Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "South Shore",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7647401,
+      "longitude": -87.5649604
+    },
+    {
+      "name": "St. Restaurants #2 Country Kitchens",
+      "tier": "Top pick",
+      "neighborhood": "Chatham",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7365245,
+      "longitude": -87.6061503
+    },
+    {
+      "name": "Stony Sub",
+      "tier": "Top pick",
+      "neighborhood": "Avalon Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7411881,
+      "longitude": -87.5859537
+    },
+    {
+      "name": "Loncar's Liquors",
+      "tier": "Top pick",
+      "neighborhood": "South Chicago",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7280843,
+      "longitude": -87.5466566
+    },
+    {
+      "name": "Family Den",
+      "tier": "Top pick",
+      "neighborhood": "Calumet Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7320302,
+      "longitude": -87.5858446
+    },
+    {
+      "name": "Old Fashioned Donuts",
+      "tier": "Top pick",
+      "neighborhood": "Roseland",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6893367,
+      "longitude": -87.6211359
+    },
+    {
+      "name": "Cal-Harbor Restaurant & Lounge",
+      "tier": "Top pick",
+      "neighborhood": "Pullman",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.685572,
+      "longitude": -87.609651
+    },
+    {
+      "name": "Calumet Fisheries",
+      "tier": "Top pick",
+      "neighborhood": "South Deering",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7226385,
+      "longitude": -87.5439503
+    },
+    {
+      "name": "Birrierias Ocotlan",
+      "tier": "Top pick",
+      "neighborhood": "East Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7025,
+      "longitude": -87.526588
+    },
+    {
+      "name": "Maxwell Street Express",
+      "tier": "Top pick",
+      "neighborhood": "West Pullman",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6816469,
+      "longitude": -87.6423752
+    },
+    {
+      "name": "Steve's Lounge",
+      "tier": "Top pick",
+      "neighborhood": "Hegewisch",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6552979,
+      "longitude": -87.5475009
+    },
+    {
+      "name": "Nicky's Hot Dogs",
+      "tier": "Top pick",
+      "neighborhood": "Garfield Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7944145,
+      "longitude": -87.7719345
+    },
+    {
+      "name": "Birrieria Zaragoza",
+      "tier": "Top pick",
+      "neighborhood": "Archer Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8044802,
+      "longitude": -87.723724
+    },
+    {
+      "name": "Tio Luis Tacos",
+      "tier": "Top pick",
+      "neighborhood": "Brighton Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.823659,
+      "longitude": -87.68907
+    },
+    {
+      "name": "Huck Finn Restaurant",
+      "tier": "Top pick",
+      "neighborhood": "Mckinley Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8318017,
+      "longitude": -87.6760353
+    },
+    {
+      "name": "Pot Sticker House",
+      "tier": "Top pick",
+      "neighborhood": "Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8369096,
+      "longitude": -87.6459119
+    },
+    {
+      "name": "Stanley's",
+      "tier": "Top pick",
+      "neighborhood": "New City",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.815979,
+      "longitude": -87.66553
+    },
+    {
+      "name": "New China Tea",
+      "tier": "Top pick",
+      "neighborhood": "West Elsdon",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.793316,
+      "longitude": -87.724218
+    },
+    {
+      "name": "Mezquite Pollo Express",
+      "tier": "Top pick",
+      "neighborhood": "Gage Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.793577,
+      "longitude": -87.694278
+    },
+    {
+      "name": "Parisi's Drive-In",
+      "tier": "Top pick",
+      "neighborhood": "Clearing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7778886,
+      "longitude": -87.7771217
+    },
+    {
+      "name": "Zacatacos",
+      "tier": "Top pick",
+      "neighborhood": "West Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7638888,
+      "longitude": -87.7218986
+    },
+    {
+      "name": "Garifuna Flava",
+      "tier": "Top pick",
+      "neighborhood": "Chicago Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7794444,
+      "longitude": -87.6869444
+    },
+    {
+      "name": "John's Drive-In",
+      "tier": "Top pick",
+      "neighborhood": "West Englewood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7865132,
+      "longitude": -87.6645859
+    },
+    {
+      "name": "Kusanya Cafe",
+      "tier": "Top pick",
+      "neighborhood": "Englewood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7686111,
+      "longitude": -87.6455556
+    },
+    {
+      "name": "Lem's Bar-B-Q",
+      "tier": "Top pick",
+      "neighborhood": "Greater Grand Crossing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.758206,
+      "longitude": -87.617627
+    },
+    {
+      "name": "Vito & Nick's Pizzeria",
+      "tier": "Top pick",
+      "neighborhood": "Ashburn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7393028,
+      "longitude": -87.7212333
+    },
+    {
+      "name": "Jamison's Soul Food",
+      "tier": "Top pick",
+      "neighborhood": "Auburn Gresham",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7359557,
+      "longitude": -87.668376
+    },
+    {
+      "name": "Original Rainbow Cone",
+      "tier": "Top pick",
+      "neighborhood": "Beverly",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7254389,
+      "longitude": -87.6820056
+    },
+    {
+      "name": "Harolds Chicken Shack #27",
+      "tier": "Top pick",
+      "neighborhood": "Washington Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7071373,
+      "longitude": -87.6426087
+    },
+    {
+      "name": "Fat Tommy's",
+      "tier": "Top pick",
+      "neighborhood": "Mount Greenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.691383,
+      "longitude": -87.697384
+    },
+    {
+      "name": "Home of the Hoagy",
+      "tier": "Top pick",
+      "neighborhood": "Morgan Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6923191,
+      "longitude": -87.6551769
+    },
+    {
+      "name": "Gaslight Club",
+      "tier": "Top pick",
+      "neighborhood": "Ohare",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9777447,
+      "longitude": -87.9045002
+    },
+    {
+      "name": "Ethiopian Diamond",
+      "tier": "Top pick",
+      "neighborhood": "Edgewater",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.992959,
+      "longitude": -87.660745
+    },
+    {
+      "name": "Buffalo Joe’s",
+      "tier": "Runner-up",
+      "neighborhood": "Rogers Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 42.0192341,
+      "longitude": -87.6774182
+    },
+    {
+      "name": "Noon Hour Grill",
+      "tier": "Runner-up",
+      "neighborhood": "Rogers Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 42.0075539,
+      "longitude": -87.6662528
+    },
+    {
+      "name": "Taqueria El Chorrito",
+      "tier": "Runner-up",
+      "neighborhood": "Rogers Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9982923,
+      "longitude": -87.670977
+    },
+    {
+      "name": "Taste of Peru",
+      "tier": "Runner-up",
+      "neighborhood": "Rogers Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 42.0013232,
+      "longitude": -87.6712749
+    },
+    {
+      "name": "Ghareeb Nawaz Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "West Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9980708,
+      "longitude": -87.6815765
+    },
+    {
+      "name": "Hema's Kitchen",
+      "tier": "Runner-up",
+      "neighborhood": "West Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9974522,
+      "longitude": -87.6914783
+    },
+    {
+      "name": "Sukhadia's Sweets and Snacks",
+      "tier": "Runner-up",
+      "neighborhood": "West Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9975328,
+      "longitude": -87.6945809
+    },
+    {
+      "name": "Tel-Aviv Kosher Pizza",
+      "tier": "Runner-up",
+      "neighborhood": "West Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9971847,
+      "longitude": -87.6994293
+    },
+    {
+      "name": "Hopleaf",
+      "tier": "Runner-up",
+      "neighborhood": "Uptown",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.975817,
+      "longitude": -87.6685797
+    },
+    {
+      "name": "Palace Gate Restaurant - Ghanaian cuisine",
+      "tier": "Runner-up",
+      "neighborhood": "Uptown",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9652149,
+      "longitude": -87.6614876
+    },
+    {
+      "name": "Sun Wah BBQ",
+      "tier": "Runner-up",
+      "neighborhood": "Uptown",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.973946,
+      "longitude": -87.659593
+    },
+    {
+      "name": "Spacca Napoli Pizzeria",
+      "tier": "Runner-up",
+      "neighborhood": "Uptown",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9631881,
+      "longitude": -87.6737274
+    },
+    {
+      "name": "Coffee Slasticarna Drina",
+      "tier": "Runner-up",
+      "neighborhood": "Lincoln Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9682865,
+      "longitude": -87.6918122
+    },
+    {
+      "name": "Lutz Cafe & Pastry Shop",
+      "tier": "Runner-up",
+      "neighborhood": "Lincoln Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9614113,
+      "longitude": -87.6909123
+    },
+    {
+      "name": "Nhu Lan Bakery",
+      "tier": "Runner-up",
+      "neighborhood": "Lincoln Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9687288,
+      "longitude": -87.6944753
+    },
+    {
+      "name": "San Soo Gab San",
+      "tier": "Runner-up",
+      "neighborhood": "Lincoln Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.977527,
+      "longitude": -87.688737
+    },
+    {
+      "name": "Cho Sun Ok Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "North Center",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9579004,
+      "longitude": -87.6815705
+    },
+    {
+      "name": "El Llano Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "North Center",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9535028,
+      "longitude": -87.6780357
+    },
+    {
+      "name": "House of Wah Sun",
+      "tier": "Runner-up",
+      "neighborhood": "North Center",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9601521,
+      "longitude": -87.6826313
+    },
+    {
+      "name": "Sticky Rice",
+      "tier": "Runner-up",
+      "neighborhood": "North Center",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.954673,
+      "longitude": -87.688754
+    },
+    {
+      "name": "Ann Sather Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Lake View",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.939757,
+      "longitude": -87.652016
+    },
+    {
+      "name": "The Bagel Restaurant and Deli",
+      "tier": "Runner-up",
+      "neighborhood": "Lake View",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9378686,
+      "longitude": -87.6441719
+    },
+    {
+      "name": "La Crêperie Chicago Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Lake View",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9340989,
+      "longitude": -87.6455685
+    },
+    {
+      "name": "Redhot Ranch",
+      "tier": "Runner-up",
+      "neighborhood": "Lake View",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9377335,
+      "longitude": -87.6683966
+    },
+    {
+      "name": "Athenian Room",
+      "tier": "Runner-up",
+      "neighborhood": "Lincoln Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9217096,
+      "longitude": -87.6491054
+    },
+    {
+      "name": "R.J. Grunts",
+      "tier": "Runner-up",
+      "neighborhood": "Lincoln Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9200672,
+      "longitude": -87.6366328
+    },
+    {
+      "name": "Twin Anchors Restaurant & Tavern",
+      "tier": "Runner-up",
+      "neighborhood": "Lincoln Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9127239,
+      "longitude": -87.6384224
+    },
+    {
+      "name": "The Wiener's Circle",
+      "tier": "Runner-up",
+      "neighborhood": "Lincoln Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9301746,
+      "longitude": -87.6437788
+    },
+    {
+      "name": "Goose Island Shrimp House",
+      "tier": "Runner-up",
+      "neighborhood": "Near North Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9033442,
+      "longitude": -87.6530027
+    },
+    {
+      "name": "The Green Door Tavern",
+      "tier": "Runner-up",
+      "neighborhood": "Near North Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8946111,
+      "longitude": -87.6374139
+    },
+    {
+      "name": "Mr. Beef On Orleans",
+      "tier": "Runner-up",
+      "neighborhood": "Near North Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8944222,
+      "longitude": -87.6374056
+    },
+    {
+      "name": "Sayat Nova Armenian Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Near North Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.892309,
+      "longitude": -87.623232
+    },
+    {
+      "name": "Chicken Inn",
+      "tier": "Runner-up",
+      "neighborhood": "Edison Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 42.018047,
+      "longitude": -87.807069
+    },
+    {
+      "name": "Nick's Drive-In",
+      "tier": "Runner-up",
+      "neighborhood": "Edison Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 42.0123229,
+      "longitude": -87.8070497
+    },
+    {
+      "name": "Snappy Dog Inc",
+      "tier": "Runner-up",
+      "neighborhood": "Edison Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 42.0022686,
+      "longitude": -87.815728
+    },
+    {
+      "name": "Tony's Italian Deli & Subs",
+      "tier": "Runner-up",
+      "neighborhood": "Edison Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 42.002832,
+      "longitude": -87.816651
+    },
+    {
+      "name": "Amitabul",
+      "tier": "Runner-up",
+      "neighborhood": "Norwood Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9941349,
+      "longitude": -87.7844266
+    },
+    {
+      "name": "Norwood Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Norwood Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.992473,
+      "longitude": -87.7990017
+    },
+    {
+      "name": "Phil's Pizza D'Oro",
+      "tier": "Runner-up",
+      "neighborhood": "Norwood Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9867326,
+      "longitude": -87.7781072
+    },
+    {
+      "name": "Red Apple Buffet",
+      "tier": "Runner-up",
+      "neighborhood": "Norwood Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9989338,
+      "longitude": -87.7897444
+    },
+    {
+      "name": "Burger Bull",
+      "tier": "Runner-up",
+      "neighborhood": "Jefferson Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.985552,
+      "longitude": -87.7697591
+    },
+    {
+      "name": "Café Antigua",
+      "tier": "Runner-up",
+      "neighborhood": "Jefferson Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9823085,
+      "longitude": -87.7637438
+    },
+    {
+      "name": "Gale Street Inn Chicago",
+      "tier": "Runner-up",
+      "neighborhood": "Jefferson Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9699297,
+      "longitude": -87.7628968
+    },
+    {
+      "name": "Kawayan",
+      "tier": "Runner-up",
+      "neighborhood": "Jefferson Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9693278,
+      "longitude": -87.7610611
+    },
+    {
+      "name": "Chocolate Shoppe Ice Cream",
+      "tier": "Runner-up",
+      "neighborhood": "Forest Glen",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9971712,
+      "longitude": -87.7625678
+    },
+    {
+      "name": "Edgebrook Coffee Shop",
+      "tier": "Runner-up",
+      "neighborhood": "Forest Glen",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.996965,
+      "longitude": -87.764154
+    },
+    {
+      "name": "East of Edens",
+      "tier": "Runner-up",
+      "neighborhood": "Forest Glen",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9971047,
+      "longitude": -87.7488032
+    },
+    {
+      "name": "Villa Rosa Pizza Kitchen",
+      "tier": "Runner-up",
+      "neighborhood": "Forest Glen",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9970839,
+      "longitude": -87.7627852
+    },
+    {
+      "name": "Booill Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "North Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9832213,
+      "longitude": -87.7131736
+    },
+    {
+      "name": "Bryn Mawr Breakfast Club",
+      "tier": "Runner-up",
+      "neighborhood": "North Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9831664,
+      "longitude": -87.7133481
+    },
+    {
+      "name": "Charcoal Delights",
+      "tier": "Runner-up",
+      "neighborhood": "North Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9755284,
+      "longitude": -87.707813
+    },
+    {
+      "name": "Tre Kronor",
+      "tier": "Runner-up",
+      "neighborhood": "North Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9758933,
+      "longitude": -87.7110012
+    },
+    {
+      "name": "Pupuseria & Restaurant \"El Cuscatleco\"",
+      "tier": "Runner-up",
+      "neighborhood": "Albany Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.968291,
+      "longitude": -87.707087
+    },
+    {
+      "name": "Lawrence Fish Market",
+      "tier": "Runner-up",
+      "neighborhood": "Albany Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9684011,
+      "longitude": -87.7265234
+    },
+    {
+      "name": "Marie's Pizza & Liquors",
+      "tier": "Runner-up",
+      "neighborhood": "Albany Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9680023,
+      "longitude": -87.7315292
+    },
+    {
+      "name": "Semiramis Mediterreanean Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Albany Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9659133,
+      "longitude": -87.7082247
+    },
+    {
+      "name": "BRGRBELLY Portage Park",
+      "tier": "Runner-up",
+      "neighborhood": "Portage Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9529806,
+      "longitude": -87.7709889
+    },
+    {
+      "name": "La Peña",
+      "tier": "Runner-up",
+      "neighborhood": "Portage Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9574,
+      "longitude": -87.7519
+    },
+    {
+      "name": "Sandy's Bakery & Deli",
+      "tier": "Runner-up",
+      "neighborhood": "Portage Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9675824,
+      "longitude": -87.7747009
+    },
+    {
+      "name": "Smakosz Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Portage Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9675917,
+      "longitude": -87.7684361
+    },
+    {
+      "name": "Cafe Beograd",
+      "tier": "Runner-up",
+      "neighborhood": "Irving Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9537495,
+      "longitude": -87.7021067
+    },
+    {
+      "name": "Shokran",
+      "tier": "Runner-up",
+      "neighborhood": "Irving Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9533965,
+      "longitude": -87.7288029
+    },
+    {
+      "name": "Smoque BBQ",
+      "tier": "Runner-up",
+      "neighborhood": "Irving Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.950125,
+      "longitude": -87.727654
+    },
+    {
+      "name": "Susie's Drive-Thru",
+      "tier": "Runner-up",
+      "neighborhood": "Irving Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.961064,
+      "longitude": -87.73111
+    },
+    {
+      "name": "Cafe Prague",
+      "tier": "Runner-up",
+      "neighborhood": "Dunning",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.938318,
+      "longitude": -87.793837
+    },
+    {
+      "name": "Frank's Pizzeria & Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Dunning",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.938435,
+      "longitude": -87.788844
+    },
+    {
+      "name": "Jibaritos on Harlem",
+      "tier": "Runner-up",
+      "neighborhood": "Dunning",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9404205,
+      "longitude": -87.8065699
+    },
+    {
+      "name": "Luke's on Harlem The Original",
+      "tier": "Runner-up",
+      "neighborhood": "Dunning",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.937173,
+      "longitude": -87.806898
+    },
+    {
+      "name": "El Taconazo La Fiesta",
+      "tier": "Runner-up",
+      "neighborhood": "Montclare",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9309388,
+      "longitude": -87.8062035
+    },
+    {
+      "name": "La Esquinita",
+      "tier": "Runner-up",
+      "neighborhood": "Montclare",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.923738,
+      "longitude": -87.7987231
+    },
+    {
+      "name": "Olivia's Taste",
+      "tier": "Runner-up",
+      "neighborhood": "Montclare",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9378073,
+      "longitude": -87.8061244
+    },
+    {
+      "name": "Ristorante Agostino",
+      "tier": "Runner-up",
+      "neighborhood": "Montclare",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9313242,
+      "longitude": -87.8063386
+    },
+    {
+      "name": "Buenos Aires Deli",
+      "tier": "Runner-up",
+      "neighborhood": "Belmont Cragin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9371325,
+      "longitude": -87.7470032
+    },
+    {
+      "name": "Las Delicias De Puerto Rico",
+      "tier": "Runner-up",
+      "neighborhood": "Belmont Cragin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9167271,
+      "longitude": -87.747074
+    },
+    {
+      "name": "Olocuilta Pupuseria",
+      "tier": "Runner-up",
+      "neighborhood": "Belmont Cragin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.93625,
+      "longitude": -87.7568364
+    },
+    {
+      "name": "Taqueria El Kacheton Chicago",
+      "tier": "Runner-up",
+      "neighborhood": "Belmont Cragin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9255243,
+      "longitude": -87.7564304
+    },
+    {
+      "name": "Ponce Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Hermosa",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9242177,
+      "longitude": -87.7347783
+    },
+    {
+      "name": "Cozy Corner Restaurant & Pancake House",
+      "tier": "Runner-up",
+      "neighborhood": "Hermosa",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9320109,
+      "longitude": -87.7365655
+    },
+    {
+      "name": "El Azteca",
+      "tier": "Runner-up",
+      "neighborhood": "Hermosa",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.917287,
+      "longitude": -87.731209
+    },
+    {
+      "name": "Hermosa Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Hermosa",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9173328,
+      "longitude": -87.7361683
+    },
+    {
+      "name": "Chief O'Neill's Pub Restaurant Beer Garden",
+      "tier": "Runner-up",
+      "neighborhood": "Avondale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9446792,
+      "longitude": -87.7055435
+    },
+    {
+      "name": "Frank and Mary's Tavern",
+      "tier": "Runner-up",
+      "neighborhood": "Avondale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9342623,
+      "longitude": -87.6905443
+    },
+    {
+      "name": "Staropolska Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Avondale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9362444,
+      "longitude": -87.7193
+    },
+    {
+      "name": "Taqueria Traspasada",
+      "tier": "Runner-up",
+      "neighborhood": "Avondale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.93896,
+      "longitude": -87.698037
+    },
+    {
+      "name": "El Cubanito Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.927824,
+      "longitude": -87.726689
+    },
+    {
+      "name": "Irazu Costa Rican Restaurant & Catering",
+      "tier": "Runner-up",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9154853,
+      "longitude": -87.6850662
+    },
+    {
+      "name": "L' Patron",
+      "tier": "Runner-up",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9243991,
+      "longitude": -87.7213858
+    },
+    {
+      "name": "Margie's Candies",
+      "tier": "Runner-up",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9174219,
+      "longitude": -87.6876832
+    },
+    {
+      "name": "Mary's Bar-B-Que",
+      "tier": "Runner-up",
+      "neighborhood": "Humboldt Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8989343,
+      "longitude": -87.7073206
+    },
+    {
+      "name": "Pozoleria San Juan Inc.",
+      "tier": "Runner-up",
+      "neighborhood": "Humboldt Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9087982,
+      "longitude": -87.7262192
+    },
+    {
+      "name": "Taco El Jalisciense",
+      "tier": "Runner-up",
+      "neighborhood": "Humboldt Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.895505,
+      "longitude": -87.699239
+    },
+    {
+      "name": "Tropical Taste Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Humboldt Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9102199,
+      "longitude": -87.7103698
+    },
+    {
+      "name": "La Pasadita",
+      "tier": "Runner-up",
+      "neighborhood": "West Town",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9027048,
+      "longitude": -87.6678521
+    },
+    {
+      "name": "Old Lviv",
+      "tier": "Runner-up",
+      "neighborhood": "West Town",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8959303,
+      "longitude": -87.683171
+    },
+    {
+      "name": "Podhalanka",
+      "tier": "Runner-up",
+      "neighborhood": "West Town",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9031814,
+      "longitude": -87.6670049
+    },
+    {
+      "name": "Uncle Mike's Place",
+      "tier": "Runner-up",
+      "neighborhood": "West Town",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8910722,
+      "longitude": -87.6698931
+    },
+    {
+      "name": "Amarind's Thai Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Austin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9092369,
+      "longitude": -87.7958221
+    },
+    {
+      "name": "Ben's Bar-Be-Cue",
+      "tier": "Runner-up",
+      "neighborhood": "Austin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.90904,
+      "longitude": -87.7745545
+    },
+    {
+      "name": "Sun Sub",
+      "tier": "Runner-up",
+      "neighborhood": "Austin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9096124,
+      "longitude": -87.7647058
+    },
+    {
+      "name": "Uncle Remus SFC - Central & Madison",
+      "tier": "Runner-up",
+      "neighborhood": "Austin",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8799547,
+      "longitude": -87.7654159
+    },
+    {
+      "name": "Taste Bud 1, Inc.",
+      "tier": "Runner-up",
+      "neighborhood": "West Garfield Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.880421,
+      "longitude": -87.7290862
+    },
+    {
+      "name": "Wiley's Chicken & Ribs",
+      "tier": "Runner-up",
+      "neighborhood": "West Garfield Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8809022,
+      "longitude": -87.7226869
+    },
+    {
+      "name": "LiFE",
+      "tier": "Runner-up",
+      "neighborhood": "West Garfield Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8809691,
+      "longitude": -87.7230862
+    },
+    {
+      "name": "Al's Under the L",
+      "tier": "Runner-up",
+      "neighborhood": "East Garfield Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.884334,
+      "longitude": -87.699306
+    },
+    {
+      "name": "Joe Willies Seafood WestTown",
+      "tier": "Runner-up",
+      "neighborhood": "East Garfield Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8762353,
+      "longitude": -87.7006593
+    },
+    {
+      "name": "Jim's Original",
+      "tier": "Runner-up",
+      "neighborhood": "Near West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.865692,
+      "longitude": -87.645223
+    },
+    {
+      "name": "Manny's Cafeteria & Delicatessen",
+      "tier": "Runner-up",
+      "neighborhood": "Near West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8679561,
+      "longitude": -87.6419647
+    },
+    {
+      "name": "Mario's Italian Lemonade",
+      "tier": "Runner-up",
+      "neighborhood": "Near West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.869672,
+      "longitude": -87.6538354
+    },
+    {
+      "name": "Rubi's Tacos",
+      "tier": "Runner-up",
+      "neighborhood": "Near West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8717233,
+      "longitude": -87.6440457
+    },
+    {
+      "name": "Green Tomato Cafe",
+      "tier": "Runner-up",
+      "neighborhood": "North Lawndale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8532748,
+      "longitude": -87.7196057
+    },
+    {
+      "name": "Lou Malnati's Pizzeria",
+      "tier": "Runner-up",
+      "neighborhood": "North Lawndale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.851735,
+      "longitude": -87.722011
+    },
+    {
+      "name": "Sanchez Tacos",
+      "tier": "Runner-up",
+      "neighborhood": "North Lawndale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8508383,
+      "longitude": -87.7249024
+    },
+    {
+      "name": "La Chaparrita Taqueria",
+      "tier": "Runner-up",
+      "neighborhood": "South Lawndale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8462944,
+      "longitude": -87.7016639
+    },
+    {
+      "name": "Carniceria Aguascalientes",
+      "tier": "Runner-up",
+      "neighborhood": "South Lawndale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8446396,
+      "longitude": -87.704042
+    },
+    {
+      "name": "Taqueria Los Barrilitos",
+      "tier": "Runner-up",
+      "neighborhood": "South Lawndale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8463574,
+      "longitude": -87.7132809
+    },
+    {
+      "name": "Troha's Chicken & Shrimp House",
+      "tier": "Runner-up",
+      "neighborhood": "South Lawndale",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8439689,
+      "longitude": -87.7289782
+    },
+    {
+      "name": "5 Rabanitos Restaurante & Taqueria",
+      "tier": "Runner-up",
+      "neighborhood": "Lower West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.858,
+      "longitude": -87.6709447
+    },
+    {
+      "name": "Taqueria Los Comales",
+      "tier": "Runner-up",
+      "neighborhood": "Lower West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8579778,
+      "longitude": -87.6655392
+    },
+    {
+      "name": "Ignotz Ristorante",
+      "tier": "Runner-up",
+      "neighborhood": "Lower West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8478017,
+      "longitude": -87.6828133
+    },
+    {
+      "name": "La Casa Del Pueblo Taqueria",
+      "tier": "Runner-up",
+      "neighborhood": "Lower West Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8570387,
+      "longitude": -87.662239
+    },
+    {
+      "name": "The Berghoff Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Loop",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.879252,
+      "longitude": -87.628406
+    },
+    {
+      "name": "Eleven City Diner",
+      "tier": "Runner-up",
+      "neighborhood": "Loop",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8686728,
+      "longitude": -87.6260911
+    },
+    {
+      "name": "Heaven on Seven",
+      "tier": "Runner-up",
+      "neighborhood": "Loop",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8834194,
+      "longitude": -87.6258028
+    },
+    {
+      "name": "The Walnut Room",
+      "tier": "Runner-up",
+      "neighborhood": "Loop",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8833529,
+      "longitude": -87.6267781
+    },
+    {
+      "name": "Flo & Santos",
+      "tier": "Runner-up",
+      "neighborhood": "Near South Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8653731,
+      "longitude": -87.6262352
+    },
+    {
+      "name": "AO Hawaiian Hideout",
+      "tier": "Runner-up",
+      "neighborhood": "Near South Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8653142,
+      "longitude": -87.6255363
+    },
+    {
+      "name": "Del Campo's Tacos",
+      "tier": "Runner-up",
+      "neighborhood": "Near South Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8645962,
+      "longitude": -87.6076848
+    },
+    {
+      "name": "Spoke & Bird",
+      "tier": "Runner-up",
+      "neighborhood": "Near South Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.857757,
+      "longitude": -87.6219582
+    },
+    {
+      "name": "Grand Palace",
+      "tier": "Runner-up",
+      "neighborhood": "Armour Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8453106,
+      "longitude": -87.632674
+    },
+    {
+      "name": "Lao Sze Chuan",
+      "tier": "Runner-up",
+      "neighborhood": "Armour Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8532889,
+      "longitude": -87.63495
+    },
+    {
+      "name": "Ricobene's",
+      "tier": "Runner-up",
+      "neighborhood": "Armour Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8457679,
+      "longitude": -87.6338374
+    },
+    {
+      "name": "Three Happiness",
+      "tier": "Runner-up",
+      "neighborhood": "Armour Square",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8526308,
+      "longitude": -87.632446
+    },
+    {
+      "name": "Eméché Cakery & Cafe",
+      "tier": "Runner-up",
+      "neighborhood": "Douglas",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8313776,
+      "longitude": -87.6203128
+    },
+    {
+      "name": "Jamaican Jerk King",
+      "tier": "Runner-up",
+      "neighborhood": "Douglas",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8312086,
+      "longitude": -87.6214628
+    },
+    {
+      "name": "Southtown Sub",
+      "tier": "Runner-up",
+      "neighborhood": "Douglas",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.831172,
+      "longitude": -87.620122
+    },
+    {
+      "name": "Nicky's Gyros",
+      "tier": "Runner-up",
+      "neighborhood": "Fuller Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8170089,
+      "longitude": -87.6313032
+    },
+    {
+      "name": "Chicago's Home of Chicken & Waffles",
+      "tier": "Runner-up",
+      "neighborhood": "Grand Boulevard",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8224587,
+      "longitude": -87.6165072
+    },
+    {
+      "name": "Cleo's Southern Cuisine",
+      "tier": "Runner-up",
+      "neighborhood": "Grand Boulevard",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8171428,
+      "longitude": -87.6069999
+    },
+    {
+      "name": "Peach's Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Grand Boulevard",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8094714,
+      "longitude": -87.6169868
+    },
+    {
+      "name": "Two Fish Crab Shack",
+      "tier": "Runner-up",
+      "neighborhood": "Grand Boulevard",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8093194,
+      "longitude": -87.6097196
+    },
+    {
+      "name": "Gorée Cuisine",
+      "tier": "Runner-up",
+      "neighborhood": "Kenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8097446,
+      "longitude": -87.5981467
+    },
+    {
+      "name": "De Rice Asian Cuisine",
+      "tier": "Runner-up",
+      "neighborhood": "Kenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.809684,
+      "longitude": -87.6030509
+    },
+    {
+      "name": "Italian Fiesta Pizzeria - 47th St",
+      "tier": "Runner-up",
+      "neighborhood": "Kenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.810345,
+      "longitude": -87.5950541
+    },
+    {
+      "name": "Norman's Bistro",
+      "tier": "Runner-up",
+      "neighborhood": "Kenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8167265,
+      "longitude": -87.6016437
+    },
+    {
+      "name": "Mellow Yellow Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Hyde Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7997093,
+      "longitude": -87.5886408
+    },
+    {
+      "name": "The Nile of Hyde Park",
+      "tier": "Runner-up",
+      "neighborhood": "Hyde Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7951867,
+      "longitude": -87.5971299
+    },
+    {
+      "name": "Rajun Cajun",
+      "tier": "Runner-up",
+      "neighborhood": "Hyde Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7994051,
+      "longitude": -87.5894497
+    },
+    {
+      "name": "Snail Thai Cuisine",
+      "tier": "Runner-up",
+      "neighborhood": "Hyde Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7950677,
+      "longitude": -87.5847792
+    },
+    {
+      "name": "Jamaican Jerk Spice",
+      "tier": "Runner-up",
+      "neighborhood": "Woodlawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7766466,
+      "longitude": -87.6060305
+    },
+    {
+      "name": "Parkway Hoagies",
+      "tier": "Runner-up",
+      "neighborhood": "Woodlawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7773492,
+      "longitude": -87.6154054
+    },
+    {
+      "name": "Robust Coffee Lounge",
+      "tier": "Runner-up",
+      "neighborhood": "Woodlawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.780413,
+      "longitude": -87.59636
+    },
+    {
+      "name": "Chef Sara's Cafe",
+      "tier": "Runner-up",
+      "neighborhood": "South Shore",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7644444,
+      "longitude": -87.5647222
+    },
+    {
+      "name": "Orbit Sub",
+      "tier": "Runner-up",
+      "neighborhood": "South Shore",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7662955,
+      "longitude": -87.5781741
+    },
+    {
+      "name": "Surf's Up South Shore",
+      "tier": "Runner-up",
+      "neighborhood": "South Shore",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7663933,
+      "longitude": -87.5699633
+    },
+    {
+      "name": "The Slab Bar-B-Que",
+      "tier": "Runner-up",
+      "neighborhood": "South Shore",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7663595,
+      "longitude": -87.5780059
+    },
+    {
+      "name": "Dat Donut",
+      "tier": "Runner-up",
+      "neighborhood": "Chatham",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7443734,
+      "longitude": -87.6048401
+    },
+    {
+      "name": "Fisherman's Island",
+      "tier": "Runner-up",
+      "neighborhood": "Chatham",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7367116,
+      "longitude": -87.6130983
+    },
+    {
+      "name": "Uncle John's BBQ",
+      "tier": "Runner-up",
+      "neighborhood": "Chatham",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7443491,
+      "longitude": -87.6048274
+    },
+    {
+      "name": "West Indies Bakery",
+      "tier": "Runner-up",
+      "neighborhood": "Chatham",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7510568,
+      "longitude": -87.6035945
+    },
+    {
+      "name": "Jerk Palace Hub Int.",
+      "tier": "Runner-up",
+      "neighborhood": "Avalon Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7388889,
+      "longitude": -87.5861111
+    },
+    {
+      "name": "Kenny's Ribs & Chicken",
+      "tier": "Runner-up",
+      "neighborhood": "Avalon Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7386038,
+      "longitude": -87.5849591
+    },
+    {
+      "name": "That's A Burger",
+      "tier": "Runner-up",
+      "neighborhood": "Avalon Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7440818,
+      "longitude": -87.5848651
+    },
+    {
+      "name": "Cocula Restaurant Commercial",
+      "tier": "Runner-up",
+      "neighborhood": "South Chicago",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.734098,
+      "longitude": -87.551025
+    },
+    {
+      "name": "El Guero Supermercado",
+      "tier": "Runner-up",
+      "neighborhood": "South Chicago",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.731016,
+      "longitude": -87.55087
+    },
+    {
+      "name": "Roma's Village Bar & Grill",
+      "tier": "Runner-up",
+      "neighborhood": "South Chicago",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7267921,
+      "longitude": -87.5508444
+    },
+    {
+      "name": "Southside African Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "South Chicago",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7444782,
+      "longitude": -87.5551099
+    },
+    {
+      "name": "Angelica's Bakery Inc II",
+      "tier": "Runner-up",
+      "neighborhood": "Calumet Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7365359,
+      "longitude": -87.5873433
+    },
+    {
+      "name": "Nipsey's Restaurant & Lounge",
+      "tier": "Runner-up",
+      "neighborhood": "Calumet Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.728085,
+      "longitude": -87.5858495
+    },
+    {
+      "name": "Plant Based Junkie",
+      "tier": "Runner-up",
+      "neighborhood": "Calumet Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7368081,
+      "longitude": -87.5837735
+    },
+    {
+      "name": "Thomas Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Calumet Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.736775,
+      "longitude": -87.582947
+    },
+    {
+      "name": "79th Street Barbecue",
+      "tier": "Runner-up",
+      "neighborhood": "Roseland",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6921533,
+      "longitude": -87.6420484
+    },
+    {
+      "name": "A P Deli Restaurant Group",
+      "tier": "Runner-up",
+      "neighborhood": "Roseland",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6982298,
+      "longitude": -87.6210747
+    },
+    {
+      "name": "Park Island Jerk Chicken, Inc",
+      "tier": "Runner-up",
+      "neighborhood": "Roseland",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7214075,
+      "longitude": -87.6319092
+    },
+    {
+      "name": "Taurus Flavors Hoagy Supreme Steak Supreme",
+      "tier": "Runner-up",
+      "neighborhood": "Roseland",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6908862,
+      "longitude": -87.6215061
+    },
+    {
+      "name": "Lexington Betty Smokehouse",
+      "tier": "Runner-up",
+      "neighborhood": "Pullman",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6929669,
+      "longitude": -87.6013127
+    },
+    {
+      "name": "Hienie's Shrimp House",
+      "tier": "Runner-up",
+      "neighborhood": "South Deering",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7065604,
+      "longitude": -87.5593596
+    },
+    {
+      "name": "BJ's Market & Bakery",
+      "tier": "Runner-up",
+      "neighborhood": "South Deering",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.721305,
+      "longitude": -87.5812703
+    },
+    {
+      "name": "La Cabanita",
+      "tier": "Runner-up",
+      "neighborhood": "South Deering",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7061449,
+      "longitude": -87.5545244
+    },
+    {
+      "name": "L & G Family Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "South Deering",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7060781,
+      "longitude": -87.5591683
+    },
+    {
+      "name": "El Charro De San Francisco",
+      "tier": "Runner-up",
+      "neighborhood": "East Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7025843,
+      "longitude": -87.5343805
+    },
+    {
+      "name": "La Cienega Super Food Inc",
+      "tier": "Runner-up",
+      "neighborhood": "East Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.69978,
+      "longitude": -87.53548
+    },
+    {
+      "name": "Gorditas Loli's",
+      "tier": "Runner-up",
+      "neighborhood": "East Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7029013,
+      "longitude": -87.5379291
+    },
+    {
+      "name": "Skyway Doghouse",
+      "tier": "Runner-up",
+      "neighborhood": "East Side",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7231418,
+      "longitude": -87.5369828
+    },
+    {
+      "name": "Manny's Tacos & Burritos",
+      "tier": "Runner-up",
+      "neighborhood": "West Pullman",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.684071,
+      "longitude": -87.6205029
+    },
+    {
+      "name": "Club 81 Too",
+      "tier": "Runner-up",
+      "neighborhood": "Hegewisch",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6556278,
+      "longitude": -87.5371778
+    },
+    {
+      "name": "Doreen's Pizzeria",
+      "tier": "Runner-up",
+      "neighborhood": "Hegewisch",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6553681,
+      "longitude": -87.5467513
+    },
+    {
+      "name": "Gorditas Adrian's",
+      "tier": "Runner-up",
+      "neighborhood": "Hegewisch",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6493618,
+      "longitude": -87.5466837
+    },
+    {
+      "name": "Pudgy's Pizza & Sandwiches",
+      "tier": "Runner-up",
+      "neighborhood": "Hegewisch",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.650093,
+      "longitude": -87.5473175
+    },
+    {
+      "name": "Lindy's Chili & Gertie's Ice Cream",
+      "tier": "Runner-up",
+      "neighborhood": "Garfield Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7923939,
+      "longitude": -87.7860659
+    },
+    {
+      "name": "Pticek & Son Bakery",
+      "tier": "Runner-up",
+      "neighborhood": "Garfield Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7915437,
+      "longitude": -87.781476
+    },
+    {
+      "name": "Sammy's Kitchen",
+      "tier": "Runner-up",
+      "neighborhood": "Garfield Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7929115,
+      "longitude": -87.7614288
+    },
+    {
+      "name": "Weber's Bakery",
+      "tier": "Runner-up",
+      "neighborhood": "Garfield Ridge",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7917142,
+      "longitude": -87.7986611
+    },
+    {
+      "name": "De Colores Ice Cream & Coffee",
+      "tier": "Runner-up",
+      "neighborhood": "Archer Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.804461,
+      "longitude": -87.720361
+    },
+    {
+      "name": "Machetes Big Quesadillas",
+      "tier": "Runner-up",
+      "neighborhood": "Archer Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.804578,
+      "longitude": -87.7201907
+    },
+    {
+      "name": "Polish Highlanders Restaurant, Bar, and Banquet Halls",
+      "tier": "Runner-up",
+      "neighborhood": "Archer Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8059032,
+      "longitude": -87.717774
+    },
+    {
+      "name": "Peke’s Pozole",
+      "tier": "Runner-up",
+      "neighborhood": "Archer Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8071836,
+      "longitude": -87.7238819
+    },
+    {
+      "name": "Carnitas Don Rafa Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Brighton Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8098301,
+      "longitude": -87.7109211
+    },
+    {
+      "name": "El Rey Del Taco & Burritos",
+      "tier": "Runner-up",
+      "neighborhood": "Brighton Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8175294,
+      "longitude": -87.6942102
+    },
+    {
+      "name": "Guapo Taco Tacos De Canasta",
+      "tier": "Runner-up",
+      "neighborhood": "Brighton Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8085842,
+      "longitude": -87.6857364
+    },
+    {
+      "name": "Frank's Chicago Shrimp House",
+      "tier": "Runner-up",
+      "neighborhood": "Brighton Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8121027,
+      "longitude": -87.7071587
+    },
+    {
+      "name": "Gorditas La Tia Susy",
+      "tier": "Runner-up",
+      "neighborhood": "Mckinley Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.830162,
+      "longitude": -87.685199
+    },
+    {
+      "name": "La Palapa",
+      "tier": "Runner-up",
+      "neighborhood": "Mckinley Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.832427,
+      "longitude": -87.675546
+    },
+    {
+      "name": "New Archview Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Mckinley Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8307338,
+      "longitude": -87.6774711
+    },
+    {
+      "name": "Nicky's Carry Outs",
+      "tier": "Runner-up",
+      "neighborhood": "Mckinley Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.830174,
+      "longitude": -87.6841906
+    },
+    {
+      "name": "Gio's Cafe and Deli",
+      "tier": "Runner-up",
+      "neighborhood": "Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8436568,
+      "longitude": -87.6429284
+    },
+    {
+      "name": "Kimski",
+      "tier": "Runner-up",
+      "neighborhood": "Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8381158,
+      "longitude": -87.6510176
+    },
+    {
+      "name": "Morrie O'Malley's Hot Dogs",
+      "tier": "Runner-up",
+      "neighborhood": "Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8306642,
+      "longitude": -87.6434081
+    },
+    {
+      "name": "The Polo Inn",
+      "tier": "Runner-up",
+      "neighborhood": "Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.833642,
+      "longitude": -87.6514
+    },
+    {
+      "name": "Cafeteria Yesenia",
+      "tier": "Runner-up",
+      "neighborhood": "New City",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.816406,
+      "longitude": -87.665464
+    },
+    {
+      "name": "La Internacional Supermercado",
+      "tier": "Runner-up",
+      "neighborhood": "New City",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8105556,
+      "longitude": -87.6652778
+    },
+    {
+      "name": "Kiki D's",
+      "tier": "Runner-up",
+      "neighborhood": "New City",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.818872,
+      "longitude": -87.6649961
+    },
+    {
+      "name": "Sputnik Coffee Company",
+      "tier": "Runner-up",
+      "neighborhood": "New City",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.8011095,
+      "longitude": -87.6768097
+    },
+    {
+      "name": "Gorditas Santiago 2",
+      "tier": "Runner-up",
+      "neighborhood": "West Elsdon",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7935332,
+      "longitude": -87.7164191
+    },
+    {
+      "name": "Los Mangos",
+      "tier": "Runner-up",
+      "neighborhood": "West Elsdon",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7879215,
+      "longitude": -87.7232454
+    },
+    {
+      "name": "Positano's Pizza",
+      "tier": "Runner-up",
+      "neighborhood": "West Elsdon",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7932442,
+      "longitude": -87.7311376
+    },
+    {
+      "name": "El Conde SA",
+      "tier": "Runner-up",
+      "neighborhood": "Gage Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7996075,
+      "longitude": -87.7036054
+    },
+    {
+      "name": "Gorditas Aguascalientes",
+      "tier": "Runner-up",
+      "neighborhood": "Gage Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7975528,
+      "longitude": -87.7035416
+    },
+    {
+      "name": "Manolos Tamales",
+      "tier": "Runner-up",
+      "neighborhood": "Clearing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7788634,
+      "longitude": -87.7401629
+    },
+    {
+      "name": "Pizza Castle",
+      "tier": "Runner-up",
+      "neighborhood": "Gage Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.793809,
+      "longitude": -87.705664
+    },
+    {
+      "name": "AV Anthony's",
+      "tier": "Runner-up",
+      "neighborhood": "Clearing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7786986,
+      "longitude": -87.7408959
+    },
+    {
+      "name": "Mom and Dad's Deli",
+      "tier": "Runner-up",
+      "neighborhood": "Clearing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7767271,
+      "longitude": -87.7614395
+    },
+    {
+      "name": "New Warsaw",
+      "tier": "Runner-up",
+      "neighborhood": "Clearing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7779964,
+      "longitude": -87.778234
+    },
+    {
+      "name": "Pupuseria",
+      "tier": "Runner-up",
+      "neighborhood": "Clearing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7774631,
+      "longitude": -87.7850087
+    },
+    {
+      "name": "Carnitas Michoacan INC.",
+      "tier": "Runner-up",
+      "neighborhood": "West Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7783593,
+      "longitude": -87.7290068
+    },
+    {
+      "name": "Palermo's of 63rd Pizza and Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "West Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.778539,
+      "longitude": -87.7175198
+    },
+    {
+      "name": "Taquería El Pastor",
+      "tier": "Runner-up",
+      "neighborhood": "West Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7786719,
+      "longitude": -87.7333124
+    },
+    {
+      "name": "Tony's Italian Beef",
+      "tier": "Runner-up",
+      "neighborhood": "West Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.765623,
+      "longitude": -87.7221749
+    },
+    {
+      "name": "Birrieria LOPEZ",
+      "tier": "Runner-up",
+      "neighborhood": "Chicago Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7862778,
+      "longitude": -87.6914441
+    },
+    {
+      "name": "Fat Johnnie's Famous Red Hots",
+      "tier": "Runner-up",
+      "neighborhood": "Chicago Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7615792,
+      "longitude": -87.6833822
+    },
+    {
+      "name": "Pozoleria Iguala",
+      "tier": "Runner-up",
+      "neighborhood": "Chicago Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7733878,
+      "longitude": -87.7033093
+    },
+    {
+      "name": "Taqueria Carnitas El Ojon",
+      "tier": "Runner-up",
+      "neighborhood": "Chicago Lawn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7773358,
+      "longitude": -87.7033176
+    },
+    {
+      "name": "Fat Albert",
+      "tier": "Runner-up",
+      "neighborhood": "West Englewood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7688234,
+      "longitude": -87.6641016
+    },
+    {
+      "name": "Taylormade Que",
+      "tier": "Runner-up",
+      "neighborhood": "Englewood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7718823,
+      "longitude": -87.6444044
+    },
+    {
+      "name": "Sikia",
+      "tier": "Runner-up",
+      "neighborhood": "Englewood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7799835,
+      "longitude": -87.6442032
+    },
+    {
+      "name": "The Soul Cafe",
+      "tier": "Runner-up",
+      "neighborhood": "Englewood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.792095,
+      "longitude": -87.654475
+    },
+    {
+      "name": "5 Loaves Eatery",
+      "tier": "Runner-up",
+      "neighborhood": "Greater Grand Crossing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7582923,
+      "longitude": -87.6147708
+    },
+    {
+      "name": "Brown Sugar Bakery",
+      "tier": "Runner-up",
+      "neighborhood": "Greater Grand Crossing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.758536,
+      "longitude": -87.617109
+    },
+    {
+      "name": "Haire's Gulf Shrimp",
+      "tier": "Runner-up",
+      "neighborhood": "Greater Grand Crossing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7586188,
+      "longitude": -87.6314757
+    },
+    {
+      "name": "Original Soul Vegetarian",
+      "tier": "Runner-up",
+      "neighborhood": "Greater Grand Crossing",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7581628,
+      "longitude": -87.6195985
+    },
+    {
+      "name": "Dan's Soul Food and Cafe",
+      "tier": "Runner-up",
+      "neighborhood": "Ashburn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7498314,
+      "longitude": -87.6862721
+    },
+    {
+      "name": "Don's Drive In Chicago",
+      "tier": "Runner-up",
+      "neighborhood": "Ashburn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.752001,
+      "longitude": -87.702734
+    },
+    {
+      "name": "Quesadilla Monarca",
+      "tier": "Runner-up",
+      "neighborhood": "Ashburn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7411833,
+      "longitude": -87.7137005
+    },
+    {
+      "name": "Starlight Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Ashburn",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7423246,
+      "longitude": -87.7025009
+    },
+    {
+      "name": "Afro Joes Coffee & Tea",
+      "tier": "Runner-up",
+      "neighborhood": "Auburn Gresham",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7420613,
+      "longitude": -87.6442004
+    },
+    {
+      "name": "Cutie Pies Kitchen",
+      "tier": "Runner-up",
+      "neighborhood": "Auburn Gresham",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7525436,
+      "longitude": -87.6437685
+    },
+    {
+      "name": "Maxwell's Charcoal Grill",
+      "tier": "Runner-up",
+      "neighborhood": "Auburn Gresham",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7364871,
+      "longitude": -87.662881
+    },
+    {
+      "name": "Calabria Imports",
+      "tier": "Runner-up",
+      "neighborhood": "Beverly",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7063889,
+      "longitude": -87.6694444
+    },
+    {
+      "name": "Janson's Drive-In",
+      "tier": "Runner-up",
+      "neighborhood": "Beverly",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7133333,
+      "longitude": -87.6822222
+    },
+    {
+      "name": "Swanson's Deli",
+      "tier": "Runner-up",
+      "neighborhood": "Beverly",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7066572,
+      "longitude": -87.6824017
+    },
+    {
+      "name": "Top Notch Beefburgers",
+      "tier": "Runner-up",
+      "neighborhood": "Beverly",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.72124,
+      "longitude": -87.6754448
+    },
+    {
+      "name": "Dan's Hot Dogs",
+      "tier": "Runner-up",
+      "neighborhood": "Washington Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7243326,
+      "longitude": -87.6630338
+    },
+    {
+      "name": "Poppin Dough",
+      "tier": "Runner-up",
+      "neighborhood": "Washington Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7210816,
+      "longitude": -87.6543964
+    },
+    {
+      "name": "Uncle Joe's Jerk",
+      "tier": "Runner-up",
+      "neighborhood": "Washington Heights",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.7083702,
+      "longitude": -87.6557922
+    },
+    {
+      "name": "Joseph's Bar & Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Mount Greenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6914766,
+      "longitude": -87.6993967
+    },
+    {
+      "name": "Pop's Italian Beef & Sausage",
+      "tier": "Runner-up",
+      "neighborhood": "Mount Greenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.705045,
+      "longitude": -87.701019
+    },
+    {
+      "name": "Tatas Chicago Pizzeria",
+      "tier": "Runner-up",
+      "neighborhood": "Mount Greenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6913705,
+      "longitude": -87.6969047
+    },
+    {
+      "name": "Wonderburger",
+      "tier": "Runner-up",
+      "neighborhood": "Mount Greenwood",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.691204,
+      "longitude": -87.7042525
+    },
+    {
+      "name": "DiCola's Seafood",
+      "tier": "Runner-up",
+      "neighborhood": "Morgan Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6974403,
+      "longitude": -87.6815858
+    },
+    {
+      "name": "Nine One One BBQ Shack",
+      "tier": "Runner-up",
+      "neighborhood": "Morgan Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6918326,
+      "longitude": -87.6899496
+    },
+    {
+      "name": "The Good Life Soul Food Cafe",
+      "tier": "Runner-up",
+      "neighborhood": "Morgan Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.691103,
+      "longitude": -87.642556
+    },
+    {
+      "name": "Lumes Pancake House",
+      "tier": "Runner-up",
+      "neighborhood": "Morgan Park",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.6823769,
+      "longitude": -87.6805386
+    },
+    {
+      "name": "Plush Pup",
+      "tier": "Runner-up",
+      "neighborhood": "Ohare",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9767404,
+      "longitude": -87.8368784
+    },
+    {
+      "name": "La Unica Food Mart",
+      "tier": "Runner-up",
+      "neighborhood": "Edgewater",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9979422,
+      "longitude": -87.6684219
+    },
+    {
+      "name": "Middle East Bakery & Grocery",
+      "tier": "Runner-up",
+      "neighborhood": "Edgewater",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9762927,
+      "longitude": -87.6687662
+    },
+    {
+      "name": "Moody's Pub",
+      "tier": "Runner-up",
+      "neighborhood": "Edgewater",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9894156,
+      "longitude": -87.6605776
+    },
+    {
+      "name": "Svea Restaurant",
+      "tier": "Runner-up",
+      "neighborhood": "Edgewater",
+      "address": null,
+      "website": null,
+      "notes": null,
+      "latitude": 41.9773034,
+      "longitude": -87.6685165
+    }
+  ]
+}

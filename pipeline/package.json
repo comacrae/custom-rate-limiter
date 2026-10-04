@@ -14,7 +14,8 @@
     "extract-pdfs": "node src/extract-pdfs.ts",
     "find-menu-images": "node src/find-menu-images.ts",
     "stats": "node src/stats.ts",
-    "load-lists": "node src/load-lists.ts"
+    "load-lists": "node src/load-lists.ts",
+    "enrich-dinechicago": "node src/enrich-dinechicago.ts"
   },
   "dependencies": {
     "@duckdb/node-api": "1.5.6-r.1",
