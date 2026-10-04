@@ -1,0 +1,408 @@
+{
+  "slug": "chicago-mag-best",
+  "name": "Chicago magazine: Chicago's 50 Best Restaurants",
+  "sourceUrl": "https://www.chicagomag.com/2026/06/15/chicagos-50-best-restaurants-2/",
+  "edition": "2026-06",
+  "entries": [
+    {
+      "name": "Maxwells Trading",
+      "tier": "#1",
+      "neighborhood": "West Town",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/maxwells-trading/"
+    },
+    {
+      "name": "Oriole",
+      "tier": "#2",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/oriole/"
+    },
+    {
+      "name": "Kyoten and Kyoten Next Door",
+      "tier": "#3",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/kyoten-and-kyoten-next-door/"
+    },
+    {
+      "name": "Feld",
+      "tier": "#4",
+      "neighborhood": "Ukrainian Village",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/feld/"
+    },
+    {
+      "name": "Cellar Door Provisions",
+      "tier": "#5",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/cellar-door-provisions/"
+    },
+    {
+      "name": "Smyth",
+      "tier": "#6",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/smyth/"
+    },
+    {
+      "name": "Virtue",
+      "tier": "#7",
+      "neighborhood": "Hyde Park",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/virtue/"
+    },
+    {
+      "name": "Las Carnitas Uruapan",
+      "tier": "#8",
+      "neighborhood": "Heart of Chicago / Gage Park / Little Village",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/las-carnitas-uruapan/"
+    },
+    {
+      "name": "El Che Steakhouse & Bar",
+      "tier": "#9",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/el-che-steakhouse-bar/"
+    },
+    {
+      "name": "Monteverde",
+      "tier": "#10",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/monteverde/"
+    },
+    {
+      "name": "John’s Food & Wine",
+      "tier": "#11",
+      "neighborhood": "Lincoln Park",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/johns-food-wine/"
+    },
+    {
+      "name": "Lula Cafe",
+      "tier": "#12",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/lula-cafe/"
+    },
+    {
+      "name": "Boka",
+      "tier": "#13",
+      "neighborhood": "Lincoln Park",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/boka/"
+    },
+    {
+      "name": "Galit",
+      "tier": "#14",
+      "neighborhood": "Lincoln Park",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/galit/"
+    },
+    {
+      "name": "Kasama",
+      "tier": "#15",
+      "neighborhood": "East Ukrainian Village",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/kasama/"
+    },
+    {
+      "name": "Cariño",
+      "tier": "#16",
+      "neighborhood": "Uptown",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/carino/"
+    },
+    {
+      "name": "Shaw’s Oyster Bar",
+      "tier": "#17",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/shaws-oyster-bar/"
+    },
+    {
+      "name": "Torizen",
+      "tier": "#18",
+      "neighborhood": "Schaumburg",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/torizen/"
+    },
+    {
+      "name": "Asador Bastian",
+      "tier": "#19",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/asador-bastian/"
+    },
+    {
+      "name": "Akahoshi Ramen",
+      "tier": "#20",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/akahoshi-ramen/"
+    },
+    {
+      "name": "Creepies",
+      "tier": "#21",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/creepies/"
+    },
+    {
+      "name": "Indienne",
+      "tier": "#22",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/indienne/"
+    },
+    {
+      "name": "Avec",
+      "tier": "#23",
+      "neighborhood": "West Loop / River North",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/avec/"
+    },
+    {
+      "name": "Le Bouchon",
+      "tier": "#24",
+      "neighborhood": "Bucktown",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/le-bouchon/"
+    },
+    {
+      "name": "New Village Gastro Pub",
+      "tier": "#25",
+      "neighborhood": "Northbrook",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/new-village-gastro-pub/"
+    },
+    {
+      "name": "Brindille",
+      "tier": "#26",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/brindille/"
+    },
+    {
+      "name": "Noodles Party",
+      "tier": "#27",
+      "neighborhood": "Mayfair",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/noodles-party/"
+    },
+    {
+      "name": "Anelya",
+      "tier": "#28",
+      "neighborhood": "Avondale",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/anelya/"
+    },
+    {
+      "name": "La Chaparrita Taqueria",
+      "tier": "#29",
+      "neighborhood": "Little Village",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/la-chaparrita-taqueria/"
+    },
+    {
+      "name": "Tre Dita",
+      "tier": "#30",
+      "neighborhood": "Loop",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/tre-dita/"
+    },
+    {
+      "name": "Go 4 Food",
+      "tier": "#31",
+      "neighborhood": "Chinatown",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/go-4-food/"
+    },
+    {
+      "name": "Frontera Grill",
+      "tier": "#32",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/frontera-grill/"
+    },
+    {
+      "name": "S.K.Y.",
+      "tier": "#33",
+      "neighborhood": "Lincoln Park",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/s-k-y/"
+    },
+    {
+      "name": "Mirra",
+      "tier": "#34",
+      "neighborhood": "Bucktown",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/mirra/"
+    },
+    {
+      "name": "Kie-Gol-Lanee",
+      "tier": "#35",
+      "neighborhood": "Uptown / Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/kie-gol-lanee/"
+    },
+    {
+      "name": "Sanders BBQ Supply Co.",
+      "tier": "#36",
+      "neighborhood": "Beverly",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/sanders-bbq-supply-co/"
+    },
+    {
+      "name": "Lao Peng You",
+      "tier": "#37",
+      "neighborhood": "Ukrainian Village",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/lao-peng-you/"
+    },
+    {
+      "name": "HaiSous Vietnamese Kitchen",
+      "tier": "#38",
+      "neighborhood": "Pilsen",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/haisous-vietnamese-kitchen/"
+    },
+    {
+      "name": "Obélix",
+      "tier": "#39",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/obelix-2/"
+    },
+    {
+      "name": "RL Restaurant",
+      "tier": "#40",
+      "neighborhood": "Near North Side",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/rl-restaurant/"
+    },
+    {
+      "name": "Zarella Pizzeria & Taverna",
+      "tier": "#41",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/zarella-pizzeria-taverna/"
+    },
+    {
+      "name": "Omakase Box",
+      "tier": "#42",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/omakase-box/"
+    },
+    {
+      "name": "Gibsons Bar & Steakhouse",
+      "tier": "#43",
+      "neighborhood": "Gold Coast",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/gibsons-bar-steakhouse/"
+    },
+    {
+      "name": "Nhu Lan Bakery",
+      "tier": "#44",
+      "neighborhood": "Ravenswood / Uptown",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/nhu-lan-bakery/"
+    },
+    {
+      "name": "Bonyeon",
+      "tier": "#45",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/bonyeon/"
+    },
+    {
+      "name": "Lao Hu Tong",
+      "tier": "#46",
+      "neighborhood": "Schaumburg",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/lao-hu-tong/"
+    },
+    {
+      "name": "Omarcito’s Latin Cafe",
+      "tier": "#47",
+      "neighborhood": "Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/omarcitos-latin-cafe/"
+    },
+    {
+      "name": "Birrieria Zaragoza",
+      "tier": "#48",
+      "neighborhood": "Uptown",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/birrieria-zaragoza/"
+    },
+    {
+      "name": "Bayan Ko Diner",
+      "tier": "#49",
+      "neighborhood": "Ravenswood",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/bayan-ko-diner/"
+    },
+    {
+      "name": "Spacca Napoli Pizzeria",
+      "tier": "#50",
+      "neighborhood": "Ravenswood",
+      "address": null,
+      "website": null,
+      "notes": "Entry page: https://www.chicagotribune.com/2026/06/15/spacca-napoli-pizzeria/"
+    }
+  ]
+}

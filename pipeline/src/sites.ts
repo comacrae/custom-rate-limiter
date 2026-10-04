@@ -54,3 +54,23 @@ export function isOwnLocationPage(path: string, tokens: string[]) {
   const lower = path.toLowerCase();
   return LOCATION_PATH.test(path) || tokens.some((t) => lower.includes(t));
 }
+
+const GENERIC_WORDS = /\b(restaurant|chicago|bar|kitchen|grill|cafe|the|and|co|company)\b/g;
+
+// "The Girl & the Goat" → "girl and the goat"; accents and punctuation dropped
+export function normalizeName(name: string) {
+  return name
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/&/g, ' and ')
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/^the /, '')
+    .trim();
+}
+
+// Looser key that also ignores generic words: "Gilt Bar" and "Gilt" both → "gilt"
+export function coreName(name: string) {
+  return normalizeName(name).replace(GENERIC_WORDS, ' ').replace(/\s+/g, ' ').trim();
+}

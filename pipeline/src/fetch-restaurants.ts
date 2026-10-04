@@ -1,6 +1,6 @@
 // Pulls open Chicagoland restaurants from Overture Maps places
 // (https://docs.overturemaps.org/attribution/ — mostly CDLA-Permissive-2.0).
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 
 import { DuckDBInstance } from '@duckdb/node-api';
 
@@ -107,6 +107,21 @@ function isOwnSite(website: string) {
   }
 }
 
+// Hand corrections for places on curated lists; see data/place-overrides.json
+export type PlaceOverrides = {
+  // Overture IDs to keep even when outside the category/status filters
+  include: string[];
+  // Overture ID → correct website
+  websites: Record<string, string>;
+  // Places Overture doesn't have; overtureId is "manual:<slug>"
+  places: Restaurant[];
+  // "<list slug>|<listed name>" → overtureId, when name matching picks wrong or nothing
+  matches: Record<string, string>;
+};
+const overrides: PlaceOverrides = JSON.parse(
+  await readFile(new URL('../data/place-overrides.json', import.meta.url), 'utf8'),
+);
+
 const db = await DuckDBInstance.create();
 const conn = await db.connect();
 await conn.run("INSTALL httpfs; LOAD httpfs; SET s3_region = 'us-west-2';");
@@ -123,10 +138,14 @@ const reader = await conn.runAndReadAll(`
   )
   WHERE bbox.xmin BETWEEN ${BBOX.xmin} AND ${BBOX.xmax}
     AND bbox.ymin BETWEEN ${BBOX.ymin} AND ${BBOX.ymax}
-    AND addresses[1].region = 'IL'
-    AND operating_status = 'open'
-    AND basic_category IN (${CATEGORIES.map((c) => `'${c}'`).join(', ')})
     AND names.primary IS NOT NULL
+    AND (
+      (addresses[1].region = 'IL'
+        AND operating_status = 'open'
+        AND basic_category IN (${CATEGORIES.map((c) => `'${c}'`).join(', ')}))
+      -- Places from curated lists that the filters above miss (other category, no status)
+      OR id IN (${overrides.include.map((id) => `'${id.replace(/'/g, '')}'`).join(', ') || "''"})
+    )
 `);
 
 type Row = Omit<Restaurant, 'overtureId' | 'website'> & { id: string; websites: string[] };
@@ -134,11 +153,14 @@ const restaurants: Restaurant[] = (reader.getRowObjectsJson() as unknown as Row[
   ({ id, websites, ...row }) => ({
     overtureId: id,
     ...row,
-    website: websites.find(isOwnSite) ?? null,
+    // Hand corrections win over Overture's website (dead domains, wrong sites)
+    website: overrides.websites[id] ?? websites.find(isOwnSite) ?? null,
     latitude: Number(row.latitude),
     longitude: Number(row.longitude),
   }),
 );
+// Places missing from Overture entirely, added by hand
+restaurants.push(...overrides.places);
 
 await mkdir(OUT_DIR, { recursive: true });
 await writeFile(new URL('restaurants.json', OUT_DIR), JSON.stringify(restaurants, null, 2));

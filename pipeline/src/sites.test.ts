@@ -1,7 +1,25 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { isOwnLocationPage, isSisterDomain, nameTokens, siteHost } from './sites.ts';
+import {
+  coreName,
+  isOwnLocationPage,
+  isSisterDomain,
+  nameTokens,
+  normalizeName,
+  siteHost,
+} from './sites.ts';
+
+test('names normalize across accents, ampersands, and "the"', () => {
+  assert.equal(normalizeName('The Girl & the Goat'), normalizeName('Girl and The Goat'));
+  assert.equal(normalizeName('Cariño'), 'carino');
+  assert.equal(normalizeName("Boonie's Filipino"), 'boonies filipino');
+});
+
+test('core names also ignore generic words', () => {
+  assert.equal(coreName('Gilt Bar'), coreName('Gilt'));
+  assert.equal(coreName('Ever Restaurant'), 'ever');
+});
 
 test('siteHost drops scheme, www, path, and case', () => {
   assert.equal(siteHost('http://Www.ChicagoFalafel.com/menu/'), 'chicagofalafel.com');
