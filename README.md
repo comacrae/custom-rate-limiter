@@ -102,6 +102,33 @@ Partial re-runs: `RETRY_FROM=probe.jsonl PROBE_OUT=probe-retry.jsonl npm run pro
 
 The crawler identifies itself as `MenuBuffBot`, honors robots.txt (including `Crawl-delay`, with at least 1s between requests to a site), and never tries to get past bot challenges or rate limits (it records them as `blocked`). When a site's links don't lead to a menu, it checks the site's sitemap for pages with "menu" in the path. It skips delivery apps, Yelp, social profiles, and ordering platforms like Toast and Square: their terms forbid crawling, and delivery prices are marked up.
 
+## Data sources and attribution
+
+Any screen that shows this data should carry the attributions below; the in-app credits page can reuse this section.
+
+**Places (`restaurants`)** — [Overture Maps Foundation](https://overturemaps.org/) places theme, release 2026-09-23.1, under [CDLA-Permissive-2.0](https://cdla.dev/permissive-2-0/). Overture's places combine several upstream providers; see Overture's [attribution guidance](https://docs.overturemaps.org/attribution/). Credit: "Place data © Overture Maps Foundation."
+
+**Hand-added places** (`source = 'manual'`) — coordinates geocoded with [Nominatim](https://nominatim.org/) from OpenStreetMap data, © OpenStreetMap contributors, available under the [Open Database License](https://www.openstreetmap.org/copyright).
+
+**Cuisines and neighborhoods** (`cuisines`, `neighborhood`, `dinechicago_slug`) — the [DineChicago API](https://dinechicago.com/api/v1/docs), used under its [API terms](https://dinechicago.com/api-terms). Wherever these fields are shown, display this exact string:
+
+> Data from the City of Chicago Data Portal, Foursquare Open Source Places, and Overture Maps Foundation.
+
+Their terms also require keeping cached data reasonably current (re-run `npm run enrich-dinechicago` with `REFRESH=1`) or showing when it was last fetched (`dinechicago_fetched_at`).
+
+**Menus** (`menus`, `menu_items`, `menu_files`) — each restaurant's own website, crawled by `MenuBuffBot` within robots.txt. Menus belong to the restaurants; show the source (`menus.source_url`) and link back to it. Menu PDFs and images in `menu_files` are links only and aren't re-hosted.
+
+**Curated lists** (`restaurant_lists`) — list membership and rankings are the editors' work; show the list name with a link to `source_url`:
+
+- [MICHELIN Guide Chicago](https://guide.michelin.com/us/en/illinois/chicago/restaurants) (2025 edition)
+- [Chicago magazine, Chicago's 50 Best Restaurants](https://www.chicagomag.com/2026/06/15/chicagos-50-best-restaurants-2/) (2026)
+- [The Infatuation, The Best Restaurants In Chicago](https://www.theinfatuation.com/chicago/guides/best-restaurants-chicago)
+- [Time Out Chicago, The best restaurants in Chicago](https://www.timeout.com/chicago/restaurants/best-chicago-restaurants-our-picks-for-every-cuisine)
+- [The Iconic Chicago Restaurants Map](https://chicagoreader.com/food/the-iconic-chicago-restaurants-map/) by John Greenfield, Chicago Reader (2021)
+- [The Short List: Chicago](https://theshortli.st/chicago) by Alex Evins
+
+**Tasting-menu details** (`menu_style`, `tasting_price`, `booking_url`) — researched by hand from restaurants' own sites and booking pages, October 2026. Prices change; treat them as a guide.
+
 ## Builds
 
 `.env.local` isn't uploaded to EAS Build. Before the first cloud build, set `EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` as EAS environment variables (`npx eas-cli@latest env:set`).
