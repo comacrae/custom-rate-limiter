@@ -153,6 +153,8 @@ const restaurants: Restaurant[] = (reader.getRowObjectsJson() as unknown as Row[
   ({ id, websites, ...row }) => ({
     overtureId: id,
     ...row,
+    // Places pulled in from curated lists sometimes have no Overture category
+    category: row.category ?? 'restaurant',
     // Hand corrections win over Overture's website (dead domains, wrong sites)
     website: overrides.websites[id] ?? websites.find(isOwnSite) ?? null,
     latitude: Number(row.latitude),
