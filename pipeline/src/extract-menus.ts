@@ -15,10 +15,10 @@ import {
   type MenuDraft,
 } from './menu-parsers.ts';
 import type { Probe } from './probe-menus.ts';
-import { siteHost, siteUrl } from './sites.ts';
+import { isOwnLocationPage, isSisterDomain, nameTokens, siteHost, siteUrl } from './sites.ts';
 
 const CONCURRENCY = 16;
-const MAX_PAGES_PER_SITE = 8;
+const MAX_PAGES_PER_SITE = 10;
 const MAX_SITEMAP_PAGES = 4;
 const MENU_LINK =
   /menu|food|drink|brunch|lunch|dinner|breakfast|dessert|wine|cocktail|happy.?hour/i;
@@ -26,6 +26,7 @@ const MENU_LINK =
 const NOT_MENU_LINK =
   /career|job|employ|hiring|franchis|press|news|blog|recipe|gift|privacy|terms|accessib|allergen|nutrition|login|account|cart|checkout/i;
 
+const MAX_LOCATION_PAGES = 3;
 // "VIEW CATERING MENU" → "CATERING MENU"
 const tidyLabel = (label: string) => label.replace(/^(view|see|our|click for|download)\s+/i, '');
 
@@ -60,6 +61,9 @@ async function extractSite(probe: Probe): Promise<SiteMenus> {
   const visited = new Set<string>();
   const signatures = new Set<string>();
   const pdfs = new Set(probe.pdfs);
+  const tokens = nameTokens(probe.name);
+  const allowedHosts = new Set([host]);
+  let locationHops = 0;
 
   let pageLimit = MAX_PAGES_PER_SITE;
   for (let pass = 0; pass < 2; pass++) {
@@ -118,9 +122,27 @@ async function extractSite(probe: Probe): Promise<SiteMenus> {
         }
         link.hash = '';
         const text = $(a).text().replace(/\s+/g, ' ').trim();
-        if (!link.protocol.startsWith('http') || siteHost(link.href) !== host) return;
-        if (!MENU_LINK.test(`${link.pathname} ${text}`) || NOT_MENU_LINK.test(link.pathname))
+        if (!link.protocol.startsWith('http') || visited.has(link.href)) return;
+        const linkHost = siteHost(link.href);
+        // Restaurant groups keep each restaurant on a sister domain ("smythandtheloyalist.com"
+        // links to "smythchicago.com"); allow one hop when the domain carries the name
+        if (!allowedHosts.has(linkHost)) {
+          if (allowedHosts.size < 3 && isSisterDomain(linkHost, tokens)) {
+            allowedHosts.add(linkHost);
+            queue.push({ url: link.href, label: '', viaMenuLink: false });
+          }
           return;
+        }
+        if (NOT_MENU_LINK.test(link.pathname)) return;
+        // Location and city pages on group sites lead to the menus ("/location/the-dining-room-
+        // at-moody-tongue/", "/chicago"); they aren't menus themselves
+        if (!MENU_LINK.test(`${link.pathname} ${text}`)) {
+          if (locationHops < MAX_LOCATION_PAGES && isOwnLocationPage(link.pathname, tokens)) {
+            locationHops++;
+            queue.push({ url: link.href, label: '', viaMenuLink: false });
+          }
+          return;
+        }
         if (link.pathname.toLowerCase().endsWith('.pdf')) {
           pdfs.add(link.href);
         } else if (!visited.has(link.href)) {
