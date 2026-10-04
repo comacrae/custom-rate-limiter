@@ -280,6 +280,13 @@ if (process.env.SKIP_PROBED_FROM) {
   );
   sites = sites.filter((s) => !probed.has(siteHost(s.website)));
 }
+// ONLY_HOSTS=hosts.json (a JSON array of site hosts) probes just those sites
+if (process.env.ONLY_HOSTS) {
+  const only = new Set<string>(
+    JSON.parse(await readFile(new URL(process.env.ONLY_HOSTS, OUT_DIR), 'utf8')),
+  );
+  sites = sites.filter((s) => only.has(siteHost(s.website)));
+}
 const queue = sites.slice(0, Number(process.env.LIMIT) || undefined);
 console.log(`${restaurants.length} restaurants, probing ${queue.length} unique sites`);
 

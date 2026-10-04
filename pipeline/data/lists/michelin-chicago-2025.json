@@ -1,0 +1,824 @@
+{
+  "slug": "michelin-chicago-2025",
+  "name": "MICHELIN Guide Chicago 2025 (current edition, announced 2025-11-18)",
+  "sourceUrl": "https://guide.michelin.com/us/en/illinois/chicago/restaurants",
+  "edition": "2025-11",
+  "entries": [
+    {
+      "name": "Smyth",
+      "tier": "3 stars",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/smyth"
+    },
+    {
+      "name": "Alinea",
+      "tier": "2 stars",
+      "neighborhood": "Lincoln Park & Old Town",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Creative. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/alinea"
+    },
+    {
+      "name": "Ever",
+      "tier": "2 stars",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Creative. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/ever"
+    },
+    {
+      "name": "Kasama",
+      "tier": "2 stars",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Filipino. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/kasama"
+    },
+    {
+      "name": "Oriole",
+      "tier": "2 stars",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/oriole"
+    },
+    {
+      "name": "Atelier",
+      "tier": "1 star",
+      "neighborhood": "Lincoln Square",
+      "address": null,
+      "website": null,
+      "notes": "Listed with 1 star in Michelin's Nov 18, 2025 stars announcement; absent from guide.michelin.com Chicago listing as of 2026-10-03 (relocated to a new space)."
+    },
+    {
+      "name": "Boka",
+      "tier": "1 star",
+      "neighborhood": "Lincoln Park & Old Town",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/boka"
+    },
+    {
+      "name": "Cariño",
+      "tier": "1 star",
+      "neighborhood": "Andersonville, Edgewater & Uptown",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/carino"
+    },
+    {
+      "name": "EL Ideas",
+      "tier": "1 star",
+      "neighborhood": "Pilsen, University Village & Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/el-ideas"
+    },
+    {
+      "name": "Elske",
+      "tier": "1 star",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/elske"
+    },
+    {
+      "name": "Esmé",
+      "tier": "1 star",
+      "neighborhood": "Lincoln Park & Old Town",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/esme"
+    },
+    {
+      "name": "Feld",
+      "tier": "1 star",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/feld"
+    },
+    {
+      "name": "Galit",
+      "tier": "1 star",
+      "neighborhood": "Lincoln Park & Old Town",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Middle Eastern. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/galit"
+    },
+    {
+      "name": "Indienne",
+      "tier": "1 star",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Indian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/indienne"
+    },
+    {
+      "name": "Mako",
+      "tier": "1 star",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Japanese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/mako"
+    },
+    {
+      "name": "Moody Tongue",
+      "tier": "1 star",
+      "neighborhood": "Chinatown & South",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/moody-tongue"
+    },
+    {
+      "name": "Next",
+      "tier": "1 star",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/next"
+    },
+    {
+      "name": "Schwa",
+      "tier": "1 star",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/schwa"
+    },
+    {
+      "name": "Sepia",
+      "tier": "1 star",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/sepia"
+    },
+    {
+      "name": "Topolobampo",
+      "tier": "1 star",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/topolobampo"
+    },
+    {
+      "name": "Birrieria Zaragoza",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Pilsen, University Village & Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/birrieria-zaragoza"
+    },
+    {
+      "name": "Boonie's",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Andersonville, Edgewater & Uptown",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Filipino. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/boonie-s"
+    },
+    {
+      "name": "Cellar Door Provisions",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mediterranean Cuisine. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/cellar-door-provisions"
+    },
+    {
+      "name": "Chef’s Special Cocktail Bar",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Chinese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/chef%E2%80%99s-special-cocktail-bar"
+    },
+    {
+      "name": "Chilam Balam",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Lakeview & Wrigleyville",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/chilam-balam"
+    },
+    {
+      "name": "Ciccio Mio",
+      "tier": "Bib Gourmand",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Italian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/ciccio-mio"
+    },
+    {
+      "name": "Daisies",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Italian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/daisies"
+    },
+    {
+      "name": "Frontera Grill",
+      "tier": "Bib Gourmand",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/frontera-grill"
+    },
+    {
+      "name": "Ghin Khao",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Pilsen, University Village & Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Thai. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/ghin-khao"
+    },
+    {
+      "name": "Giant",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/giant"
+    },
+    {
+      "name": "Gilt Bar",
+      "tier": "Bib Gourmand",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Gastropub. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/gilt-bar"
+    },
+    {
+      "name": "Girl & The Goat",
+      "tier": "Bib Gourmand",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/girl-the-goat"
+    },
+    {
+      "name": "HaiSous",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Pilsen, University Village & Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Vietnamese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/haisous"
+    },
+    {
+      "name": "Kie-Gol-Lanee",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Andersonville, Edgewater & Uptown",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/kie-gol-lanee"
+    },
+    {
+      "name": "Lardon",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Deli. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/lardon"
+    },
+    {
+      "name": "Longman & Eagle",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Gastropub. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/longman-eagle"
+    },
+    {
+      "name": "Lula Cafe",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/lula-cafe"
+    },
+    {
+      "name": "Mi Tocaya Antojería",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/mi-tocaya"
+    },
+    {
+      "name": "Mirra",
+      "tier": "Bib Gourmand",
+      "neighborhood": null,
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Fusion. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/mirra"
+    },
+    {
+      "name": "Mott St.",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Fusion. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/mott-st"
+    },
+    {
+      "name": "Munno Pizzeria & Bistro",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Andersonville, Edgewater & Uptown",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Pizza. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/munno-pizzeria-bistro"
+    },
+    {
+      "name": "Nadu",
+      "tier": "Bib Gourmand",
+      "neighborhood": null,
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Indian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/nadu"
+    },
+    {
+      "name": "PERILLA Fare",
+      "tier": "Bib Gourmand",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Korean. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/perilla"
+    },
+    {
+      "name": "Pleasant House Pub",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Pilsen, University Village & Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Gastropub. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/pleasant-house-pub"
+    },
+    {
+      "name": "Proxi",
+      "tier": "Bib Gourmand",
+      "neighborhood": "West Loop",
+      "address": "565 W Randolph St",
+      "website": null,
+      "notes": "Listed in Michelin's Nov 18, 2025 Bib Gourmand article; restaurant closed Dec 31, 2025 and is no longer on guide.michelin.com."
+    },
+    {
+      "name": "Sifr",
+      "tier": "Bib Gourmand",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Middle Eastern. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/sifr"
+    },
+    {
+      "name": "Sochi Kitchen",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Lakeview & Wrigleyville",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Vietnamese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/sochi"
+    },
+    {
+      "name": "Sol de Mexico",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/sol-de-mexico"
+    },
+    {
+      "name": "Superkhana International",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Indian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/superkhana-international"
+    },
+    {
+      "name": "Table, Donkey and Stick",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Alpine. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/table-donkey-and-stick"
+    },
+    {
+      "name": "Taqueria Chingón",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/taqueria-chingon"
+    },
+    {
+      "name": "Union",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/union-1200796"
+    },
+    {
+      "name": "Virtue",
+      "tier": "Bib Gourmand",
+      "neighborhood": "Chinatown & South",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Southern. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/virtue"
+    },
+    {
+      "name": "Alla Vita",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Italian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/alla-vita"
+    },
+    {
+      "name": "Andros Taverna",
+      "tier": "Recommended",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Greek. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/andros-taverna"
+    },
+    {
+      "name": "Anelya",
+      "tier": "Recommended",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Eastern European. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/anelya"
+    },
+    {
+      "name": "Astor Club: Chef's Table",
+      "tier": "Recommended",
+      "neighborhood": null,
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/astor-club-chef-s-table"
+    },
+    {
+      "name": "avec",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mediterranean Cuisine. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/avec"
+    },
+    {
+      "name": "Azul Mariscos + Muelle",
+      "tier": "Recommended",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Seafood. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/azul-mariscos-muelle"
+    },
+    {
+      "name": "Bavette’s Bar & Boeuf",
+      "tier": "Recommended",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Steakhouse. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/bavette-s-bar-boeuf"
+    },
+    {
+      "name": "Bayan Ko",
+      "tier": "Recommended",
+      "neighborhood": "Andersonville, Edgewater & Uptown",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Filipino. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/bayan-ko"
+    },
+    {
+      "name": "Beity",
+      "tier": "Recommended",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Lebanese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/beity"
+    },
+    {
+      "name": "Chez Joël",
+      "tier": "Recommended",
+      "neighborhood": "Pilsen, University Village & Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: French. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/chez-joel"
+    },
+    {
+      "name": "Chicago Cut",
+      "tier": "Recommended",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Steakhouse. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/chicago-cut"
+    },
+    {
+      "name": "Coalfire",
+      "tier": "Recommended",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Pizza. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/coalfire-pizza"
+    },
+    {
+      "name": "Creepies",
+      "tier": "Recommended",
+      "neighborhood": null,
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: French. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/creepies"
+    },
+    {
+      "name": "Demera Ethiopian Restaurant",
+      "tier": "Recommended",
+      "neighborhood": "Andersonville, Edgewater & Uptown",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Ethiopian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/demera"
+    },
+    {
+      "name": "Elina's",
+      "tier": "Recommended",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Italian-American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/elina-s"
+    },
+    {
+      "name": "Gaijin",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Japanese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/gaijin-1190067"
+    },
+    {
+      "name": "GG's Chicken Shop",
+      "tier": "Recommended",
+      "neighborhood": "Lakeview & Wrigleyville",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/gg-s-chicken-shop"
+    },
+    {
+      "name": "Hugo’s Frog Bar & Fish House",
+      "tier": "Recommended",
+      "neighborhood": "Gold Coast",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/hugo-s-frog-bar-fish-house"
+    },
+    {
+      "name": "Ina Mae",
+      "tier": "Recommended",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Southern. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/ina-mae-tavern"
+    },
+    {
+      "name": "Itoko",
+      "tier": "Recommended",
+      "neighborhood": "Lakeview & Wrigleyville",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Japanese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/itoko"
+    },
+    {
+      "name": "Jeong",
+      "tier": "Recommended",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Korean. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/jeong"
+    },
+    {
+      "name": "John's Food and Wine",
+      "tier": "Recommended",
+      "neighborhood": "Lincoln Park & Old Town",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/john-s-food-and-wine"
+    },
+    {
+      "name": "Kumiko",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Japanese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/kumiko"
+    },
+    {
+      "name": "Kyoten Next Door",
+      "tier": "Recommended",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Sushi. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/kyoten-next-door"
+    },
+    {
+      "name": "Lou Mitchell's",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/lou-mitchell-s"
+    },
+    {
+      "name": "Maple & Ash",
+      "tier": "Recommended",
+      "neighborhood": "Gold Coast",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Steakhouse. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/maple-ash"
+    },
+    {
+      "name": "Maxwells Trading",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/maxwells-trading"
+    },
+    {
+      "name": "mfk.",
+      "tier": "Recommended",
+      "neighborhood": "Lincoln Park & Old Town",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Spanish. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/mfk"
+    },
+    {
+      "name": "Momotaro",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Japanese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/momotaro"
+    },
+    {
+      "name": "Monteverde",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Italian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/monteverde"
+    },
+    {
+      "name": "North Pond",
+      "tier": "Recommended",
+      "neighborhood": "Lincoln Park & Old Town",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/north-pond"
+    },
+    {
+      "name": "Obélix",
+      "tier": "Recommended",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: French. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/obelix"
+    },
+    {
+      "name": "Oliver's",
+      "tier": "Recommended",
+      "neighborhood": null,
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/oliver-s-1216274"
+    },
+    {
+      "name": "Omakase Yume",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Japanese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/omakase-yume"
+    },
+    {
+      "name": "Osteria Langhe",
+      "tier": "Recommended",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Italian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/osteria-langhe"
+    },
+    {
+      "name": "Prime & Provisions",
+      "tier": "Recommended",
+      "neighborhood": "Loop & Streeterville",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Steakhouse. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/prime-provisions"
+    },
+    {
+      "name": "Provaré",
+      "tier": "Recommended",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Fusion. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/provare"
+    },
+    {
+      "name": "ROOP Chicago",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Indian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/roop-chicago"
+    },
+    {
+      "name": "Rose Mary",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Croatian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/rose-mary"
+    },
+    {
+      "name": "RPM Steak",
+      "tier": "Recommended",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Steakhouse. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/rpm-steak"
+    },
+    {
+      "name": "S.K.Y.",
+      "tier": "Recommended",
+      "neighborhood": "Pilsen, University Village & Bridgeport",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/s-k-y"
+    },
+    {
+      "name": "Swift & Sons",
+      "tier": "Recommended",
+      "neighborhood": "West Loop",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Steakhouse. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/swift-sons"
+    },
+    {
+      "name": "The Gundis",
+      "tier": "Recommended",
+      "neighborhood": "Lakeview & Wrigleyville",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Central Asian. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/the-gundis"
+    },
+    {
+      "name": "The Perch",
+      "tier": "Recommended",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/the-perch"
+    },
+    {
+      "name": "Tied House",
+      "tier": "Recommended",
+      "neighborhood": "Lakeview & Wrigleyville",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/tied-house"
+    },
+    {
+      "name": "Tzuco",
+      "tier": "Recommended",
+      "neighborhood": "River North",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Mexican. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/tzuco"
+    },
+    {
+      "name": "Valhalla",
+      "tier": "Recommended",
+      "neighborhood": "Bucktown & Wicker Park",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/valhalla"
+    },
+    {
+      "name": "Warlord",
+      "tier": "Recommended",
+      "neighborhood": "Humboldt Park & Logan Square",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: American Contemporary. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/warlord"
+    },
+    {
+      "name": "Yao Yao",
+      "tier": "Recommended",
+      "neighborhood": "Chinatown & South",
+      "address": null,
+      "website": null,
+      "notes": "Cuisine: Chinese. Michelin page: https://guide.michelin.com/us/en/illinois/chicago/restaurant/yao-yao"
+    }
+  ]
+}

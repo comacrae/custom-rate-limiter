@@ -1,0 +1,320 @@
+{
+  "slug": "timeout-best",
+  "name": "Time Out Chicago: Best Restaurants in Chicago, Ranked",
+  "sourceUrl": "https://www.timeout.com/chicago/restaurants/best-chicago-restaurants-our-picks-for-every-cuisine",
+  "edition": "2026-10",
+  "entries": [
+    {
+      "name": "Oriole",
+      "tier": "#1",
+      "neighborhood": null,
+      "address": "661 W Walnut St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Cariño",
+      "tier": "#2",
+      "neighborhood": null,
+      "address": "4662 N Broadway",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Birrieria Zaragoza",
+      "tier": "#3",
+      "neighborhood": null,
+      "address": "4800 N Broadway",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Kyōten",
+      "tier": "#4",
+      "neighborhood": null,
+      "address": "2507 W Armitage Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Maxwells Trading",
+      "tier": "#5",
+      "neighborhood": null,
+      "address": "1516 W Carroll Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Monteverde",
+      "tier": "#6",
+      "neighborhood": null,
+      "address": "1020 W Madison St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Johnnie's Beef",
+      "tier": "#7",
+      "neighborhood": "Elmwood Park",
+      "address": "7500 W North Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Trino",
+      "tier": "#8",
+      "neighborhood": null,
+      "address": "738 W Randolph St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Jeong",
+      "tier": "#9",
+      "neighborhood": null,
+      "address": "1460 W Chicago Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Pizz'amici",
+      "tier": "#10",
+      "neighborhood": null,
+      "address": "1215 W Grand Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Muhājir",
+      "tier": "#11",
+      "neighborhood": null,
+      "address": "2630 N Clark St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Calumet Fisheries",
+      "tier": "#12",
+      "neighborhood": null,
+      "address": "3259 E 95th St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Bonyeon",
+      "tier": "#13",
+      "neighborhood": null,
+      "address": "651 W Washington Blvd",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Virtue",
+      "tier": "#14",
+      "neighborhood": null,
+      "address": "1462 E 53rd St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Boka",
+      "tier": "#15",
+      "neighborhood": null,
+      "address": "1729 N Halsted St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Vito and Nick’s Pizzeria",
+      "tier": "#16",
+      "neighborhood": null,
+      "address": "8433 S Pulaski Rd",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Kasama",
+      "tier": "#17",
+      "neighborhood": null,
+      "address": "1001 N Winchester Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "La Chaparrita",
+      "tier": "#18",
+      "neighborhood": null,
+      "address": "2500 S Whipple St #4138",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "JM Seafood",
+      "tier": "#19",
+      "neighborhood": null,
+      "address": "3312 S Halsted St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Noodles Party",
+      "tier": "#20",
+      "neighborhood": null,
+      "address": "4205 W Lawrence Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Indienne",
+      "tier": "#21",
+      "neighborhood": null,
+      "address": "217 W Huron St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Shō Omakase",
+      "tier": "#22",
+      "neighborhood": null,
+      "address": "1533 N Wells St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "The Omakase Room at Sushi-san",
+      "tier": "#23",
+      "neighborhood": null,
+      "address": "63 W Grand Ave",
+      "website": null,
+      "notes": "Inside Sushi-san."
+    },
+    {
+      "name": "Creepies",
+      "tier": "#24",
+      "neighborhood": null,
+      "address": "1360 W Randolph St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Nadu",
+      "tier": "#25",
+      "neighborhood": null,
+      "address": "2518 N Lincoln Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Atsumeru",
+      "tier": "#26",
+      "neighborhood": null,
+      "address": "933 N Ashland Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Alinea",
+      "tier": "#27",
+      "neighborhood": null,
+      "address": "1723 N Halsted St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "John's Food and Wine",
+      "tier": "#28",
+      "neighborhood": null,
+      "address": "2114 N Halsted St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Mariscos San Pedro",
+      "tier": "#29",
+      "neighborhood": null,
+      "address": "1227 W 18th St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Ox Bar & Hearth",
+      "tier": "#30",
+      "neighborhood": null,
+      "address": "1578 N Clybourn Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Smith and The Loyalist",
+      "tier": "#31",
+      "neighborhood": null,
+      "address": "177 N Ada St, Suite #101",
+      "website": null,
+      "notes": "Printed this way by Time Out; refers to Smyth and The Loyalist (177 N Ada St)."
+    },
+    {
+      "name": "Dimmi Dimmi",
+      "tier": "#32",
+      "neighborhood": null,
+      "address": "1112 W Armitage Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Kabobi",
+      "tier": "#33",
+      "neighborhood": null,
+      "address": "3224 W Lawrence Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "YooYee",
+      "tier": "#34",
+      "neighborhood": null,
+      "address": "4925 N Broadway",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "J.P. Graziano",
+      "tier": "#35",
+      "neighborhood": null,
+      "address": "901 W Randolph St",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Nettare",
+      "tier": "#36",
+      "neighborhood": null,
+      "address": "1953 W Chicago Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Bar Tutto",
+      "tier": "#37",
+      "neighborhood": null,
+      "address": "1110 W Carroll Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Anelya",
+      "tier": "#38",
+      "neighborhood": null,
+      "address": "3472 N Elston Ave",
+      "website": null,
+      "notes": null
+    },
+    {
+      "name": "Milly's Pizza in the Pan",
+      "tier": "#39",
+      "neighborhood": null,
+      "address": "925 N Ashland Ave",
+      "website": null,
+      "notes": null
+    }
+  ]
+}

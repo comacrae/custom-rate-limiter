@@ -67,6 +67,10 @@ for (const batch of chunks(restaurants)) {
     postcode: r.postcode,
     latitude: r.latitude,
     longitude: r.longitude,
+    source: r.overtureId.startsWith('manual:') ? 'manual' : 'overture',
+    menu_style: r.menuStyle ?? null,
+    tasting_price: r.tastingPrice ?? null,
+    booking_url: r.bookingUrl ?? null,
   }));
   await sql`
     insert into public.restaurants ${sql(rows)}
@@ -74,7 +78,9 @@ for (const batch of chunks(restaurants)) {
       name = excluded.name, category = excluded.category, website = excluded.website,
       site_host = excluded.site_host, phone = excluded.phone, address = excluded.address,
       locality = excluded.locality, postcode = excluded.postcode,
-      latitude = excluded.latitude, longitude = excluded.longitude, updated_at = now()
+      latitude = excluded.latitude, longitude = excluded.longitude, source = excluded.source,
+      menu_style = excluded.menu_style, tasting_price = excluded.tasting_price,
+      booking_url = excluded.booking_url, updated_at = now()
   `;
 }
 console.log(`Loaded ${restaurants.length} restaurants`);
