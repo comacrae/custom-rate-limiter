@@ -1,9 +1,10 @@
-# Dev Expense Tracker
+# Custom Rate Limiter
 
-Track what you spend on developer tools (hosting, APIs, domains, courses) against a monthly budget.
+A rate limiting library for APIs: pluggable algorithms and storage, standard HTTP responses, and tests that prove the behavior. See [docs/plan.md](docs/plan.md) for the reading list and roadmap.
 
 ## Layout
 
+- `docs/` — reading list and plan
 - `supabase/` — Supabase config, migrations, and database tests
 
 ## Prerequisites
